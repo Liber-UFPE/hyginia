@@ -4,9 +4,9 @@
 #
 ---
 repository:
-  name: project-starter
-  description: "UFPE / Liber / project-starter"
-  homepage: "http://www.liber.ufpe.br/project-starter/"
+  name: hyginia
+  description: " UFPE / Liber / Monummenta Hygínia "
+  homepage: "http://www.liber.ufpe.br/hyginia/"
   private: true
   has_issues: true
   has_projects: true

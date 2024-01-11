@@ -19,7 +19,7 @@ object LinksHelper {
     }
 
     @JvmStatic
-    fun baseUrl(): String = Optional.ofNullable(System.getenv("PROJECT_STARTER_PATH")).orElse("/")
+    fun baseUrl(): String = Optional.ofNullable(System.getenv("HYGINIA_PATH")).orElse("/")
 
     fun linkTo(path: String): String = StringUtils.prependUri(baseUrl(), path)
 }

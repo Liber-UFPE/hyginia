@@ -24,7 +24,7 @@ class LinksHelperTest : BehaviorSpec({
 
     given("LinksHelper.linkTo") {
         `when`("""when base url is "/" """) {
-            withEnvironment("PROJECT_STARTER_PATH", "/") {
+            withEnvironment("HYGINIA_PATH", "/") {
                 forAll(
                     table(
                         headers("path", "expectedResult"),
@@ -44,7 +44,7 @@ class LinksHelperTest : BehaviorSpec({
         }
 
         `when`("""when base url is "/base" """) {
-            withEnvironment("PROJECT_STARTER_PATH", "/base") {
+            withEnvironment("HYGINIA_PATH", "/base") {
                 forAll(
                     table(
                         headers("path", "expectedResult"),
@@ -64,7 +64,7 @@ class LinksHelperTest : BehaviorSpec({
         }
 
         `when`("""when base url is "/base/" """) {
-            withEnvironment("PROJECT_STARTER_PATH", "/base/") {
+            withEnvironment("HYGINIA_PATH", "/base/") {
                 forAll(
                     table(
                         headers("path", "expectedResult"),
