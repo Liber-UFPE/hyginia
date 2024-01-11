@@ -1,0 +1,48 @@
+- name: DIKTAT_COMMON
+  enabled: true
+  configuration:
+    kotlinVersion: 1.9
+    domainName: br.ufpe.liber
+    disabledChapters: ""
+    srcDirectories: "main"
+    testDirs: "test"
+- name: FUNCTION_BOOLEAN_PREFIX
+  enabled: false
+- name: HEADER_MISSING_IN_NON_SINGLE_CLASS_FILE
+  enabled: false
+- name: KDOC_NO_CONSTRUCTOR_PROPERTY
+  enabled: false
+- name: MISSING_KDOC_CLASS_ELEMENTS
+  enabled: false
+- name: MISSING_KDOC_CLASS_ELEMENTS
+  enabled: false
+- name: MISSING_KDOC_ON_FUNCTION
+  enabled: false
+- name: MISSING_KDOC_TOP_LEVEL
+  enabled: false
+- name: WRONG_ORDER_IN_CLASS_LIKE_STRUCTURES
+  enabled: false
+- name: TRAILING_COMMA
+  enabled: true
+  configuration:
+    valueArgument: true
+
+# These either don't make sense for the project or conflict with ktlint.
+- name: FILE_NAME_INCORRECT
+  enabled: false
+- name: FILE_UNORDERED_IMPORTS
+  enabled: false
+- name: GENERIC_VARIABLE_WRONG_DECLARATION
+  enabled: false
+- name: OBJECT_NAME_INCORRECT
+  enabled: false
+- name: TYPE_ALIAS
+  enabled: false
+- name: VARIABLE_NAME_INCORRECT_FORMAT
+  enabled: false
+- name: WRONG_INDENTATION
+  enabled: false
+- name: WRONG_NEWLINES
+  enabled: false
+- name: WRONG_OVERLOADING_FUNCTION_ARGUMENTS
+  enabled: false

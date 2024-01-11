@@ -1,0 +1,54 @@
+[
+  {
+    "basename": "/javascripts/main",
+    "source": "/javascripts/main.js",
+    "filename": "/javascripts/main.34UGRNNI.js",
+    "hash": "34UGRNNI",
+    "integrity": "sha384-qWyHoR/uZ7x+UjVssG6ex4WUplfdMrwZMRmqQDXnn6uwCmlQUJkwhdifK4iY0EnX",
+    "extension": "js",
+    "mediaType": "application/javascript",
+    "encodings": [
+      {
+        "http": "br",
+        "extension": "br",
+        "priority": 0
+      },
+      {
+        "http": "gzip",
+        "extension": "gz",
+        "priority": 1
+      },
+      {
+        "http": "deflate",
+        "extension": "zz",
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "basename": "/stylesheets/main",
+    "source": "/stylesheets/main.css",
+    "filename": "/stylesheets/main.Y6PST7YS.css",
+    "hash": "Y6PST7YS",
+    "integrity": "sha384-TyLwwdc4QXD5F9vjpmD8Y0ozuOljr1I5RBmGWjsGxK8Q34JRE+NR1TmZNHiI6rps",
+    "extension": "css",
+    "mediaType": "text/css",
+    "encodings": [
+      {
+        "http": "br",
+        "extension": "br",
+        "priority": 0
+      },
+      {
+        "http": "gzip",
+        "extension": "gz",
+        "priority": 1
+      },
+      {
+        "http": "deflate",
+        "extension": "zz",
+        "priority": 2
+      }
+    ]
+  }
+]
