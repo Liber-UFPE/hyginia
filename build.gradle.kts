@@ -325,5 +325,5 @@ dependencies {
 
     // Accessibility Tests
     accessibilityTestImplementation("org.seleniumhq.selenium:selenium-java:4.16.1")
-    accessibilityTestImplementation("com.deque.html.axe-core:selenium:4.8.0")
+    accessibilityTestImplementation("com.deque.html.axe-core:selenium:4.8.1")
 }
