@@ -2,8 +2,7 @@
 @param message: String
 
 @template.layout(title = "500 - Erro Interno", content = @`
-    @template.partials.top(
-        title = "Ooops, houve um erro interno",
-        subtext = @`Erro ao processar a página que você tentou accessar: ${path}. Erro: ${message}`
-    )
+    @template.partials.error(errorCode = 500, errorName = "Erro Interno", message = @`
+        Erro ao processar a página que você tentou acessar: <code>${path}</code>. O erro foi: <code>${message}</code>
+    `)
 `)

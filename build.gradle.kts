@@ -62,6 +62,8 @@ val javaVersion: Int = 21
 val kotlinVersion: String = properties["kotlinVersion"] as String
 val micronautVersion: String = properties["micronautVersion"] as String
 val jteVersion: String = properties["jteVersion"] as String
+val luceneVersion: String = properties["luceneVersion"] as String
+val flexmarkVersion: String = properties["flexmarkVersion"] as String
 
 version = "0.1"
 group = "br.ufpe.liber"
@@ -330,6 +332,15 @@ dependencies {
     jteGenerate("gg.jte:jte-native-resources:$jteVersion")
     implementation("gg.jte:jte:$jteVersion")
     implementation("gg.jte:jte-kotlin:$jteVersion")
+
+    // Lucene
+    implementation("org.apache.lucene:lucene-core:$luceneVersion")
+    implementation("org.apache.lucene:lucene-analysis-common:$luceneVersion")
+    implementation("org.apache.lucene:lucene-queryparser:$luceneVersion")
+    implementation("org.apache.lucene:lucene-highlighter:$luceneVersion")
+
+    // Markdown
+    implementation("com.vladsch.flexmark:flexmark-ext-footnotes:$flexmarkVersion")
 
     // Accessibility Tests
     accessibilityTestImplementation("org.seleniumhq.selenium:selenium-java:4.17.0")

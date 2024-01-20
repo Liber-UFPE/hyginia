@@ -1,0 +1,42 @@
+@param name: String
+@param role: String
+@param description: String
+
+@param email: String? = null
+@param picture: String? = null
+@param linkHref: String? = null
+@param linkLabel: String? = null
+
+<div class="max-w-md mx-auto bg-white rounded-xl border border-gray-200 overflow-hidden md:max-w-2xl">
+    <div class="md:flex">
+        <div class="md:shrink-0">
+            @if(picture != null)
+                @template.assets.picture(
+                    path = picture,
+                    prefix = "/static",
+                    alt = name,
+                    imgClasses = "h-48 w-full object-cover md:h-full md:w-48"
+                )
+            @else
+                <svg class="h-48 w-full object-cover md:h-full md:w-48" width="12rem" height="14rem" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#55595c"></rect>
+                    <text x="40%" y="50%" fill="#eceeef" dy=".3em">Sem foto</text>
+                </svg>
+            @endif
+        </div>
+        <div class="p-8">
+            <div class="uppercase tracking-wide text-sm text-gray-600">${role}</div>
+            <p class="block mt-1 text-2xl leading-tight font-medium text-black">${name}</p>
+            <p class="mt-2 mb-2 text-gray-800">${description}</p>
+            @if(linkHref != null)
+                <a href="${linkHref}" class="inline-flex items-center font-medium text-blue-600 hover:text-blue-800">
+                    ${linkLabel}
+                    <svg class="w-2.5 h-2.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                    </svg>
+                </a>
+            @endif
+        </div>
+    </div>
+</div>

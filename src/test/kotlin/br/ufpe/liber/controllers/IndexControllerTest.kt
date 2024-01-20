@@ -30,6 +30,10 @@ class IndexControllerTest(
         `when`("navigating to pages") {
             forAll(
                 row("/", HttpStatus.OK),
+                row("/projeto", HttpStatus.OK),
+                row("/equipe", HttpStatus.OK),
+                row("/jose-hyginio", HttpStatus.OK),
+                row("/contato", HttpStatus.OK),
                 row("/does-not-exists", HttpStatus.NOT_FOUND),
             ) { path, expectedStatus ->
                 then("GET $path should return $expectedStatus") {

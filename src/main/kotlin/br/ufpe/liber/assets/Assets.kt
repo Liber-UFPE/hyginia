@@ -9,6 +9,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeToSequence
+import java.lang.IllegalArgumentException
 import java.util.NavigableMap
 import java.util.Optional
 import java.util.TreeMap
@@ -41,6 +42,9 @@ class AssetsResolver(resourceResolver: ResourceResolver) {
 
 object AssetsViewHelpers {
     fun at(path: String) = AssetsResolver.instance.at(path)
+    fun fingerprinted(prefix: String, path: String): String = at(path)
+        .map { it.fullpath(prefix) }
+        .orElseThrow { IllegalArgumentException("Could not find asset for path $path") }
 }
 
 @Serializable

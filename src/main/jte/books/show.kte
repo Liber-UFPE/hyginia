@@ -1,0 +1,22 @@
+@import br.ufpe.liber.search.TextHighlighter
+@import br.ufpe.liber.views.Markdown
+@import br.ufpe.liber.views.LinksHelper.linkTo
+
+@param book: br.ufpe.liber.model.Book
+
+@template.layout(title = "Volume ${book.number} do Livro ${book.title}", content = @`
+    @template.partials.main-section(title = "${book.title} volume ${book.number}", subtext = @`
+        <p class="mb-3 text-3xl text-gray-800">Esse volume contém ${book.daysSize} páginas e cobre o período de ${book.period} de ${book.year}</p>
+    `)
+    @template.partials.content-section(content = @`
+        @template.books._contents(book = book, day = book.firstDay())
+    `)
+`, metadata = @`
+    <meta property="og:title" content="${book.title}">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Volume: ${book.number}, Titulo: ${book.title}, Autor: ${book.author}, Ano: ${book.year}, Páginas: ${book.daysSize}">
+    <meta property="og:locale" content="pt-BR">
+    <meta property="og:site_name" content="Laboratório Liber">
+
+    <meta name="description" content="Volume: ${book.number}, Titulo: ${book.title}, Autor: ${book.author}, Ano: ${book.year}, Páginas: ${book.daysSize}" />
+`)

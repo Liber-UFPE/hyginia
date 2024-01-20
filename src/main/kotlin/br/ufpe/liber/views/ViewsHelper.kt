@@ -11,6 +11,10 @@ object ViewsHelper {
     fun isTurboRequest(): Boolean = turboFrame().isPresent
     fun notTurboRequest(): Boolean = turboFrame().isEmpty
 
+    fun isActive(path: String): Boolean = ServerRequestContext.currentRequest<Any>()
+        .map { req -> req.path.equals(path) }
+        .orElse(false)
+
     fun emptyContent(): Content = object : gg.jte.html.HtmlContent {
         override fun writeTo(output: HtmlTemplateOutput) {
             // nothing to do, empty content

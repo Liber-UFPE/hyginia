@@ -1,0 +1,60 @@
+@import br.ufpe.liber.views.LinksHelper.linkTo
+
+@template.layout(title = "Busca Avançada", content = @`
+    @template.partials.main-section(title = "Busca Avançada")
+    @template.partials.content-section(content = @`
+        <div class="grid md:grid-cols-2 gap-4 w-full">
+            <form action="${linkTo("/advanced-search")}"
+                  class="col-first"
+                  method="GET"
+                  role="search">
+                <p class="text-2xl pb-2">Critérios da Busca:</p>
+                <div class="relative mb-4">
+                    <input type="text" name="allWords" id="all-words" class="block rounded px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-800 bg-gray-50 border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" />
+                    <label for="all-words" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">
+                        Contenha <strong>todas</strong> essas palavras
+                    </label>
+                </div>
+                <div class="relative mb-4">
+                    <input type="text" name="oneOfWords" id="at-least-one" class="block rounded px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-800 bg-gray-50 border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" />
+                    <label for="at-least-one" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">
+                        Ao menos <strong>uma</strong> dessas palavras
+                    </label>
+                </div>
+                <div class="relative mb-4">
+                    <input type="text" name="exactPhrase" id="exact-phrase" class="block rounded px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-800 bg-gray-50 border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" />
+                    <label for="exact-phrase" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">
+                        Contenha a frase <strong>exata</strong>
+                    </label>
+                </div>
+                <div class="relative mb-4">
+                    <input type="text" name="notWords" id="do-not-include-words" class="block rounded px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-800 bg-gray-50 border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" />
+                    <label for="do-not-include-words" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">
+                        <strong>Não contenha</strong> essas palavras
+                    </label>
+                </div>
+                <div class="relative mb-4 h-16">
+                    <button type="submit" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center my-4 absolute left-0">Buscar</button>
+                    <button type="reset" class="text-white bg-gray-600 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center my-4 absolute right-0">Limpar todos os campos</button>
+                </div>
+            </form>
+            <div class="col-last ps-4 lg:ps-8">
+                <p class="text-2xl pb-2 text-gray-800">Como funciona:</p>
+                <p class="font-normal text-gray-800 pb-4">A busca avançada combina os campos do formulário para gerar um resultado mais preciso.</p>
+                <dl class="text-gray-800">
+                    <dt class="font-semibold">Algumas dicas</dt>
+                    <dd class="pb-4">Evite usar a mesma palavra em mais de um campo. Por exemplo, uma busca que acidentalmente inclua a palavra "recife" no campo de <em>"Contenha todas as palavras"</em> e também no campo de <em>"Não contenha as palavras"</em> pode não retornar resultado algum.</dd>
+                    <dt class="font-semibold">Sintaxe da Busca</dt>
+                    <dd class="pb-4">A busca é traduzida para a sintaxe que pode ser usada no campo de busca simples também. Para mais detalhes, veja a <a href="https://lucene.apache.org/core/9_8_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#package.description" target="_blank" aria-label="documentação, em Inglês, dos operadores que podem ser usados na busca - nova janela" class="text-blue-600 hover:underline">documentação, em Inglês, dos operadores que podem ser usados na busca</a>.</dd>
+                </dl>
+            </div>
+        </div>
+    `)
+`, metadata = @`
+    <meta name="description" content="Busca avançada do projeto Monummenta Hygínia." />
+    <meta property="og:title" content="Busca Avançada - Monummenta Hygínia">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Busca avançada do projeto Monummenta Hygínia.">
+    <meta property="og:locale" content="pt-BR">
+    <meta property="og:site_name" content="Laboratório Liber">
+`)
