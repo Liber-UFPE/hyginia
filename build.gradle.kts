@@ -1,4 +1,5 @@
 import br.ufpe.liber.tasks.GenerateAssetsMetadataTask
+import br.ufpe.liber.tasks.ParseBooksTask
 import com.adarshr.gradle.testlogger.theme.ThemeType
 import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
@@ -83,6 +84,11 @@ diktat {
     inputs {
         include("src/**/*.kt")
         exclude("src/accessibilityTest/**/*.kt")
+    }
+}
+tasks.configureEach {
+    if (name == "diktatFix" || name == "diktatCheck") {
+        notCompatibleWithConfigurationCache("https://github.com/saveourtool/diktat/issues/1732")
     }
 }
 tasks.named("check") {
@@ -295,6 +301,8 @@ tasks.named<DependencyUpdatesTask>("dependencyUpdates") {
         !stableKeyword && !version.matches(regex) || version.matches(possiblySnapshot)
     }
 }
+
+val parseBooks by tasks.registering(ParseBooksTask::class)
 
 dependencies {
     ksp(mn.micronaut.http.validation)
