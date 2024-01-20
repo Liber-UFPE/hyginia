@@ -1,0 +1,48 @@
+@import br.ufpe.liber.views.LinksHelper
+
+@template.layout(title = "Início", content = @`
+    @template.partials.main-section(title = "Entre em contato", subtext = @`
+        <p class="mb-3 text-3xl text-gray-800">Dúvidas, sugestões, elogios contate-nos através dos meios abaixo</p>
+    `)
+    @template.partials.content-section(content = @`
+        <div class="md:flex">
+            <div class="w-1/2">
+                <p class="tracking-wide text-lg font-semibold text-gray-600">Endereço</p>
+                <address class="tracking-wide font-normal text-gray-800 not-italic pb-8">
+                    Av. da Arquitetura,  s/n.<br />
+                    Cidade Universitária<br />
+                    Recife – PE, Brasil<br />
+                    CEP: 50740-550<br />
+                </address>
+
+                <p class="tracking-wide text-lg font-semibold text-gray-600">Telefone</p>
+                <p class="tracking-wide font-normal text-gray-800 not-italic pb-8">+55 81 2126 7726</p>
+
+                <p class="tracking-wide text-lg font-semibold text-gray-600">E-mail</p>
+                <p class="tracking-wide font-normal text-gray-800 not-italic pb-8">liber@ufpe.br</p>
+
+                <p class="tracking-wide text-lg font-semibold text-gray-600">Website</p>
+                <p class="tracking-wide font-normal text-gray-800 not-italic pb-8">
+                    <a href="${LinksHelper.Liber.link("?page_id=123362")}" class="text-blue-600 hover:underline">Formulário de Contato</a>
+                </p>
+            </div>
+            <div class="md:shrink-0">
+                @template.assets.picture(
+                    path = "/images/Liber.png",
+                    prefix = "/static",
+                    alt = "Logo do Laboratório Liber",
+                    width=480,
+                    height=180,
+                    imgClasses = "w-full object-cover"
+                )
+            </div>
+        </div>
+    `)
+`, metadata = @`
+    <meta name="description" content="Como entrar em contato com o Laboratório Liber, mantenedor do projeto Monummenta Hygínia." />
+    <meta property="og:title" content="Entre em Contato">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Como entrar em contato com o Laboratório Liber, mantenedor do projeto Monummenta Hygínia.">
+    <meta property="og:locale" content="pt-BR">
+    <meta property="og:site_name" content="Laboratório Liber">
+`)

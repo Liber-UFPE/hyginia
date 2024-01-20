@@ -1,0 +1,6 @@
+@param content: gg.jte.Content
+<section class="bg-white py-8">
+    <div class="max-w-screen-xl mx-auto p-4">
+        ${content}
+    </div>
+</section>

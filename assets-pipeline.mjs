@@ -6,7 +6,7 @@ import path from "path";
 import {sassPlugin} from "esbuild-sass-plugin";
 import autoprefixer from "autoprefixer";
 import postcss from "postcss";
-import purgecss from "@fullhuman/postcss-purgecss";
+import tailwindcss from "tailwindcss";
 
 const assetsFolder = "src/main/resources/public";
 const assetsBuildFolder = "build/resources/main/public";
@@ -73,15 +73,8 @@ await esbuild.build({
     plugins: [
         sassPlugin({
             async transform(source) {
-                const {css} = await postcss([
-                    autoprefixer,
-                    purgecss({
-                        content: ["./src/**/*.kte", `${assetsFolder}/**/*.js`],
-                        safelist: {
-                            deep: [/footnotes$/]
-                        }
-                    })
-                ]).process(source, {from: undefined, map: false});
+                const {css} = await postcss([tailwindcss, autoprefixer])
+                    .process(source, {from: undefined, map: false});
                 return css;
             }
         }),

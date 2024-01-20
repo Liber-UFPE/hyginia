@@ -11,4 +11,16 @@ import io.micronaut.http.annotation.Produces
 class IndexController(private val templates: Templates) : KteController {
     @Get
     fun index() = ok(templates.index())
+
+    @Get("/equipe")
+    fun staff() = ok(templates.staff())
+
+    @Get("/projeto")
+    fun project() = ok(templates.project())
+
+    @Get("/jose-hyginio")
+    fun who() = ok(templates.who())
+
+    @Get("/contato")
+    fun contact() = ok(templates.contact())
 }

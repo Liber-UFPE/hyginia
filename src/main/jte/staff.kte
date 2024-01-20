@@ -1,0 +1,54 @@
+@import br.ufpe.liber.views.LinksHelper.linkTo
+
+@template.layout(title = "Início", content = @`
+    @template.partials.main-section(title = "Equipe do Projeto", subtext = @`
+        <p class="mb-3 text-3xl text-gray-800">Quem fez o Monummenta Hyginia</p>
+    `)
+    @template.partials.content-section(content = @`
+        <div class="grid md:grid-cols-2 gap-4">
+            @template.partials.staffCard(
+                name = "Marcos Galindo",
+                role = "Coordenador",
+                description = "Prof. do Departamento de Ciência da Informação da Universidade Federal de Pernambuco e Coordenador do Laboratório Liber.",
+                email = "galindo@ufpe.br",
+                picture = "/images/marcos-galindo.jpg",
+                linkHref = "//lattes.cnpq.br/7413464711814360",
+                linkLabel = "Curriculo Lattes"
+            )
+
+            @template.partials.staffCard(
+                name = "Ney de Brito Dantas",
+                role = "Consultor de Tecnologia",
+                description = "Pesquisador da Pós-Graduação de Design, professor do Departamento de Arquitetura da Universidade Federal de Pernambuco.",
+                email = "ney.dantas@gmail.com",
+                picture = "/images/ney-dantas.jpg",
+                linkHref = "https://sigaa.ufpe.br/sigaa/public/docente/portal.jsf?siape=1351969",
+                linkLabel = "Perfil SIGAA"
+            )
+
+            @template.partials.staffCard(
+                name = "Cleiton Márcio Vieira Lima",
+                role = "Engenheiro de Software",
+                description = "Bacharel em Engenharia Mecânica (2000) e em Ciência da Computação (2005), ambos pela Universidade Federal de Pernambuco.",
+                email = "cleiton.marcio@gmail.com",
+                linkHref = "//lattes.cnpq.br/0277573154527643",
+                linkLabel = "Curriculo Lattes"
+            )
+
+            @template.partials.staffCard(
+                name = "Felipe Borba Breyer",
+                role = "Web Design",
+                description = "Mestre em Design (2008) e Doutor em Ciências da Computação (2015), ambos pela Universidade Federal de Pernambuco.",
+                linkHref = "//lattes.cnpq.br/2544341199949477",
+                linkLabel = "Curriculo Lattes"
+            )
+        </div>
+    `)
+`, metadata = @`
+    <meta name="description" content="A equipe responsável pelo desenvolvimento do projeto Monumenta Hyginia." />
+    <meta property="og:title" content="Equipe do Projeto Monumenta Hyginia">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="A equipe responsável pelo desenvolvimento do projeto Monumenta Hyginia.">
+    <meta property="og:locale" content="pt-BR">
+    <meta property="og:site_name" content="Laboratório Liber">
+`)

@@ -7,6 +7,11 @@ object LinksHelper {
     const val UFPE: String = "https://ufpe.br/"
     const val HOLANDAEVOCE: String = "https://www.holandaevoce.nl/"
     const val DCI: String = "https://www.ufpe.br/dci"
+    const val IAHGP: String = "https://arqueologico.com.br"
+    const val FUNCULTURA: String = "https://www.cultura.pe.gov.br/pagina/funcultura/"
+    const val FACEPE: String = "https://www.facepe.br/"
+    const val CEPE: String = "https://www.cepe.com.br//"
+    const val REDE_MEMORIAL: String = "https://redememorialpernambuco.blogspot.com/"
 
     object Liber {
         const val SITE: String = "http://www.liber.ufpe.br/"
@@ -14,6 +19,7 @@ object LinksHelper {
         const val FACEBOOK = "https://www.facebook.com/liberufpe"
         const val YOUTUBE = "https://www.youtube.com/@liberufpe"
         const val LINKTREE = "https://linktr.ee/liberufpe"
+        const val GITHUB = "https://github.com/Liber-UFPE/"
 
         fun link(path: String): String = "$SITE${path.trim()}"
     }

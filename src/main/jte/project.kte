@@ -1,0 +1,21 @@
+@import br.ufpe.liber.views.LinksHelper
+
+@template.layout(title = "Início", content = @`
+    @template.partials.main-section(title = "O Projeto Monummenta Hygínia", subtext = @`
+        <p class="mb-3 text-3xl text-gray-800">O título Monummenta Hygínia presta uma homenagem ao erudito pernambucano Dr. José Hygínio Duarte Pereira.</p>
+    `)
+    @template.partials.content-section(content = @`
+        <article class="format lg:format-lg">
+            <p class="text-gray-800 leading-relaxed mb-4">Dr. José Hygínio Duarte Pereira que entre os anos de 1885 e 1886 esteve nos Países Baixos, em missão delegada pelo <a href="${LinksHelper.IAHGP}" class="text-blue-600 hover:underline">Instituto Arqueológico e Geográfico Pernambucano – IAHGP</a>, e Governo Provincial para coletar manuscritos de interesse histórico, referentes ao período de ocupação neerlandesa no Nordeste do Brasil no século XVI. O trabalho do Dr José Hyginio permitiu a formação de uma coleção - 32 volumes em 11.500 páginas manuscritas em língua holandesa – hoje depositada no Instituto Pernambucano. O projeto <em>Monummenta Hyginia</em>, portanto, tem por objetivo prover o livre acesso esta coleção.</p>
+            <p class="text-gray-800 leading-relaxed mb-4">A iniciativa cuida da publicação das fontes coletadas pelo Dr. José Hygino (Dagelyksche Notulen der Horge Regeering in Brazilie 1635-1654), traduzidas de forma sistemática para língua portuguesa. As Nótulas Diárias do Alto Governo Neerlandês no Brasil são o registro do governo da Companhia de Comércio que oficializavam os atos da ocupação neerlandesa no Brasil na forma de um diário corrente, aspecto salientado no relatório do Dr. José Hygino de 1886: "uma crônica minuciosa do governo holandês no Brasil". As Nótulas Diárias, equivalem aos modernos diários oficiais que dão lume impresso a burocracia dos governos.</p>
+            <p class="text-gray-800 leading-relaxed mb-4">A iniciativa contou com o suporte financeiro da <a href="${LinksHelper.HOLANDAEVOCE}" class="text-blue-600 hover:underline">Embaixada do Reino dos Países Baixos no Brasil</a>, e da <a href="${LinksHelper.FUNCULTURA}" class="text-blue-600 hover:underline">Funcultura</a>. Os recursos destinaram-se a cobrir despesas relativas ao pagamento de serviços especializados de digitalização da coleção; digitação dos manuscritos em língua neerlandesa e tradução para o português.</p>
+        </article>
+    `)
+`, metadata = @`
+    <meta name="description" content="Sobre o projeto Monummenta Hygínia, que publica em formato digital os anos 1635 e 1636 do Monumenta Hyginia.">
+    <meta property="og:description" content="Sobre o projeto Monummenta Hygínia, que publica em formato digital os anos 1635 e 1636 do Monumenta Hyginia.">
+    <meta property="og:title" content="Sobre o projeto Monummenta Hygínia">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt-BR">
+    <meta property="og:site_name" content="Laboratório Liber">
+`)

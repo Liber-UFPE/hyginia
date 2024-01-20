@@ -5,7 +5,7 @@
 ---
 repository:
   name: hyginia
-  description: " UFPE / Liber / Monummenta Hygínia "
+  description: " UFPE / Liber / Monummenta Hygínia"
   homepage: "http://www.liber.ufpe.br/hyginia/"
   private: true
   has_issues: true

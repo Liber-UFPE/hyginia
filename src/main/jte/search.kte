@@ -1,0 +1,81 @@
+@import br.ufpe.liber.views.LinksHelper
+@import br.ufpe.liber.views.LinksHelper.linkTo
+
+@param query: String
+@param results: br.ufpe.liber.search.SearchResults
+
+@template.layout(title = "Resultado da busca", content = @`
+    @if(results.isEmpty())
+        @template.partials.content-section(content = @`
+            <section class="h-full flex items-center">
+                <div class="py-8 lg:py-16">
+                    <h1 class="mb-4 text-6xl text-gray-800">Nenhum resultado</h1>
+                    <p class="mb-4 text-2xl tracking-tight text-gray-800 md:text-2xl">Ooops, nenhum resultado foi encontrado para essa busca: <mark>${query}</mark>.</p>
+                    <a href="${linkTo("/advanced-search")}" class="inline-flex text-white bg-blue-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center my-4">Tente a busca avançada</a>
+                </div>
+            </section>
+        `)
+    @else
+    @template.partials.main-section(title = "Resultados da Busca")
+    @template.partials.content-section(content = @`
+        <p class="text-2xl pb-8 leading-relaxed">
+            Página <span class="underline">${results.currentPage}</span> do total de <span class="underline">${results.hits}</span> resultados para a busca por <mark>${query}</mark>:
+        </p>
+        <ul class="grid grid-cols-1 gap-6 w-full">
+        @for(result in results)
+            <li class="p-4 rounded border border-white cursor-pointer hover:border-blue-300 hover:bg-gray-100 hover:shadow hover:shadow-blue-200">
+                <a href="${linkTo("/obra/${result.book.id}/pagina/${result.day.id}?query=${query}")}">
+                    <div class="justify-between">
+                        <div class="text-lg font-semibold">Dia ${result.day.day} do volume ${result.book.number} do livro ${result.book.title}</div>
+                        <div class="text-gray-600 text-sm">Ano do livro: ${result.book.year}</div>
+                    </div>
+                    <p class="mt-1"><span class="text-gray-600">...</span>${result.hightlightedContent} <span class="text-gray-600">...</span></p>
+                </a>
+            </li>
+        @endfor
+        </ul>
+
+        <nav role="navigation" aria-label="Paginação dos resultados da busca">
+            <ul class="inline-flex -space-x-px text-base h-10 p-4">
+                <li>
+                @if(results.isFirstPage)
+                    <span class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-gray-100 border border-e-0 border-gray-300 ms-0 rounded-s-lg">&lsaquo; Anterior</span>
+                @else
+                    <a href="${linkTo("/search/?query=${query}&page=${results.currentPage - 1}")}" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-800 bg-white border border-gray-300 hover:bg-blue-600 hover:text-white rounded-s-lg">&lsaquo; Anterior</a>
+                @endif
+                </li>
+
+                @for(page in results.pages)
+                    <li>
+                    !{val isCurrentPage: Boolean = page.number == results.currentPage}
+                    @if(isCurrentPage)
+                        <span class="flex items-center justify-center px-4 h-10 leading-tight border border-e-0 border-gray-300 ms-0 text-blue-600 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 font-semibold">${page.toString()}</span>
+                    @else
+                        @if(page.hidden)
+                            <span class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-gray-100 border border-e-0 border-gray-300 ms-0 bg-white">${page.toString()}</span>
+                        @else
+                            <a href="${linkTo("/search/?query=${query}&page=${page.number}")}" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-800 bg-white border border-gray-300 hover:bg-blue-600 hover:text-white">${page.number}</a>
+                        @endif
+                    @endif
+                    </li>
+                @endfor
+
+                <li>
+                @if(results.isLastPage)
+                    <span class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-gray-100 border border-gray-300 ms-0 rounded-e-lg">Próxima &rsaquo;</span>
+                @else
+                    <a href="${linkTo("/search/?query=${query}&page=${results.currentPage + 1}")}" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-800 bg-white border border-gray-300 hover:bg-blue-600 hover:text-white rounded-e-lg">Próxima &rsaquo;</a>
+                @endif
+                </li>
+            </ul>
+        </nav>
+    `)
+    @endif
+`, metadata = @`
+    <meta name="description" content="Resultados para a busca por ${query}, Páginas: ${results.hits}">
+    <meta property="og:title" content="Resultados da Busca">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Resultados para a busca por ${query}, Páginas: ${results.hits}">
+    <meta property="og:locale" content="pt-BR">
+    <meta property="og:site_name" content="Laboratório Liber">
+`)
