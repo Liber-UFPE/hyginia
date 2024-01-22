@@ -10,7 +10,6 @@ import java.util.Optional
 
 @MicronautTest
 class BookRepositoryTest(private val bookRepository: BookRepository) : BehaviorSpec({
-
     given("BookRepository") {
         `when`(".listAll") {
             then("should return all the books") {

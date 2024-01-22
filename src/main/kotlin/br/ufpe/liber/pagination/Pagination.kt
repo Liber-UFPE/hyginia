@@ -1,7 +1,6 @@
 package br.ufpe.liber.pagination
 
 data class Page(val number: Int, val label: String = "") {
-
     val hidden: Boolean = (label == Pagination.HIDDEN_SLOTS)
 
     override fun toString(): String {
@@ -13,7 +12,6 @@ class Pagination(
     val current: Int = FIRST,
     val total: Int,
 ) {
-
     companion object {
         const val FIRST = 1
         const val SLOTS_TO_SHOW = 10
@@ -35,7 +33,7 @@ class Pagination(
             SLOTS_TO_SHOW - 1 - BEFORE_CURRENT_IN_THE_MIDDLE - USED_SLOTS_AT_THE_END
     }
 
-    @Suppress("detekt:ReturnCount")
+    @Suppress("detekt:ReturnCount", "TOO_LONG_FUNCTION")
     fun listPages(): List<Page> {
         if (total == 0) return emptyList()
         if (total <= SLOTS_TO_SHOW) return (current..total).map { Page(it) }

@@ -19,7 +19,6 @@ data class QueryComposer(
     val notWords: String = "",
 ) {
     private val analyzer: Analyzer = StandardAnalyzer(BrazilianAnalyzer.getDefaultStopSet())
-
     val query: String = buildQuery()
 
     fun isEmpty(): Boolean = query.isBlank()
@@ -39,33 +38,35 @@ data class QueryComposer(
      * https://lucene.apache.org/core/9_8_0/core/org/apache/lucene/analysis/package-summary.html?is-external=true
      */
     private fun processTokenStream(text: String, builder: BooleanQuery.Builder, occur: Occur) {
-        if (text.isBlank()) return
-        val tokenStream = analyzer.tokenStream("", text)
-        val charAttribute: CharTermAttribute = tokenStream.addAttribute(CharTermAttribute::class.java)
+        if (text.isNotBlank()) {
+            val tokenStream = analyzer.tokenStream("", text)
+            val charAttribute: CharTermAttribute = tokenStream.addAttribute(CharTermAttribute::class.java)
 
-        tokenStream.use { ts ->
-            ts.reset()
-            while (ts.incrementToken()) {
-                val termQuery = TermQuery(Term("", charAttribute.toString()))
-                builder.add(BooleanClause(termQuery, occur))
+            tokenStream.use { ts ->
+                ts.reset()
+                while (ts.incrementToken()) {
+                    val termQuery = TermQuery(Term("", charAttribute.toString()))
+                    builder.add(BooleanClause(termQuery, occur))
+                }
+                ts.end()
             }
-            ts.end()
         }
     }
 
     private fun processExactPhraseTokenStream(text: String, builder: Builder) {
-        if (text.isBlank()) return
-        val tokenStream = analyzer.tokenStream("", text)
-        val charAttribute: CharTermAttribute = tokenStream.addAttribute(CharTermAttribute::class.java)
-        val phraseQueryBuilder = PhraseQuery.Builder()
+        if (text.isNotBlank()) {
+            val tokenStream = analyzer.tokenStream("", text)
+            val charAttribute: CharTermAttribute = tokenStream.addAttribute(CharTermAttribute::class.java)
+            val phraseQueryBuilder = PhraseQuery.Builder()
 
-        tokenStream.use { ts ->
-            ts.reset()
-            while (ts.incrementToken()) {
-                phraseQueryBuilder.add(Term("", charAttribute.toString()))
+            tokenStream.use { ts ->
+                ts.reset()
+                while (ts.incrementToken()) {
+                    phraseQueryBuilder.add(Term("", charAttribute.toString()))
+                }
+                builder.add(phraseQueryBuilder.build(), Occur.SHOULD)
+                ts.end()
             }
-            builder.add(phraseQueryBuilder.build(), Occur.SHOULD)
-            ts.end()
         }
     }
 

@@ -19,7 +19,6 @@ data class Book(
     val period: String,
     val days: List<Day>,
 ) {
-
     companion object {
         private const val MAX_DESCRIPTION_LENGHT = 300
     }
