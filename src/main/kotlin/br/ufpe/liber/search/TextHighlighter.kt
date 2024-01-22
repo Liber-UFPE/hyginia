@@ -20,7 +20,6 @@ import org.apache.lucene.search.highlight.TokenSources
 @EagerInProduction
 class TextHighlighter(private val analyzer: Analyzer) {
     companion object {
-
         lateinit var staticAnalyzer: Analyzer
 
         fun highlightText(query: String, text: String): String = if (query.isBlank()) {
@@ -53,8 +52,9 @@ class TextHighlighter(private val analyzer: Analyzer) {
         fragmenter: Fragmenter = SimpleSpanFragmenter(scorer),
     ): Highlighter {
         val formatter = SimpleHTMLFormatter("<mark>", "</mark>")
-        val highlighter = Highlighter(formatter, scorer)
-        highlighter.textFragmenter = fragmenter
+        val highlighter = Highlighter(formatter, scorer).apply {
+            textFragmenter = fragmenter
+        }
 
         return highlighter
     }

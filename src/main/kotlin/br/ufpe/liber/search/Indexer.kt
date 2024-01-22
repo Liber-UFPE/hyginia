@@ -23,7 +23,6 @@ class Indexer(
     private val directory: Directory,
     private val analyzer: Analyzer,
 ) {
-
     companion object {
         val logger: Logger = LoggerFactory.getLogger(Indexer::class.java)
     }

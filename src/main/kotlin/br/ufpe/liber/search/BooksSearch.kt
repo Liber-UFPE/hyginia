@@ -31,7 +31,6 @@ class BooksSearch(
     private val analyzer: Analyzer,
     private val textHighlighter: TextHighlighter,
 ) {
-
     companion object {
         const val RESULTS_PER_PAGE: Int = 10
         const val MAX_HITS_THRESHOLD: Int = 1000
@@ -105,10 +104,8 @@ data class SearchResults(
     }
 
     val totalPages: Int = ceil(hits.toDouble() / BooksSearch.RESULTS_PER_PAGE).toInt()
-
     val isFirstPage: Boolean = currentPage == Pagination.FIRST
     val isLastPage: Boolean = currentPage == totalPages
-
     val pages = Pagination(currentPage, totalPages).listPages()
 }
 

@@ -6,7 +6,6 @@ import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 
 class SearchResultsTest : BehaviorSpec({
-
     given("SearchResults") {
         `when`(".empty()") {
             then("hits should be zero") { SearchResults.empty().hits shouldBe 0 }

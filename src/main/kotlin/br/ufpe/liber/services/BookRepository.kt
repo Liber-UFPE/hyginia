@@ -13,17 +13,16 @@ import jakarta.inject.Singleton
 import kotlinx.serialization.json.Json
 import org.reactivestreams.Publisher
 import java.io.BufferedReader
-import java.util.*
+import java.util.Optional
+import java.util.SortedMap
+import java.util.TreeMap
 import java.util.concurrent.ExecutorService
 
 @Singleton
 class BookRepository(private val resourceResolver: ResourceResolver) {
-
-    private val books: SortedMap<Long, Book>
+    private val books: SortedMap<Long, Book> = TreeMap()
 
     init {
-        books = TreeMap()
-
         @Suppress("detekt:MagicNumber")
         listOf(1635, 1636, 1637, 1638, 1639, 1640, 1641, 1644).forEach { year ->
             resourceResolver.getResourceAsStream("classpath:books/$year.utf8.json").ifPresent { inputStream ->

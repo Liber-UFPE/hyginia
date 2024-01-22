@@ -12,7 +12,6 @@ import java.util.Optional
 @MicronautTest
 class BookTest(private val resourceResolver: ResourceResolver) : BehaviorSpec({
     given("Book loaded from JSON") {
-
         val book: Book =
             resourceResolver
                 .getResourceAsStream("classpath:books/1635.utf8.json")
@@ -34,7 +33,6 @@ class BookTest(private val resourceResolver: ResourceResolver) : BehaviorSpec({
                 )
 
         `when`("decoded to model") {
-
             then("should have the correct author") { book.author shouldBe "José Hyginio" }
             then("should have the correct title") { book.title shouldBe "Dagelijkse Notulen" }
             then("should have the correct number") { book.number shouldBe 1 }

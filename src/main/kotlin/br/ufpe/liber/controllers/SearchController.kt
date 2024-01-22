@@ -11,7 +11,7 @@ import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.Produces
 import io.micronaut.http.annotation.QueryValue
 import org.apache.lucene.queryparser.classic.ParseException
-import java.util.*
+import java.util.Optional
 import kotlin.math.max
 
 @Controller
@@ -43,7 +43,9 @@ class SearchController(private val booksSearch: BooksSearch, private val templat
     }
 
     private fun runSearch(query: String, page: Optional<Int>): HttpResponse<KteWriteable> {
-        if (query.isBlank()) return ok(templates.search(query, SearchResults.empty()))
+        if (query.isBlank()) {
+            return ok(templates.search(query, SearchResults.empty()))
+        }
 
         // For users, we show 1-based pages, but internally we handle it as 0-based.
         // Therefore, we need to subtract `1`. We `max` it with zero to avoid negative
