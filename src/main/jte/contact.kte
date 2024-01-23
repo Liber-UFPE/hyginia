@@ -23,7 +23,7 @@
 
                 <p class="tracking-wide text-lg font-semibold text-gray-600">Website</p>
                 <p class="tracking-wide font-normal text-gray-800 not-italic pb-8">
-                    <a href="${LinksHelper.Liber.link("?page_id=123362")}" class="text-blue-600 hover:underline">Formulário de Contato</a>
+                    <a href="${LinksHelper.Liber.link("?page_id=123362")}" class="text-blue-700 underline hover:text-blue-800 underline-offset-2">Formulário de Contato</a>
                 </p>
             </div>
             <div class="md:shrink-0">
