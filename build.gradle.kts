@@ -47,6 +47,9 @@ plugins {
     // To manage docker images
     // https://github.com/bmuschko/gradle-docker-plugin
     id("com.bmuschko.docker-remote-api") version "9.4.0"
+    // SonarQube/SonarCloud plugin
+    // https://github.com/SonarSource/sonar-scanner-gradle
+    id("org.sonarqube") version "4.4.1.3373"
     // Add diktat
     // https://github.com/marcospereira/diktat
     id("com.saveourtool.diktat") version "2.0.0"
@@ -79,6 +82,69 @@ application {
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(javaVersion)
+    }
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "Liber-UFPE_hyginia")
+        property("sonar.organization", "liber-ufpe")
+        property("sonar.host.url", "https://sonarcloud.io")
+
+        property("sonar.kotlin.file.suffixes", listOf(".kt", ".kts"))
+
+        // https://docs.sonarsource.com/sonarcloud/enriching/test-coverage/test-coverage-parameters/#javakotlinscalajvm
+        property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/kover/report.xml")
+
+        // https://docs.sonarsource.com/sonarcloud/enriching/external-analyzer-reports/#kotlin
+        property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt/detekt.xml")
+
+        // https://docs.sonarsource.com/sonarcloud/advanced-setup/languages/kotlin/#specifying-the-kotlin-source-code-version
+        property("sonar.kotlin.source.version", "1.9")
+
+        property(
+            "sonar.sources",
+            sourceSets
+                .main
+                .get()
+                .allSource
+                .srcDirs
+                .filterNot {
+                    // Exclude generated files
+                    it.absolutePath.startsWith(layout.buildDirectory.asFile.get().absolutePath)
+                }
+                .filter(File::exists),
+        )
+
+        property(
+            "sonar.tests",
+            sourceSets
+                // Include any source set that contains test in its name.
+                // For example, "test", "integrationTest", etc.
+                .filter { sourceSet -> sourceSet.name.contains("test", ignoreCase = true) }
+                .flatMap { sourceSet ->
+                    sourceSet
+                        .allSource
+                        .srcDirs
+                        .filterNot { dir ->
+                            // Exclude generated files
+                            dir.absolutePath.startsWith(layout.buildDirectory.asFile.get().absolutePath)
+                        }
+                        .filter(File::exists)
+                },
+        )
+
+        // See docs here:
+        // https://docs.sonarsource.com/sonarqube/latest/project-administration/analysis-scope/#code-coverage-exclusion
+        property(
+            "sonar.coverage.exclusions",
+            listOf("**/*Generated*"),
+        )
+
+        property(
+            "sonar.exclusions",
+            listOf("src/main/**/books/*.txt"),
+        )
     }
 }
 
