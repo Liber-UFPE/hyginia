@@ -1,7 +1,7 @@
 @template.layout(title = "Início", content = @`
     <section class="main-section-bg">
         <div class="px-4 pt-8 mx-auto max-w-screen-xl z-10 relative md:pt-16 text-center">
-            <p class="mb-4 leading-none text-6xl text-gray-800 tracking-tight sm:text-lg md:text-7xl lg:text-8xl">O Projeto Monummenta Hygínia</p>
+            <h1 class="mb-4 leading-none text-6xl text-gray-800 tracking-tight sm:text-lg md:text-7xl lg:text-8xl">O Projeto Monummenta Hygínia</h1>
             <div class="flex justify-center items-center">
                 @template.assets.picture(path = "/images/hyginio-home.png", prefix = "/static", alt = "José Hyginio")
             </div>
