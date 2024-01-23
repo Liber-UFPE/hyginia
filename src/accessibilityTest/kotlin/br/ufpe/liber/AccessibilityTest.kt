@@ -44,7 +44,7 @@ class AccessibilityTest(
 
     beforeSpec {
         // For possible initializations since the application will
-        // be tested from the users perspective.
+        // be tested from the user's perspective.
     }
 
     // Called once per Spec, after all tests have completed for that spec.
