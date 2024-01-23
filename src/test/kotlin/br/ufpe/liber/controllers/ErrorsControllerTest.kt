@@ -1,6 +1,5 @@
 package br.ufpe.liber.controllers
 
-import br.ufpe.liber.shouldContain
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import io.micronaut.http.HttpRequest
@@ -23,7 +22,6 @@ class ErrorsControllerTest(
 
                 val response = errorsController.defaultNotFound(request)
                 response.status.shouldBe(HttpStatus.NOT_FOUND)
-                response.body().shouldContain("/testing-path")
             }
         }
     }

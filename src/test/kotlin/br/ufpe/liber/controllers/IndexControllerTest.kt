@@ -1,5 +1,6 @@
 package br.ufpe.liber.controllers
 
+import br.ufpe.liber.assets.AssetsResolver
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
@@ -25,6 +26,11 @@ class IndexControllerTest(
             DefaultHttpClientConfiguration().apply { isExceptionOnErrorStatus = false },
         )
         .toBlocking()
+
+    beforeSpec {
+        // AssetsResolver initializes a lateinit property used by the view helpers
+        context.getBean(AssetsResolver::class.java)
+    }
 
     given("IndexController") {
         `when`("navigating to pages") {
