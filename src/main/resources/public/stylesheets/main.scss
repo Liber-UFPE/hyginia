@@ -27,4 +27,8 @@
       @apply underline bg-amber-300;
     }
   }
+
+  #brand-button.htmx-request {
+    @apply animate-pulse;
+  }
 }
