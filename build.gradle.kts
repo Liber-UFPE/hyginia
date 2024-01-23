@@ -324,6 +324,6 @@ dependencies {
     implementation("gg.jte:jte-kotlin:$jteVersion")
 
     // Accessibility Tests
-    accessibilityTestImplementation("org.seleniumhq.selenium:selenium-java:4.16.1")
+    accessibilityTestImplementation("org.seleniumhq.selenium:selenium-java:4.17.0")
     accessibilityTestImplementation("com.deque.html.axe-core:selenium:4.8.1")
 }
