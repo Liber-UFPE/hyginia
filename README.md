@@ -5,12 +5,6 @@
 ![CI Workflow](https://github.com/Liber-UFPE/hyginia/actions/workflows/build.yml/badge.svg?branch=main)
 ![Main Workflow](https://github.com/Liber-UFPE/hyginia/actions/workflows/main.yml/badge.svg?branch=main)
 
-This is a project starter template. There are a few things you need to do after creating your repository using this template:
-
-- [ ] Edit `src/main/resources/public/stylesheets/main.css` as needed (different colors, fonts, etc.)
-- [ ] Edit `src/main/resources/public/javascript/main.js` as needed
-- [ ] Edit `src/main/jte/layout.kte` as necessary to support your project's navigation
-
 ## Adding a new page
 
 To add a new page, you need to edit a few files:
