@@ -7,6 +7,7 @@ module.exports = {
     safelist: [
         'footnotes',
         'footnote-ref',
+        'htmx-request',
     ],
     theme: {
         fontFamily: {

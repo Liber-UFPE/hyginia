@@ -31,7 +31,7 @@
     <title>${title} - Monummenta Hygínia</title>
     ${metadata}
 </head>
-<body class="flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen" hx-indicator="#brand-button">
 
 @if(notHtmxRequest())
 <header>
@@ -40,7 +40,7 @@
             <a href="${linkTo("/")}"
                hx-boost="true" hx-target="#content" hx-swap="outerHTML show:window:top" hx-push-url="true"
                class="flex items-center space-x-3">
-                <button type="button" class="font-medium text-center text-white text-lg rounded-lg px-4 py-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none">Monummenta Hygínia</button>
+                <button id="brand-button" type="button" class="font-medium text-center text-white text-lg rounded-lg px-4 py-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none">Monummenta Hygínia</button>
             </a>
 
             <div class="flex md:order-2">
