@@ -1,7 +1,7 @@
 @import br.ufpe.liber.views.CSPHelper
 @import br.ufpe.liber.views.LinksHelper
 @import br.ufpe.liber.views.LinksHelper.linkTo
-@import br.ufpe.liber.views.ViewsHelper.notTurboRequest
+@import br.ufpe.liber.views.ViewsHelper.notHtmxRequest
 @import br.ufpe.liber.assets.AssetsViewHelpers.at
 @import br.ufpe.liber.assets.AssetsViewHelpers.fingerprinted
 
@@ -12,10 +12,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @if(notHtmxRequest())
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>${title} - Monummenta Hygínia</title>
-
     <link href="${linkTo(fingerprinted("/static", "/images/favicon.ico"))}"
           rel="icon" type="image/x-icon" crossorigin="anonymous" />
 
@@ -27,15 +26,20 @@
             background-repeat: repeat;
         }
     </style>
+    @endif
 
+    <title>${title} - Monummenta Hygínia</title>
     ${metadata}
 </head>
 <body class="flex flex-col min-h-screen">
 
+@if(notHtmxRequest())
 <header>
     <nav class="bg-white border-gray-200">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="${linkTo("/")}" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <a href="${linkTo("/")}"
+               hx-boost="true" hx-target="#content" hx-swap="outerHTML show:window:top" hx-push-url="true"
+               class="flex items-center space-x-3">
                 <button type="button" class="font-medium text-center text-white text-lg rounded-lg px-4 py-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none">Monummenta Hygínia</button>
             </a>
 
@@ -99,11 +103,13 @@
         </div>
     </nav>
 </header>
+@endif
 
-<main>
+<main id="content" role="main">
 ${content}
 </main>
 
+@if(notHtmxRequest())
 <footer class="bg-gray-900 mt-auto pt-8">
     <div class="max-w-screen-xl mx-auto">
         <div class="grid grid-cols-2 gap-8 px-4 py-6 md:grid-cols-4 lg:py-8">
@@ -214,7 +220,10 @@ ${content}
     </div>
 </footer>
 
+@template.assets.javascript(path = "/javascripts/htmx.js", prefix = "/static", defer = true)
 @template.assets.javascript(path = "/javascripts/main.js", prefix = "/static", defer = true)
+
+@endif
 
 </body>
 </html>

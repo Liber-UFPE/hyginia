@@ -9,6 +9,7 @@ import postcss from "postcss";
 import tailwindcss from "tailwindcss";
 
 const assetsFolder = "src/main/resources/public";
+const nodeModulesFolder = "node_modules";
 const assetsBuildFolder = "build/resources/main/public";
 
 const compressPlugin = {
@@ -82,3 +83,15 @@ await esbuild.build({
         webpPlugin,
     ],
 });
+
+await esbuild.build({
+    entryPoints: [`${nodeModulesFolder}/htmx.org/dist/htmx.js`,],
+    bundle: true,
+    minify: true,
+    allowOverwrite: true,
+    legalComments: "none",
+    entryNames: "[name].[hash]",
+    logLevel: "info",
+    outdir: `${assetsBuildFolder}/javascripts`,
+    plugins: [compressPlugin]
+})

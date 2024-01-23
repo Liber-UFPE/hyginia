@@ -1,6 +1,6 @@
 @import br.ufpe.liber.views.LinksHelper.linkTo
 
-@template.layout(title = "Início", content = @`
+@template.layout(title = "Equipe do Projeto", content = @`
     @template.partials.main-section(title = "Equipe do Projeto", subtext = @`
         <p class="mb-3 text-3xl text-gray-800">Quem fez o Monummenta Hyginia</p>
     `)
