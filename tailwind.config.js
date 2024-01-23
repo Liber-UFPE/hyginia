@@ -5,18 +5,18 @@ module.exports = {
         "./node_modules/flowbite/**/*.js",
     ],
     safelist: [
-        'footnotes',
-        'footnote-ref',
-        'htmx-request',
+        "footnotes",
+        "footnote-ref",
+        "htmx-request",
     ],
     theme: {
         fontFamily: {
-          sans: ["system-ui", "sans-serif"],
-          serif: ['Merriweather', 'serif'],
+            sans: ["system-ui", "sans-serif"],
+            serif: ["Merriweather", "serif"],
         },
         extend: {},
     },
     plugins: [
-        require('flowbite/plugin'),
+        require("flowbite/plugin"),
     ],
-}
+};
