@@ -1,5 +1,6 @@
 package br.ufpe.liber.controllers
 
+import br.ufpe.liber.assets.AssetsResolver
 import br.ufpe.liber.search.Indexer
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.data.blocking.forAll
@@ -29,7 +30,10 @@ class SearchControllerTest(
     beforeSpec {
         // Indexer is now a @Singleton (lazy-loading), therefore we need to
         // force its initialization to force index creation.
-        context.createBean(Indexer::class.java)
+        context.getBean(Indexer::class.java)
+
+        // AssetsResolver initializes a lateinit property used by the view helpers
+        context.getBean(AssetsResolver::class.java)
     }
 
     given("SearchController") {
