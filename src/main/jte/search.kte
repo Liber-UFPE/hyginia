@@ -25,7 +25,7 @@
         @for(result in results)
             @template.books._card(book = result.book, preview = @`
                 <p class="font-semibold text-gray-600">Trecho encontrado:</p>
-                <p class="text-base text-normal text-gray-800">
+                <p class="text-base text-normal text-gray-800 leading-loose">
                     <span class="text-gray-600">...</span>${result.highlightedContent} <span class="text-gray-600">...</span>
                 </p>
 
@@ -42,12 +42,16 @@
         </ul>
 
         <nav role="navigation" aria-label="Paginação dos resultados da busca">
-            <ul class="inline-flex -space-x-px text-base h-10 p-4">
+            <ul class="inline-flex -space-x-px text-base h-10 py-4">
                 <li>
                 @if(results.isFirstPage)
-                    <span class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-gray-100 border border-e-0 border-gray-300 ms-0 rounded-s-lg">&lsaquo; Anterior</span>
+                    <span class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-gray-100 border border-e-0 border-gray-300 ms-0 rounded-s-lg">
+                        &lsaquo; <span class="hidden md:block ps-2">Anterior</span>
+                    </span>
                 @else
-                    <a href="${linkTo("/search/?query=${query}&page=${results.currentPage - 1}")}" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-800 bg-white border border-gray-300 hover:bg-blue-600 hover:text-white rounded-s-lg">&lsaquo; Anterior</a>
+                    <a href="${linkTo("/search/?query=${query}&page=${results.currentPage - 1}")}" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-800 bg-white border border-gray-300 hover:bg-blue-600 hover:text-white rounded-s-lg">
+                        &lsaquo; <span class="hidden md:block ps-2">Anterior</span>
+                    </a>
                 @endif
                 </li>
 
@@ -68,9 +72,13 @@
 
                 <li>
                 @if(results.isLastPage)
-                    <span class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-gray-100 border border-gray-300 ms-0 rounded-e-lg">Próxima &rsaquo;</span>
+                    <span class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-gray-100 border border-gray-300 ms-0 rounded-e-lg">
+                        <span class="hidden md:block pr-2">Próxima</span> &rsaquo;
+                    </span>
                 @else
-                    <a href="${linkTo("/search/?query=${query}&page=${results.currentPage + 1}")}" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-800 bg-white border border-gray-300 hover:bg-blue-600 hover:text-white rounded-e-lg">Próxima &rsaquo;</a>
+                    <a href="${linkTo("/search/?query=${query}&page=${results.currentPage + 1}")}" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-800 bg-white border border-gray-300 hover:bg-blue-600 hover:text-white rounded-e-lg">
+                        <span class="hidden md:block pr-2">Próxima</span> &rsaquo;
+                    </a>
                 @endif
                 </li>
             </ul>
