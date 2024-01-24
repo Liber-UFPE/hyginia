@@ -23,15 +23,21 @@
         </p>
         <ul class="grid grid-cols-1 gap-6 w-full">
         @for(result in results)
-            <li class="p-4 rounded border border-white cursor-pointer hover:border-blue-300 hover:bg-gray-100 hover:shadow hover:shadow-blue-200">
-                <a href="${linkTo("/obra/${result.book.id}/pagina/${result.day.id}?query=${query}")}">
-                    <div class="justify-between">
-                        <div class="text-lg font-semibold">Dia ${result.day.day} do volume ${result.book.number} do livro ${result.book.title}</div>
-                        <div class="text-gray-600 text-sm">Ano do livro: ${result.book.year}</div>
-                    </div>
-                    <p class="mt-1"><span class="text-gray-600">...</span>${result.hightlightedContent} <span class="text-gray-600">...</span></p>
+            @template.books._card(book = result.book, preview = @`
+                <p class="font-semibold text-gray-600">Trecho encontrado:</p>
+                <p class="text-base text-normal text-gray-800">
+                    <span class="text-gray-600">...</span>${result.highlightedContent} <span class="text-gray-600">...</span>
+                </p>
+
+                <a href="${linkTo("/obra/${result.book.id}/pagina/${result.day.id}?query=${query}")}"
+                   hx-boost="true" hx-target="#content" hx-swap="outerHTML show:window:top" hx-push-url="true"
+                   class="inline-flex items-center font-medium text-blue-600 hover:underline pt-4">
+                    Acessar resultado
+                    <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="m1 9 4-4-4-4"/>
+                    </svg>
                 </a>
-            </li>
+            `)
         @endfor
         </ul>
 
