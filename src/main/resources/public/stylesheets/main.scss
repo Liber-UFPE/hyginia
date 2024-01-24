@@ -5,7 +5,7 @@
 
 @layer base {
   mark {
-    @apply p-1 bg-amber-200 rounded;
+    @apply p-1 bg-amber-100 rounded font-semibold;
   }
 
   hover\:text-gray-100 {
@@ -29,6 +29,15 @@
   }
 
   #brand-button.htmx-request {
-    @apply animate-pulse;
+    animation: glow 1s infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px -10px #76a9fa;
+    }
+    to {
+      box-shadow: 0 0 10px 10px #76a9fa;
+    }
   }
 }
