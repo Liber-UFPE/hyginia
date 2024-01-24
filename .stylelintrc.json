@@ -6,7 +6,8 @@
       true,
       {
         "ignoreAtRules": [
-          "tailwind"
+          "tailwind",
+          "screen"
         ]
       }
     ]
