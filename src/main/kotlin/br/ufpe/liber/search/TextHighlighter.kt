@@ -20,6 +20,7 @@ import org.apache.lucene.search.highlight.TokenSources
 @EagerInProduction
 class TextHighlighter(private val analyzer: Analyzer) {
     companion object {
+        const val MAX_NUM_FRAGMENTS = 4 // better for top results
         lateinit var staticAnalyzer: Analyzer
 
         fun highlightText(query: String, text: String): String = if (query.isBlank()) {
@@ -67,8 +68,7 @@ class TextHighlighter(private val analyzer: Analyzer) {
             analyzer,
             highlighter.maxDocCharsToAnalyze - 1,
         )
-
-        return highlighter.getBestFragment(tokenStream, content)
+        return highlighter.getBestFragments(tokenStream, content, MAX_NUM_FRAGMENTS).joinToString(" ... ")
     }
 
     fun highlightContent(highlighter: Highlighter, content: String, fields: Fields?): Content =
