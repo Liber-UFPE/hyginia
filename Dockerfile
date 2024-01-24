@@ -20,7 +20,7 @@ WORKDIR /app
 
 # Build application
 RUN npm install \
-    && ./gradlew clean shadowJar -x test -x accessibilityTest --console verbose --no-configuration-cache \
+    && ./gradlew clean shadowJar -x test -x accessibilityTest --console plain --no-configuration-cache \
     && mv -vf build/libs/*.jar app.jar
 
 FROM eclipse-temurin:21
