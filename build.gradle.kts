@@ -373,6 +373,9 @@ tasks.named<DependencyUpdatesTask>("dependencyUpdates") {
 val parseBooks by tasks.registering(ParseBooksTask::class)
 
 dependencies {
+    // TEMP: Brings logback 1.4.14. Remove when micronaut-core updates.
+    implementation(platform("io.micronaut.logging:micronaut-logging-bom:1.2.2"))
+
     ksp(mn.micronaut.http.validation)
     ksp(mn.micronaut.serde.processor)
     implementation(mn.micronaut.aop)
