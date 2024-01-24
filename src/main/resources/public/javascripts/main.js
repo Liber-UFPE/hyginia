@@ -8,7 +8,7 @@ function delayHidingHtmxIndicator() {
         indicator.classList.add("htmx-request");
 
         // If the request completes too fast, this avoids the indicator to just flicking.
-        setTimeout(() => indicator.classList.remove("htmx-request"), 300);
+        setTimeout(() => indicator.classList.remove("htmx-request"), 1300);
     }
 }
 
