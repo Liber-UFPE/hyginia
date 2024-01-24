@@ -3,6 +3,7 @@ package br.ufpe.liber.search
 import br.ufpe.liber.model.Book
 import br.ufpe.liber.model.Day
 import br.ufpe.liber.pagination.Pagination
+import br.ufpe.liber.services.BookRepository
 import gg.jte.Content
 import io.micronaut.context.annotation.Bean
 import io.micronaut.core.async.publisher.AsyncSingleResultPublisher
@@ -30,6 +31,7 @@ class BooksSearch(
     private val indexSearcher: IndexSearcher,
     private val analyzer: Analyzer,
     private val textHighlighter: TextHighlighter,
+    private val bookRepository: BookRepository,
 ) {
     companion object {
         const val RESULTS_PER_PAGE: Int = 10
@@ -59,9 +61,15 @@ class BooksSearch(
             val dayContents = document.get(DayMetadata.CONTENTS)
 
             val fields = termVectors.get(scoreDoc.doc)
-            val hightlightedContent = textHighlighter.highlightContent(highlighter, dayContents, fields)
+            val highlightedContent = textHighlighter.highlightContent(highlighter, dayContents, fields)
 
-            SearchResult(document, hightlightedContent)
+            bookRepository.get(document.get(BookMetadata.ID).toLong())
+                .flatMap { book ->
+                    book.day(document.get(DayMetadata.ID).toLong())
+                        .map { day -> Pair(book, day) }
+                }
+                .map { (book, day) -> SearchResult(book, day, highlightedContent) }
+                .orElse(SearchResult(document, highlightedContent))
         }
 
         return SearchResults(topDocs.totalHits.value.toInt(), searchResults, page + 1)
@@ -72,9 +80,9 @@ class BooksSearch(
 data class SearchResult(
     val book: Book,
     val day: Day,
-    val hightlightedContent: Content,
+    val highlightedContent: Content,
 ) {
-    constructor(doc: Document, hightlightedContent: Content) : this(
+    constructor(doc: Document, highlightedContent: Content) : this(
         Book(
             id = doc.get(BookMetadata.ID).toLong(),
             author = doc.get(BookMetadata.AUTHOR),
@@ -89,7 +97,7 @@ data class SearchResult(
             day = doc.get(DayMetadata.DAY),
             contents = doc.get(DayMetadata.CONTENTS),
         ),
-        hightlightedContent,
+        highlightedContent,
     )
 }
 
