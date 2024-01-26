@@ -1,6 +1,7 @@
 package br.ufpe.liber.controllers
 
 import br.ufpe.liber.assets.AssetsResolver
+import br.ufpe.liber.get
 import br.ufpe.liber.search.Indexer
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.data.blocking.forAll
@@ -39,29 +40,21 @@ class SearchControllerTest(
     given("SearchController") {
         `when`("GET /search") {
             then("should return zero results if query is not present") {
-                val url = UriBuilder.of(server.uri).path("/search").build()
-                val request = HttpRequest.GET<Unit>(url)
-                client.retrieve(request) shouldContain "Ooops, nenhum resultado foi encontrado para essa busca"
+                client.get("/search").body() shouldContain "Ooops, nenhum resultado foi encontrado para essa busca"
             }
 
             then("should return zero results if query is blank") {
-                val url = UriBuilder.of(server.uri).path("/search").queryParam("query", "").build()
-                val request = HttpRequest.GET<Unit>(url)
-                client.retrieve(request) shouldContain "Ooops, nenhum resultado foi encontrado para essa busca"
+                client.get("/search?query=").body() shouldContain "Ooops, nenhum resultado foi encontrado para essa busca"
             }
 
             then("should return zero results if query does not match any document") {
                 val wontMatchQuery = "a2s3d4f5g6h7j8k9l0"
-                val url = UriBuilder.of(server.uri).path("/search").queryParam("query", wontMatchQuery).build()
-                val request = HttpRequest.GET<Unit>(url)
-                client.retrieve(request) shouldContain "Ooops, nenhum resultado foi encontrado para essa busca"
+                client.get("/search?query=${wontMatchQuery}").body() shouldContain "Ooops, nenhum resultado foi encontrado para essa busca"
             }
 
             then("highlight matches in the search results page") {
                 val query = "recife"
-                val url = UriBuilder.of(server.uri).path("/search").queryParam("query", query).build()
-                val request = HttpRequest.GET<Unit>(url)
-                client.retrieve(request) shouldContain "resultados para a busca por <mark>recife</mark>"
+                client.get("/search?query=${query}").body() shouldContain "resultados para a busca por <mark>${query}</mark>"
             }
 
             then("return empty results if query is invalid") {

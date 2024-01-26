@@ -1,13 +1,12 @@
 package br.ufpe.liber.controllers
 
 import br.ufpe.liber.assets.AssetsResolver
+import br.ufpe.liber.get
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 import io.micronaut.context.ApplicationContext
-import io.micronaut.core.type.Argument
-import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.client.DefaultHttpClientConfiguration
 import io.micronaut.http.client.HttpClient
@@ -43,12 +42,7 @@ class IndexControllerTest(
                 row("/does-not-exists", HttpStatus.NOT_FOUND),
             ) { path, expectedStatus ->
                 then("GET $path should return $expectedStatus") {
-                    val request: HttpRequest<Unit> = HttpRequest.GET(path)
-                    client.exchange(
-                        request,
-                        Argument.of(KteWriteable::class.java),
-                        Argument.of(KteWriteable::class.java),
-                    ).status.shouldBe(expectedStatus)
+                    client.get(path).status() shouldBe expectedStatus
                 }
             }
         }
