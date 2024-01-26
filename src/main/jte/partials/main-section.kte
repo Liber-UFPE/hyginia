@@ -2,7 +2,7 @@
 @param subtext: gg.jte.Content = br.ufpe.liber.views.ViewsHelper.emptyContent()
 <section class="main-section-bg">
     <div class="px-4 mx-auto max-w-screen-xl z-10 relative py-16">
-        <h1 class="mb-4 leading-none text-6xl text-gray-800 tracking-tight sm:text-lg md:text-7xl lg:text-8xl">${title}</h1>
+        <h1 class="mb-4 leading-none text-6xl text-white tracking-tight sm:text-lg md:text-7xl lg:text-8xl">${title}</h1>
         ${subtext}
     </div>
 </section>

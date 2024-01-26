@@ -2,7 +2,7 @@
 
 @template.layout(title = "Sobre o Projeto", content = @`
     @template.partials.main-section(title = "O Projeto Monummenta Hygínia", subtext = @`
-        <p class="mb-3 text-3xl text-gray-800">O título Monummenta Hygínia presta uma homenagem ao erudito pernambucano Dr. José Hygínio Duarte Pereira.</p>
+        <p class="mb-3 text-3xl text-blue-50">O título Monummenta Hygínia presta uma homenagem ao erudito pernambucano Dr. José Hygínio Duarte Pereira.</p>
     `)
     @template.partials.content-section(content = @`
         <article class="format lg:format-lg">
