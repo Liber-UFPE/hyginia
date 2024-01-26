@@ -54,6 +54,8 @@ data class Asset(
     val filename: String,
     val hash: String,
     val integrity: String,
+    val etag: String,
+    val lastModified: Long,
     val extension: String,
     val mediaType: String,
     val encodings: List<Encoding> = emptyList(),

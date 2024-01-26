@@ -18,6 +18,8 @@ class AssetTest : BehaviorSpec({
             filename = "/javascripts/main.K68FJD75.js",
             hash = "K68FJD75",
             integrity = "sha384-qWyHoR/uZ7x+UjVssG6ex4WUplfdMrwZMRmqQDXnn6uwCmlQUJkwhdifK4iY0EnX",
+            etag = "SzY4RkpENzUK",
+            lastModified = Instant.now().toEpochMilli(),
             extension = "js",
             mediaType = "text/javascript",
             encodings = listOf(brotli, gzip, deflate),
