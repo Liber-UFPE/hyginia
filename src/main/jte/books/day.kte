@@ -8,7 +8,9 @@
 @param query: java.util.Optional<String> = java.util.Optional.empty()
 
 @template.layout(title = "Dia ${day.day} / ${book.title} / Volume ${book.number}", content = @`
-    @template.partials.main-section(title = "Dia ${day.day} / ${book.title} / Volume ${book.number}")
+    @template.partials.main-section(title = "Dia ${day.day}", subtext = @`
+        <p class="mb-3 text-3xl text-blue-50">${book.title} / Volume ${book.number}</p>
+    `)
     @template.partials.content-section(content = @`
         @template.books._contents(book = book, day = day, query = query)
     `)
