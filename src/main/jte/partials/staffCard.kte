@@ -7,7 +7,7 @@
 @param linkHref: String? = null
 @param linkLabel: String? = null
 
-<div class="max-w-md mx-auto bg-white rounded-xl border border-gray-200 overflow-hidden md:max-w-2xl">
+<div class="max-w-md mx-auto bg-white rounded-xl border border-gray-300 overflow-hidden md:max-w-2xl">
     <div class="md:flex">
         <div class="md:shrink-0">
             @if(picture != null)
