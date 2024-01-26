@@ -1,16 +1,11 @@
 import br.ufpe.liber.tasks.GenerateAssetsMetadataTask
 import br.ufpe.liber.tasks.ParseBooksTask
 import com.adarshr.gradle.testlogger.theme.ThemeType
-import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import com.github.gradle.node.npm.task.NpmTask
 import io.github.vacxe.buildtimetracker.reporters.markdown.MarkdownConfiguration
-import io.micronaut.gradle.docker.MicronautDockerfile
-import io.micronaut.gradle.docker.NativeImageDockerfile
 import java.lang.System.getenv
 import java.time.Duration
-import java.util.Optional
-import kotlin.jvm.optionals.getOrElse
 
 plugins {
     kotlin("jvm") version "1.9.22"
@@ -156,7 +151,7 @@ diktat {
 }
 tasks.configureEach {
     if (name == "diktatFix" || name == "diktatCheck") {
-        notCompatibleWithConfigurationCache("https://github.com/saveourtool/diktat/issues/1732")
+        notCompatibleWithConfigurationCache("https://github .com/saveourtool/diktat/issues/1732")
     }
 }
 tasks.named("check") {
@@ -221,47 +216,6 @@ testSets {
     create("accessibilityTest")
 }
 val accessibilityTestImplementation: Configuration = configurations["accessibilityTestImplementation"]
-
-fun registry(): Optional<String> = Optional.ofNullable(getenv("REGISTRY")).map { it.lowercase() }
-fun imageName(): Optional<String> = Optional.ofNullable(getenv("IMAGE_NAME")).map { it.lowercase() }
-fun imageNames(): List<String> {
-    return registry()
-        .flatMap { registry -> imageName().map { name -> "$registry/$name".lowercase() } }
-        .map { imageTag -> listOf("$imageTag:latest", "$imageTag:$version") }
-        .getOrElse { emptyList() }
-}
-
-tasks.named<DockerBuildImage>("dockerBuild") { images.addAll(imageNames()) }
-tasks.named<DockerBuildImage>("dockerBuildNative") { images.addAll(imageNames()) }
-tasks.withType<MicronautDockerfile> {
-    // Amazon Correto is slightly larger than `eclipse-temurin` image,
-    // but seems better maintained and with no vulnerabilities reported.
-    baseImage.set("amazoncorretto:$javaVersion")
-    environmentVariable("MICRONAUT_ENVIRONMENTS", "docker")
-}
-tasks.withType<NativeImageDockerfile> {
-    // Oracle's images provide access to G1 GC and other features.
-    graalImage.set("container-registry.oracle.com/graalvm/native-image:$javaVersion")
-    // Using a distroless image generates a "mostly-static" image:
-    // https://micronaut-projects.github.io/micronaut-gradle-plugin/latest/#_build_mostly_static_native_executables
-    // https://www.graalvm.org/latest/reference-manual/native-image/guides/build-static-executables/
-    baseImage("gcr.io/distroless/cc-debian12")
-    environmentVariable("MICRONAUT_ENVIRONMENTS", "docker")
-}
-tasks.register("dockerImageNameNative") {
-    doFirst {
-        val images = tasks.named<DockerBuildImage>("dockerBuildNative").get().images.get()
-        val maybeRegistry = registry()
-        val imageName = if (maybeRegistry.isPresent) {
-            images.find { it.contains(maybeRegistry.get()) }
-        } else {
-            images.first()
-        }
-        // No need to show `:latest`, so remove if it is present
-        println(imageName?.replace(":latest", ""))
-    }
-}
-tasks.register("dockerImageName") { dependsOn("dockerImageNameNative") } // This is how Gradle add aliases.
 
 // See https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html
 graalvmNative {
