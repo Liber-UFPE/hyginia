@@ -2,7 +2,7 @@
 
 @template.layout(title = "Entre em Contato", content = @`
     @template.partials.main-section(title = "Entre em contato", subtext = @`
-        <p class="mb-3 text-3xl text-gray-800">Dúvidas, sugestões, elogios contate-nos através dos meios abaixo</p>
+        <p class="mb-3 text-3xl text-blue-50">Dúvidas, sugestões, elogios contate-nos através dos meios abaixo</p>
     `)
     @template.partials.content-section(content = @`
         <div class="md:flex">

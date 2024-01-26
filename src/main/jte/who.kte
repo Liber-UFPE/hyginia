@@ -1,6 +1,6 @@
 @template.layout(title = "Sobre José Hygino Duarte Pereira", content = @`
     @template.partials.main-section(title = "José Hyginio Duarte Pereira", subtext = @`
-        <p class="mb-3 text-3xl text-gray-800 leading-normal">Em 22 de Janeiro de 1847 nascia José Hygino Duarte Pereira, que foi um advogado, político, professor, magistrado, historiador, escritor e tradutor brasileiro.</p>
+        <p class="mb-3 text-3xl text-blue-50 leading-normal">Em 22 de Janeiro de 1847 nascia José Hygino Duarte Pereira, que foi um advogado, político, professor, magistrado, historiador, escritor e tradutor brasileiro.</p>
     `)
     @template.partials.content-section(content = @`
         <article class="format lg:format-lg">

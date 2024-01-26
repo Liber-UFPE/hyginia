@@ -1,9 +1,9 @@
 @template.layout(title = "Início", content = @`
     <section class="main-section-bg">
         <div class="px-4 pt-8 mx-auto max-w-screen-xl z-10 relative md:pt-16 text-center">
-            <h1 class="mb-4 leading-none text-6xl text-gray-800 tracking-tight sm:text-lg md:text-7xl lg:text-8xl">O Projeto Monummenta Hygínia</h1>
+            <h1 class="mb-4 leading-none text-6xl text-gray-800 tracking-tight text-white md:text-8xl lg:text-8xl">O Projeto Monummenta Hygínia</h1>
             <div class="flex justify-center items-center">
-                @template.assets.picture(path = "/images/hyginio-home.png", prefix = "/static", alt = "José Hyginio", width = 1095, height = 640)
+                @template.assets.picture(path = "/images/hyginio-home-small.png", prefix = "/static", alt = "José Hyginio", width = 723, height = 422)
             </div>
         </div>
     </section>
