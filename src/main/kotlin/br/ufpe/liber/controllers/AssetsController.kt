@@ -27,12 +27,10 @@ class AssetsController(
         @Header("If-None-Match") ifNoneMatch: Optional<String> = Optional.empty(),
     ): HttpResponse<StreamedFile> {
         val maybeAsset = assetsResolver.fromHashed("/$path")
-        return if (maybeAsset.isPresent) {
-            val asset = maybeAsset.get()
-            notModified(asset, ifNoneMatch).orElseGet { httpResponseForAsset(asset, encoding) }
-        } else {
-            HttpResponse.notFound()
-        }
+        if (maybeAsset.isEmpty) return HttpResponse.notFound()
+
+        val asset = maybeAsset.get()
+        return notModified(asset, ifNoneMatch).orElseGet { httpResponseForAsset(asset, encoding) }
     }
 
     private fun notModified(asset: Asset, ifNoneMatch: Optional<String>): Optional<HttpResponse<StreamedFile>> {
