@@ -178,15 +178,10 @@ jobs:
   build-docker:
     name: Package / Docker / build
     runs-on: ubuntu-latest
-    env:
-      REGISTRY: ghcr.io
-      IMAGE_NAME: ${{ github.repository }}
     needs:
       - compile
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Gradle and Java
-        uses: ./.github/gradle-action
       - name: Docker / Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Docker / Set up Buildx
