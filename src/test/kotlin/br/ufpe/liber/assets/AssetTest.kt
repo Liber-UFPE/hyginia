@@ -22,7 +22,7 @@ class AssetTest : BehaviorSpec({
             lastModified = Instant.now().toEpochMilli(),
             extension = "js",
             mediaType = "text/javascript",
-            encodings = listOf(brotli, gzip, deflate),
+            supportedEncodings = listOf(brotli, gzip, deflate),
         )
 
         `when`("#mediaType") {

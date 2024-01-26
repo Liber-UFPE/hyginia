@@ -58,7 +58,7 @@ data class Asset(
     val lastModified: Long,
     val extension: String,
     val mediaType: String,
-    val encodings: List<Encoding> = emptyList(),
+    val supportedEncodings: List<Encoding> = emptyList(),
 ) {
     fun mediaType(): MediaType = MediaType(mediaType)
 
@@ -66,7 +66,7 @@ data class Asset(
     private val unprefixedFilename: String = filename.removePrefix("/")
 
     @Transient
-    private val sortedEncodings: List<Encoding> = encodings.sorted()
+    private val sortedEncodings: List<Encoding> = supportedEncodings.sorted()
 
     fun fullpath(prefix: String = ""): String = if (prefix.isBlank()) {
         unprefixedFilename
