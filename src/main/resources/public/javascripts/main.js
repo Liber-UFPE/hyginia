@@ -1,5 +1,4 @@
-import {initFlowbite} from "flowbite";
-import {Collapse} from "flowbite";
+import {initFlowbite, Collapse} from "flowbite";
 
 initFlowbite();
 
