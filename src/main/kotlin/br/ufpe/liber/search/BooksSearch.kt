@@ -58,14 +58,14 @@ class BooksSearch(
 
         val searchResults = topDocs.scoreDocs.slice(pagingStart..pagingEnd).map { scoreDoc: ScoreDoc ->
             val document = storedFields.document(scoreDoc.doc)
-            val dayContents = document.get(DayMetadata.CONTENTS)
+            val dayContents = document[DayMetadata.CONTENTS]
 
-            val fields = termVectors.get(scoreDoc.doc)
+            val fields = termVectors[scoreDoc.doc]
             val highlightedContent = textHighlighter.highlightContent(highlighter, dayContents, fields)
 
-            bookRepository.get(document.get(BookMetadata.ID).toLong())
+            bookRepository.get(document[BookMetadata.ID].toLong())
                 .flatMap { book ->
-                    book.day(document.get(DayMetadata.ID).toLong())
+                    book.day(document[DayMetadata.ID].toLong())
                         .map { day -> Pair(book, day) }
                 }
                 .map { (book, day) -> SearchResult(book, day, highlightedContent) }
@@ -84,18 +84,18 @@ data class SearchResult(
 ) {
     constructor(doc: Document, highlightedContent: Content) : this(
         Book(
-            id = doc.get(BookMetadata.ID).toLong(),
-            author = doc.get(BookMetadata.AUTHOR),
-            title = doc.get(BookMetadata.TITLE),
-            number = doc.get(BookMetadata.NUMBER).toInt(),
-            year = doc.get(BookMetadata.YEAR),
-            period = doc.get(BookMetadata.PERIOD),
+            id = doc[BookMetadata.ID].toLong(),
+            author = doc[BookMetadata.AUTHOR],
+            title = doc[BookMetadata.TITLE],
+            number = doc[BookMetadata.NUMBER].toInt(),
+            year = doc[BookMetadata.YEAR],
+            period = doc[BookMetadata.PERIOD],
             days = listOf(),
         ),
         Day(
-            id = doc.get(DayMetadata.ID).toLong(),
-            day = doc.get(DayMetadata.DAY),
-            contents = doc.get(DayMetadata.CONTENTS),
+            id = doc[DayMetadata.ID].toLong(),
+            day = doc[DayMetadata.DAY],
+            contents = doc[DayMetadata.CONTENTS],
         ),
         highlightedContent,
     )

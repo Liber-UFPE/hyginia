@@ -23,7 +23,7 @@ object ViewsHelper {
     fun notHtmxRequest(): Boolean = !isHtmxRequest()
 
     fun isActive(path: String): Boolean = ServerRequestContext.currentRequest<Any>()
-        .map { req -> req.path.equals(path) }
+        .map { req -> req.path == path }
         .orElse(false)
 
     fun emptyContent(): HtmlContent = object : HtmlContent {
