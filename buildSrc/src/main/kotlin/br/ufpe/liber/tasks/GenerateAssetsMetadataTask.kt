@@ -47,9 +47,8 @@ abstract class GenerateAssetsMetadataTask : DefaultTask() {
         val regex = "(?<filename>[A-Za-z0-9/-]+).(?<hash>[A-Z0-9]{8}).(?<extension>[a-z]+)".toPattern()
 
         val digest = DigestUtils.getSha384Digest()
-        val integrityGenerator = { file: File ->
-            "sha384-${Base64.encodeBase64String(digest.digest(file.readBytes()))}"
-        }
+        val integrityGenerator = { data: ByteArray -> "sha384-${Base64.encodeBase64String(digest.digest(data))}" }
+        val etagGenerator = { data: ByteArray -> DigestUtils.md5Hex(data) }
 
         val encodings = listOf("br", "gz", "zz")
         val tikaConfig: TikaConfig = TikaConfig()
@@ -62,7 +61,10 @@ abstract class GenerateAssetsMetadataTask : DefaultTask() {
                 val matcher = regex.matcher(filename)
 
                 if (matcher.matches()) {
-                    val integrity = integrityGenerator(file)
+                    val fileData = file.readBytes()
+                    val integrity = integrityGenerator(fileData)
+                    val etag = etagGenerator(fileData)
+                    val lastModified = file.lastModified()
                     val mediaType = detectMediaType(file, tikaConfig)
 
                     val basename = matcher.group("filename")
@@ -78,6 +80,8 @@ abstract class GenerateAssetsMetadataTask : DefaultTask() {
                             "filename" to filename.toJson(),
                             "hash" to hash.toJson(),
                             "integrity" to integrity.toJson(),
+                            "etag" to etag.toJson(),
+                            "lastModified" to lastModified.toJson(),
                             "extension" to extension.toJson(),
                             "mediaType" to mediaType.toString().toJson(),
                             "encodings" to JsonArray(findEncodings(file)),
