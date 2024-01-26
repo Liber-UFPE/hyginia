@@ -84,7 +84,7 @@ abstract class GenerateAssetsMetadataTask : DefaultTask() {
                             "lastModified" to lastModified.toJson(),
                             "extension" to extension.toJson(),
                             "mediaType" to mediaType.toString().toJson(),
-                            "encodings" to JsonArray(findEncodings(file)),
+                            "supportedEncodings" to JsonArray(findEncodings(file)),
                         ).toJson(),
                     )
                 }

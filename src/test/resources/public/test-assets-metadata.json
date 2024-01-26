@@ -9,7 +9,7 @@
     "lastModified": 1706201197863,
     "extension": "js",
     "mediaType": "application/javascript",
-    "encodings": [
+    "supportedEncodings": [
       {
         "http": "br",
         "extension": "br",
@@ -37,7 +37,7 @@
     "lastModified": 1706201197863,
     "extension": "css",
     "mediaType": "text/css",
-    "encodings": [
+    "supportedEncodings": [
       {
         "http": "br",
         "extension": "br",
