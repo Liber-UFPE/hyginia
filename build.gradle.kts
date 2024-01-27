@@ -341,6 +341,9 @@ dependencies {
     compileOnly(mn.micronaut.http.client)
     testImplementation(mn.micronaut.http.client)
 
+    // To test health indicators
+    testImplementation(mn.reactor.test)
+
     // Creates a dependency provider for graal (org.graalvm.nativeimage:svm)
     compileOnly(mn.graal.asProvider())
     runtimeOnly(mn.logback.classic)

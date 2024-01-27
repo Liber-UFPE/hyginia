@@ -31,6 +31,12 @@ class BookRepositoryTest(private val bookRepository: BookRepository) : BehaviorS
                 bookRepository.get(1000) shouldBe Optional.empty()
             }
         }
+
+        `when`(".hasBooks") {
+            then("should return true when there are books") {
+                bookRepository.hasBooks() shouldBe true
+            }
+        }
     }
 
     given("All Books") {

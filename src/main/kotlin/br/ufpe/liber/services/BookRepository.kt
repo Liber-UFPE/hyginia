@@ -35,6 +35,7 @@ class BookRepository(private val resourceResolver: ResourceResolver) {
 
     fun listAll(): List<Book> = books.values.toList()
     fun get(id: Long): Optional<Book> = Optional.ofNullable(books[id])
+    fun hasBooks(): Boolean = books.isNotEmpty()
 }
 
 @Bean
