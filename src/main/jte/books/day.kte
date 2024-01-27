@@ -1,7 +1,3 @@
-@import br.ufpe.liber.search.TextHighlighter
-@import br.ufpe.liber.views.Markdown
-@import br.ufpe.liber.views.LinksHelper.linkTo
-
 @param book: br.ufpe.liber.model.Book
 @param day: br.ufpe.liber.model.Day
 

@@ -1,8 +1,6 @@
-@import br.ufpe.liber.views.CSPHelper
 @import br.ufpe.liber.views.LinksHelper
 @import br.ufpe.liber.views.LinksHelper.linkTo
 @import br.ufpe.liber.views.ViewsHelper.notHtmxRequest
-@import br.ufpe.liber.assets.AssetsViewHelpers.at
 @import br.ufpe.liber.assets.AssetsViewHelpers.fingerprinted
 
 @param title: String
