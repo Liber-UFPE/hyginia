@@ -160,10 +160,18 @@ jobs:
           tree build/test-results
           tree build/reports
       - name: Run SonarCloud Analysis
+        if: secrets.SONAR_TOKEN != ''
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew sonar
+      - name: Report results to DeepSource
+        if: secrets.DEEPSOURCE_DSN != ''
+        run: |
+          curl https://deepsource.io/cli | sh
+          ./bin/deepsource report --analyzer test-coverage --key kotlin --value-file ./build/reports/kover/report.xml
+        env:
+          DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
       - name: Gradle Tasks Summary
         run: cat build/reports/build-times.md >> $GITHUB_STEP_SUMMARY
       - name: Setup Pandoc
