@@ -16,7 +16,7 @@ Para executar o projeto localmente, abra um terminal e execute:
 
 A aplicação ficará acessível em <http://localhost:8080/>.
 
-Se você quiser recarregar a aplicação a cada alteração de código, execute [o Gradle em modo contínuo](https://docs.micronaut.io/latest/latest/#gradleReload):
+Se você quiser recarregar a aplicação a cada alteração de código, execute [o Gradle em modo contínuo](https://docs.micronaut.io/latest/guide/index.html#gradleReload):
 
 ```shell
 ./gradlew run -t
@@ -51,7 +51,7 @@ vagrant destroy --graceful --force
 1. Java 17+ (mais fácil de instalar com [SDKMAN](https://sdkman.io/))
 2. [Docker Desktop](https://www.docker.com/products/docker-desktop/) (se você quiser testar as imagens Docker)
 3. [Ktlint CLI](https://pinterest.github.io/ktlint/1.0.0/install/cli/) (se você quiser executar inspeções de código localmente)
-4. [Gradle](https://gradle.org/install/-with-a-package-manager) (se você não quiser usar o script `./gradlew`)
+4. [Gradle](https://gradle.org/install/#with-a-package-manager) (se você não quiser usar o script `./gradlew`)
 5. [Vagrant](https://www.vagrantup.com/) (se você quiser rodar o projeto usando uma VM)
 
 
@@ -61,17 +61,16 @@ O projeto é desenvolvido usando Micronaut Framework, [Gradle](https://gradle.or
 
 ### Documentação de Micronaut
 
-- [Guia do usuário](https://docs.micronaut.io/4.1.3/guida/index.html)
-- [API Referência](https://docs.micronaut.io/4.1.3/api/index.html)
-- [Referência de Configuração](https://docs.micronaut.io/4.1.3/guide/configurationreference.html)
+- [Guia do usuário](https://docs.micronaut.io/latest/guide/index.html)
+- [API Referência](https://docs.micronaut.io/latest/api/index.html)
+- [Referência de Configuração](https://docs.micronaut.io/latest/guide/configurationreference.html)
 - [Guias sobre o Micronaut](https://guides.micronaut.io/index.html)
 
 ### Template Engine
 
 O projeto usa JTE / KTE como template engine.
 
-- [Web Website](https://jte.gg/)
-- [Documentação do JTE](https://regthub.com/casid/jte/blob/main/DOCUMENTATION.md)
+- [Documentação do JTE](https://jte.gg)
 - [Tutorial JTE](https://javalin.io/tutorials/jte)
 
 ### CI & CD
@@ -80,7 +79,7 @@ O projeto usa [GitHub Actions](https://docs.github.com/en/actions) para executar
 
 ### Testes e Cobertura de Código
 
-Usamos [Kotest](https://kotest.io/) como estrutura de teste, e [Kover](https://github.com/Kotlin/kotlinx-kover) como a ferramenta Cobertura de Código. Ver também[Micronaut Kotest integrações docs](https://micronaut-projects.github.io/micronaut-test/latest/latest/guide/?kotest5).
+Usamos [Kotest](https://kotest.io/) como estrutura de teste, e [Kover](https://github.com/Kotlin/kotlinx-kover) como a ferramenta Cobertura de Código. Ver também[Micronaut Kotest integrações docs](https://micronaut-projects.github.io/micronaut-test/latest/guide/index.html#kotest5).
 
 ### Inspeções de código
 
