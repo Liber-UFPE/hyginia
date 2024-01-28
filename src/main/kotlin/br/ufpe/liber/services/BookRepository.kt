@@ -52,7 +52,7 @@ class BookRepositoryHealthIndicator(
 
     private fun getHealthResult(): HealthResult {
         val builder = HealthResult.builder("repository")
-        return if (bookRepository.listAll().isNotEmpty()) {
+        return if (bookRepository.hasBooks()) {
             builder.status(UP).build()
         } else {
             builder.status(DOWN).build()
