@@ -75,7 +75,7 @@ If you want to reload the application for every code change, run [Gradle in _con
 
 1. Java 21 (easier to install with [SDKMAN](https://sdkman.io/))
 2. [Docker Desktop](https://www.docker.com/products/docker-desktop/) (if you want to test docker images)
-3. [Ktlint CLI](https://pinterest.github.io/ktlint/1.0.0/install/cli/) (if you want to run code inspections locally)
+3. [Ktlint CLI](https://pinterest.github.io/ktlint/latest/install/cli/) (if you want to run code inspections locally)
 4. [Gradle](https://gradle.org/install/#with-a-package-manager) (if you don't want to use the `./gradlew` script)
 5. [chromedriver](https://chromedriver.chromium.org/downloads) (if you want to run browser tests)
 
@@ -85,9 +85,9 @@ The project is developed using Micronaut Framework, [Gradle](https://gradle.org/
 
 ### Micronaut Documentation
 
-- [User Guide](https://docs.micronaut.io/4.1.3/guide/index.html)
-- [API Reference](https://docs.micronaut.io/4.1.3/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/4.1.3/guide/configurationreference.html)
+- [User Guide](https://docs.micronaut.io/latest/guide/index.html)
+- [API Reference](https://docs.micronaut.io/latest/api/index.html)
+- [Configuration Reference](https://docs.micronaut.io/latest/guide/configurationreference.html)
 - [Micronaut Guides](https://guides.micronaut.io/index.html)
 
 ### Template Engine

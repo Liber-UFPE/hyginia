@@ -1,0 +1,16 @@
+name: "Validate External Links"
+
+on: [push, pull_request]
+
+jobs:
+  validate-external-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: '--verbose --no-progress --exclude-loopback --exclude-path node_modules **/*.md'
+          jobSummary: true
+          format: markdown
+          fail: true
