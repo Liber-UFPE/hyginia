@@ -1,5 +1,16 @@
 version = 1
 
+exclude_patterns = [
+  "bin/**",
+  "**/node_modules/",
+  "js/**/*.min.js"
+]
+
+test_patterns = [
+  "src/test/**/*.*",
+  "src/accessibilityTest/**/*.*"
+]
+
 [[analyzers]]
 name = "kotlin"
 
