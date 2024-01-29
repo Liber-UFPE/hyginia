@@ -1,4 +1,4 @@
-import * as esbuild from "esbuild";
+import esbuild from "esbuild";
 import {Compress} from "gzipper";
 import sharp from "sharp";
 import fg from "fast-glob";
@@ -16,7 +16,7 @@ const compressPlugin = {
     name: "compress",
     setup(build) {
         build.onEnd(() => {
-            const assetsBuildFolder = build.initialOptions.outdir;
+            const outputPath = build.initialOptions.outdir;
             const verbose = build.initialOptions.logLevel === "verbose" || build.initialOptions.logLevel === "debug";
 
             const compressOptions = {
@@ -29,7 +29,7 @@ const compressPlugin = {
                 verbose: verbose,
             };
 
-            new Compress(assetsBuildFolder, assetsBuildFolder, compressOptions).run();
+            new Compress(outputPath, outputPath, compressOptions).run();
         });
     },
 };
@@ -38,8 +38,7 @@ const webpPlugin = {
     name: "webp",
     setup(build) {
         build.onEnd(() => {
-            const assetsBuildFolder = build.initialOptions.outdir;
-            fg.async([`${assetsBuildFolder}/**/*.{png,jpg}`], {caseSensitiveMatch: false, dot: true})
+            fg.async([`${build.initialOptions.outdir}/**/*.{png,jpg}`], {caseSensitiveMatch: false, dot: true})
                 .then(images =>
                     images.map(image => {
                         const imagePath = path.parse(image);

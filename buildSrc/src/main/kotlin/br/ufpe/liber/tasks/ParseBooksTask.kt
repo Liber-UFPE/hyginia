@@ -78,7 +78,7 @@ abstract class ParseBooksTask : DefaultTask() {
                             JsonObject(
                                 mapOf(
                                     "id" to JsonPrimitive(dayIdGenerator.getAndIncrement()),
-                                    "day" to JsonPrimitive(currentDay!!),
+                                    "day" to JsonPrimitive(currentDay!!), // skipcq: KT-E1010
                                     "contents" to JsonPrimitive(pageContents.toString()),
                                 ),
                             ),
@@ -95,12 +95,12 @@ abstract class ParseBooksTask : DefaultTask() {
         return JsonObject(
             mapOf(
                 "id" to JsonPrimitive(bookIdGenerator.getAndIncrement()),
-                "author" to JsonPrimitive(author!!),
-                "title" to JsonPrimitive(title!!),
-                "number" to JsonPrimitive(number!!),
-                "year" to JsonPrimitive(year!!),
-                "period" to JsonPrimitive(period!!),
-                "days" to JsonArray(days),
+                "author" to JsonPrimitive(author!!), // skipcq: KT-E1010
+                "title" to JsonPrimitive(title!!), // skipcq: KT-E1010
+                "number" to JsonPrimitive(number!!), // skipcq: KT-E1010
+                "year" to JsonPrimitive(year!!), // skipcq: KT-E1010
+                "period" to JsonPrimitive(period!!), // skipcq: KT-E1010
+                "days" to JsonArray(days), // skipcq: KT-E1010
             ),
         )
     }

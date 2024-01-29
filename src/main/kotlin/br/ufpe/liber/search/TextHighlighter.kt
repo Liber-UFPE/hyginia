@@ -21,7 +21,7 @@ import org.apache.lucene.search.highlight.TokenSources
 class TextHighlighter(private val analyzer: Analyzer) {
     companion object {
         const val MAX_NUM_FRAGMENTS = 4 // better for top results
-        lateinit var staticAnalyzer: Analyzer
+        lateinit var staticAnalyzer: Analyzer // skipcq: KT-W1047
 
         fun highlightText(query: String, text: String): String = if (query.isBlank()) {
             text

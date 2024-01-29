@@ -23,7 +23,7 @@ class AssetsResolver(resourceResolver: ResourceResolver) {
     private val assetsWithHashedVersionAsKeys: NavigableMap<String, Asset> = TreeMap()
 
     companion object {
-        lateinit var instance: AssetsResolver
+        lateinit var instance: AssetsResolver // skipcq: KT-W1047
     }
 
     init {

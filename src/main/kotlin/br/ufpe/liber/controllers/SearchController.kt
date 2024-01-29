@@ -18,9 +18,8 @@ import kotlin.math.max
 @Produces(MediaType.TEXT_HTML)
 class SearchController(private val booksSearch: BooksSearch, private val templates: Templates) : KteController {
     @Get("/search")
-    fun search(@QueryValue query: Optional<String>, @QueryValue page: Optional<Int>): HttpResponse<KteWriteable> {
-        return runSearch(query.orElse(""), page)
-    }
+    fun search(@QueryValue query: Optional<String>, @QueryValue page: Optional<Int>): HttpResponse<KteWriteable> =
+        runSearch(query.orElse(""), page)
 
     @Get("/advanced-search")
     fun advancedSearch(
