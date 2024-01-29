@@ -29,3 +29,7 @@ name = "javascript"
     "browser",
     "nodejs"
   ]
+
+[[analyzers]]
+name = "test-coverage"
+enabled = true
