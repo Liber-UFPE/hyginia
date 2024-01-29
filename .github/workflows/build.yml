@@ -160,13 +160,13 @@ jobs:
           tree build/test-results
           tree build/reports
       - name: Run SonarCloud Analysis
-        if: secrets.SONAR_TOKEN != ''
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew sonar
       - name: Report results to DeepSource
-        if: secrets.DEEPSOURCE_DSN != ''
+        continue-on-error: true
         run: |
           curl https://deepsource.io/cli | sh
           ./bin/deepsource report --analyzer test-coverage --key kotlin --value-file ./build/reports/kover/report.xml
