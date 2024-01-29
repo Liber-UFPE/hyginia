@@ -26,7 +26,7 @@ Se você quiser recarregar a aplicação a cada alteração de código, execute 
 
 ## Simular ambiente de produção
 
-O aplicativo é executado usando o [nginx](https://nginx.org/) como proxy, em uma máquina com o [Rocky Linux](https://rockylinux.org/). Para simular este ambiente, você pode usar o [Vagrant](https://www.vagrantup.com/), que irá configurar todos os detalhes usando um único comando:
+O aplicativo é executado usando o [nginx](https://nginx.org/) como proxy, em uma máquina com o [Rocky Linux](https://rockylinux.org/). Para simular este ambiente, você pode usar o [Vagrant][vagrant], que irá configurar todos os detalhes usando um único comando:
 
 ```shell
 ./gradlew clean vagrantUp
@@ -50,16 +50,22 @@ vagrant destroy --graceful --force
 
 ## Requisitos
 
-1. Java 17+ (mais fácil de instalar com [SDKMAN](https://sdkman.io/))
-2. [Docker Desktop](https://www.docker.com/products/docker-desktop/) (se você quiser testar as imagens Docker)
-3. [Ktlint CLI](https://pinterest.github.io/ktlint/1.0.0/install/cli/) (se você quiser executar inspeções de código localmente)
-4. [Gradle](https://gradle.org/install/#with-a-package-manager) (se você não quiser usar o script `./gradlew`)
-5. [Vagrant](https://www.vagrantup.com/) (se você quiser rodar o projeto usando uma VM)
+1. Java 21 (mais fácil de instalar com [SDKMAN](https://sdkman.io/))
+2. [Node.js 20](https://nodejs.org/en)
+3. [Docker Desktop](https://www.docker.com/products/docker-desktop/) (se você quiser testar as imagens Docker)
+4. [Ktlint CLI][ktlint-cli] (se você quiser executar inspeções de código localmente)
+5. [Gradle](https://gradle.org/install/#with-a-package-manager) (se você não quiser usar o script `./gradlew`)
+6. [Vagrant][vagrant] (se você quiser rodar o projeto usando uma VM)
 
 
 ## Aspectos técnicos
 
-O projeto é desenvolvido usando Micronaut Framework, [Gradle](https://gradle.org/), e [Kotlin](https://kotlinlang.org/).
+O projeto é desenvolvido usando:
+
+- [Micronaut Framework][micronaut]
+- [Gradle][gradle]
+- [Kotlin][kotlin]
+- [Tailwind CSS][tailwind]
 
 ### Documentação de Micronaut
 
@@ -77,19 +83,36 @@ O projeto usa JTE / KTE como template engine.
 
 ### CI & CD
 
-O projeto usa [GitHub Actions](https://docs.github.com/en/actions) para executar testes, empacotar uma nova versão, e criar uma versão para cada merge/push feito para o branch `main`.
+O projeto usa [GitHub Actions](https://docs.github.com/en/actions) para executar testes e outras validações descritas abaixo.
+
+#### Inspeções de código
+
+Para cada merge/push, e também para pull requests, existem ações do GitHub para executar [ktlint][ktlint], [detekt](https://github.com/detekt), e [DiKTat](https://diktat.saveourtool.com/) (experimental).
+
+O ktlint está configurado para usar o estilo de código `intellij_idea` para que ele não entre em conflito com a ação de formatação de código da IntelliJ IDEA.
+
+Há também uma integração com o Sonar Cloud: <https://sonarcloud.io/project/overview?id=Liber-UFPE_hyginia>.
 
 ### Testes e Cobertura de Código
 
-Usamos [Kotest](https://kotest.io/) como estrutura de teste, e [Kover](https://github.com/Kotlin/kotlinx-kover) como a ferramenta Cobertura de Código. Ver também[Micronaut Kotest integrações docs](https://micronaut-projects.github.io/micronaut-test/latest/guide/index.html#kotest5).
+Usamos [Kotest](https://kotest.io/) como framework de teste, e [Kover](https://github.com/Kotlin/kotlinx-kover) como a ferramenta de cobertura de código. Ver também [Micronaut Kotest integrações docs](https://micronaut-projects.github.io/micronaut-test/latest/guide/index.html#kotest5).
 
-### Inspeções de código
+> [!TIP]
+> Veja a cobertura de código mais recente na [página do projeto no SonarCloud](https://sonarcloud.io/component_measures?metric=coverage&view=list&id=Liber-UFPE_hyginia).
 
-Para cada merge/push, e também para pull requests, existem ações do GitHub para executar [ktlint](https://github.com/pinterest/ktlint), [detekt](https://github.com/detekt), e [DiKTat](https://diktat.saveourtool.com/).
+### Assets Pipeline
 
-O Ktlint está configurado para usar o estilo de código `intellij_idea` para que ele não entre em conflito com a ação de formatação de código da IntelliJ IDEA.
+Para garantir que as páginas carreguem rapidamente, há um processamento dos assets estáticos (JavaScripts, CSS, imagens).
+O [esbuild](https://esbuild.github.io/) é usado em conjunto com alguns pacotes npm:
 
-Há também uma integração com o Sonar Cloud: <https://sonarcloud.io/project/overview?id=Liber-UFPE_hyginia>.
+- [sharp](https://github.com/lovell/sharp) para gerar versões `webp` das images
+- [gzipper](https://github.com/gios/gzipper) para gerar versões comprimidas (`gzip`, `brotli`, `deflate`)
+- [postcss](https://postcss.org/) para otimizar o uso do [Tailwind CSS][tailwind] e manter apenas os estilos efetivamente usados.
+
+Esse processamento é então integrado ao `build` principal da aplicação usando o [Gradle Plugin for Node](https://github.com/node-gradle/gradle-node-plugin).
+
+> [!TIP]
+> Dá para testar o processamento dos assets de maneira isolada executando diretamente `node assets-pipeline.mjs`.
 
 ### Layout de Diretório de Projetos
 
@@ -106,3 +129,11 @@ O projeto segue o padrão [Maven Standard Directory Layout](https://maven.apache
 | `scripts`                   | Pasta com scripts para deploy usando o Vagrant     |
 | `github`                    | Pasta raiz para configurações do GitHub            |
 | `.github/workflows`         | GitHub Ações configuração                          |
+
+[gradle]: https://gradle.org/
+[kotlin]: https://kotlinlang.org/
+[micronaut]: https://micronaut.io/
+[tailwind]: https://tailwindcss.com/
+[vagrant]: https://www.vagrantup.com/
+[ktlint]: https://github.com/pinterest/ktlint
+[ktlint-cli]: https://pinterest.github.io/ktlint/latest/install/cli/
