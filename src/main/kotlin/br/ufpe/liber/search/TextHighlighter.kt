@@ -19,6 +19,7 @@ import org.apache.lucene.search.highlight.TokenSources
 @Singleton
 @EagerInProduction
 class TextHighlighter(private val analyzer: Analyzer) {
+    @Suppress("BLANK_LINE_BETWEEN_PROPERTIES")
     companion object {
         const val MAX_NUM_FRAGMENTS = 4 // better for top results
         lateinit var staticAnalyzer: Analyzer // skipcq: KT-W1047
