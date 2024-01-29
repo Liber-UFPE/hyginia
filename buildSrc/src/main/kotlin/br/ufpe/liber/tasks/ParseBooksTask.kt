@@ -43,6 +43,7 @@ abstract class ParseBooksTask : DefaultTask() {
         )
     }
 
+    @Suppress("ktlint")
     private fun parse(resource: File): JsonObject {
         val locale = Locale.forLanguageTag("pt-BR")
         val dayFormat = SimpleDateFormat("d 'de' MMMM", locale)
