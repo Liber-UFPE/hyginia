@@ -347,7 +347,6 @@ dependencies {
     implementation(kotlin("reflect", kotlinVersion))
     implementation(kotlin("stdlib-jdk8", kotlinVersion))
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
 
     // jte dependencies
     jteGenerate("gg.jte:jte-models:$jteVersion")

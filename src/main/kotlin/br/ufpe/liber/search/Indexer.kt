@@ -3,8 +3,6 @@ package br.ufpe.liber.search
 import br.ufpe.liber.EagerInProduction
 import br.ufpe.liber.services.BookRepository
 import jakarta.inject.Singleton
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import org.apache.lucene.analysis.Analyzer
 import org.apache.lucene.document.Document
 import org.apache.lucene.document.Field
@@ -17,6 +15,7 @@ import org.apache.lucene.index.IndexWriterConfig
 import org.apache.lucene.store.Directory
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import kotlin.system.measureTimeMillis
 
 @Singleton
 @EagerInProduction
@@ -46,27 +45,25 @@ class Indexer(
     init {
         logger.info("Starting to index all books")
         IndexWriter(directory, IndexWriterConfig(analyzer)).use { writer ->
-            runBlocking {
-                bookRepository.listAll().forEach { book ->
-                    launch {
-                        logger.info("Indexing book with id ${book.id}")
-                        book.days.forEach { day ->
-                            val doc = Document()
-                            doc.add(StoredField(BookMetadata.ID, book.id))
-                            doc.add(StoredField(BookMetadata.AUTHOR, book.author))
-                            doc.add(StoredField(BookMetadata.TITLE, book.title))
-                            doc.add(StoredField(BookMetadata.NUMBER, book.number))
-                            doc.add(StoredField(BookMetadata.YEAR, book.year))
-                            doc.add(StoredField(BookMetadata.PERIOD, book.period))
+            bookRepository.listAll().parallelStream().forEach { book ->
+                val time = measureTimeMillis {
+                    book.days.forEach { day ->
+                        val doc = Document()
+                        doc.add(StoredField(BookMetadata.ID, book.id))
+                        doc.add(StoredField(BookMetadata.AUTHOR, book.author))
+                        doc.add(StoredField(BookMetadata.TITLE, book.title))
+                        doc.add(StoredField(BookMetadata.NUMBER, book.number))
+                        doc.add(StoredField(BookMetadata.YEAR, book.year))
+                        doc.add(StoredField(BookMetadata.PERIOD, book.period))
 
-                            doc.add(StoredField(DayMetadata.ID, day.id))
-                            doc.add(TextField(DayMetadata.DAY, day.day, Field.Store.YES))
-                            doc.add(richTextField(DayMetadata.CONTENTS, day.contents))
+                        doc.add(StoredField(DayMetadata.ID, day.id))
+                        doc.add(TextField(DayMetadata.DAY, day.day, Field.Store.YES))
+                        doc.add(richTextField(DayMetadata.CONTENTS, day.contents))
 
-                            writer.addDocument(doc)
-                        }
+                        writer.addDocument(doc)
                     }
                 }
+                logger.info("Book ${book.id} indexed in $time ms")
             }
         }
     }
