@@ -9,11 +9,11 @@
     @template.partials.content-section(content = @`
         @for(book in books)
             @template.books._card(book = book, preview = @`
-                <p class="font-semibold text-gray-600">Trecho da primeira página:</p>
-                <p class="text-base text-normal text-gray-800">${book.description()} ...</p>
+                <p class="text-lg font-semibold text-gray-600 mt-2">Trecho da primeira página:</p>
+                <p class="text-lg text-normal text-gray-800">${book.description()} ...</p>
                 <a href="${linkTo("/obra/${book.id}")}"
                    hx-boost="true" hx-target="#content" hx-swap="outerHTML show:window:top" hx-push-url="true"
-                   class="inline-flex items-center font-medium text-blue-600 hover:underline pt-4">
+                   class="text-lg inline-flex items-center font-medium text-blue-600 hover:underline pt-4">
                     Acessar Conteúdo
                     <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="m1 9 4-4-4-4"/>

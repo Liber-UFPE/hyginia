@@ -9,11 +9,13 @@
 
 <div class="leading-relaxed grid gap-3">
     <p class="text-2xl font-normal">${day.day}</p>
+    <div class="text-lg">
     @if(query.isEmpty)
         ${Markdown.toHtml(day.contents)}
     @else
         ${Markdown.toHtml(TextHighlighter.highlightText(query.get(), day.contents))}
     @endif
+    </div>
 </div>
 
 <div class="lg:pt-6 pt-4">
