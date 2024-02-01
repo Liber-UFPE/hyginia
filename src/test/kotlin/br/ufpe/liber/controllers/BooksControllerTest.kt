@@ -3,11 +3,13 @@ package br.ufpe.liber.controllers
 import br.ufpe.liber.asString
 import br.ufpe.liber.assets.AssetsResolver
 import br.ufpe.liber.get
+import br.ufpe.liber.search.TextHighlighter
 import br.ufpe.liber.services.BookRepository
 import br.ufpe.liber.views.Markdown
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
+import io.kotest.matchers.string.shouldContainIgnoringCase
 import io.micronaut.context.ApplicationContext
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.client.DefaultHttpClientConfiguration
@@ -32,8 +34,8 @@ class BooksControllerTest(
     val bookRepository = context.getBean<BookRepository>()
 
     beforeSpec {
-        context.getBean<BookRepository>()
         context.getBean<AssetsResolver>()
+        context.getBean<TextHighlighter>()
     }
 
     given("#index") {
@@ -85,6 +87,23 @@ class BooksControllerTest(
             then("shows day's content") {
                 val dayHtml = Markdown.toHtml(day.contents).asString()
                 response.body() shouldContain dayHtml
+            }
+        }
+
+        `when`("'query' parameter is part of the query string") {
+            val book = bookRepository.listAll().first()
+            val day = book.days.first()
+            val query = "brasil"
+
+            // Get the page with a query
+            val response = client.get("/obra/${book.id}/pagina/${day.id}?query=$query")
+
+            then("returns HTTP 200") {
+                response.status() shouldBe HttpStatus.OK
+            }
+
+            then("should highlight query") {
+                response.body() shouldContainIgnoringCase "<mark>$query</mark>"
             }
         }
 
