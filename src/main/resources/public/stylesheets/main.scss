@@ -5,6 +5,10 @@
 @tailwind utilities;
 
 @layer base {
+  .min-w-68 {
+
+  }
+
   .main-section-bg {
     @apply bg-gradient-to-l from-sky-700 from-5% via-indigo-800 via-50% to-blue-700 to-95%;
   }
@@ -30,19 +34,6 @@
 
     &:hover {
       @apply underline bg-amber-300;
-    }
-  }
-
-  .popover-pic-min-height {
-    $original-width: 1011px;
-    $original-height: 1566px;
-
-    min-width: math.div($original-width, 4);
-    min-height: math.div($original-height, 4);
-
-    @screen md {
-      min-width: math.div($original-width, 3);
-      min-height: math.div($original-height, 3);
     }
   }
 
