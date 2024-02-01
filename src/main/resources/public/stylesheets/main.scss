@@ -34,15 +34,15 @@
   }
 
   .popover-pic-min-height {
-    $original_width: 1011px;
-    $original_height: 1566px;
+    $original-width: 1011px;
+    $original-height: 1566px;
 
-    min-width: math.div($original_width, 4);
-    min-height: math.div($original_height, 4);
+    min-width: math.div($original-width, 4);
+    min-height: math.div($original-height, 4);
 
     @screen md {
-      min-width: math.div($original_width, 3);
-      min-height: math.div($original_height, 3);
+      min-width: math.div($original-width, 3);
+      min-height: math.div($original-height, 3);
     }
   }
 
