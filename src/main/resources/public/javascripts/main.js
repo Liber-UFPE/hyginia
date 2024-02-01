@@ -1,4 +1,4 @@
-import {initFlowbite, Collapse} from "flowbite";
+import {initFlowbite, initPopovers, Collapse} from "flowbite";
 
 initFlowbite();
 
@@ -9,6 +9,10 @@ window.onload = () => {
         queryInput.focus();
     };
 };
+
+document.documentElement.addEventListener("htmx:afterRequest", () => {
+    initPopovers();
+});
 
 // https://htmx.org/events/#htmx:afterRequest
 document.documentElement.addEventListener("htmx:afterRequest", () => {
