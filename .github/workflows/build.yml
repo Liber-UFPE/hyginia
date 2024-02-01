@@ -93,22 +93,6 @@ jobs:
       - name: Gradle Tasks Summary
         run: cat build/reports/build-times.md >> $GITHUB_STEP_SUMMARY
 
-  accessibility-test:
-    name: Tests / Accessibility
-    runs-on: ubuntu-latest
-    # Since this job is experimental
-    continue-on-error: true
-    needs:
-      - compile
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Gradle and Java
-        uses: ./.github/gradle-action
-      - name: Run Accessibility Tests
-        run: ./gradlew accessibilityTest
-      - name: Gradle Tasks Summary
-        run: cat build/reports/build-times.md >> $GITHUB_STEP_SUMMARY
-
   esbuild-check:
     name: Test / Assets / pipeline
     runs-on: ubuntu-latest
@@ -150,15 +134,9 @@ jobs:
       - name: Set up Gradle and Java
         uses: ./.github/gradle-action
       - name: Run tests
-        run: ./gradlew test
-      - name: Generate Kover Reports
-        run: ./gradlew koverHtmlReport koverXmlReport -x accessibilityTest
-      - name: Generate Detekt Report
-        run: ./gradlew detekt
-      - name: Check folders
-        run: |
-          tree build/test-results
-          tree build/reports
+        run: ./gradlew check koverXmlReport
+      - name: Gradle Tasks Summary
+        run: cat build/reports/build-times.md >> $GITHUB_STEP_SUMMARY
       - name: Run SonarCloud Analysis
         continue-on-error: true
         env:
@@ -172,25 +150,6 @@ jobs:
           ./bin/deepsource report --analyzer test-coverage --key kotlin --value-file ./build/reports/kover/report.xml
         env:
           DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
-      - name: Gradle Tasks Summary
-        run: cat build/reports/build-times.md >> $GITHUB_STEP_SUMMARY
-      - name: Setup Pandoc
-        uses: r-lib/actions/setup-pandoc@v2
-      - name: Output Kover summary
-        # Adapted from https://github.com/Kotlin/kotlinx-kover/issues/419#issuecomment-1632572084
-        run: |
-          pandoc build/reports/kover/html/index.html -f html -t gfm | \
-            sed -n '/# hyginia: Overall Coverage Summary/,/<\/div>/p' | \
-            grep -v "</div>" >> $GITHUB_STEP_SUMMARY
-      - name: Test Summary Report
-        uses: phoenix-actions/test-reporting@v12
-        if: always()
-        with:
-          name: Kotest Report
-          path: "build/test-results/test/TEST-*.xml"
-          reporter: java-junit
-          output-to: "step-summary"
-          only-summary: "true"
 
   build-docker:
     name: Package / Docker / build
@@ -205,7 +164,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
       - name: Docker / Get image name
         id: dockerImageName
-        run: echo "dockerImageName=hyginia:$(date '+%Y-%b-%d-%H%M%S')" >> "$GITHUB_OUTPUT"
+        run: echo "dockerImageName=hyginia:$(date '+%Y%m%d.%H%M.%S')" >> "$GITHUB_OUTPUT"
       - name: Docker / Create Image
         run: docker image build -t ${{ steps.dockerImageName.outputs.dockerImageName }} .
       - name: Docker / List images
@@ -221,6 +180,15 @@ jobs:
           wget --retry-connrefused --tries=20 -nv --wait=1 --spider http://localhost:8080/
           docker container logs "$containerId"
           docker container stop "$containerId"
+
+  good-to-merge:
+    name: Good to merge
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
+    needs:
+      - build-docker
+    steps:
+      - run: echo "This PR is ready to merge."
 
   check-if-prod:
     if: ${{ github.ref == 'refs/heads/main' }}
@@ -251,7 +219,9 @@ jobs:
       - name: Create Github Release
         env:
           GH_TOKEN: ${{ github.token }}
+        # TAG_NAME value is trying to emulate semver to avoid release ordering issues.
+        # See https://github.com/orgs/community/discussions/8226.
         run: |
           RELEASE_TITLE=$(date '+%Y %b %d %H:%M:%S')
-          TAG_NAME="v${{ github.run_number }}-$(git log HEAD -1 --pretty=format:'%h')"
+          TAG_NAME="v$(date '+%Y%m%d.%H%M.%S')"
           gh release create "$TAG_NAME" --title "$RELEASE_TITLE" --generate-notes --latest
