@@ -5,10 +5,6 @@
 @tailwind utilities;
 
 @layer base {
-  .min-w-68 {
-
-  }
-
   .main-section-bg {
     @apply bg-gradient-to-l from-sky-700 from-5% via-indigo-800 via-50% to-blue-700 to-95%;
   }
