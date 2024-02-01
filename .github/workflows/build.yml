@@ -150,6 +150,13 @@ jobs:
           ./bin/deepsource report --analyzer test-coverage --key kotlin --value-file ./build/reports/kover/report.xml
         env:
           DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4
+        continue-on-error: true
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          verbose: true
 
   build-docker:
     name: Package / Docker / build
