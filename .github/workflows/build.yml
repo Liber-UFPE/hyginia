@@ -223,12 +223,17 @@ jobs:
       packages: read # to preserve default permissions
     steps:
       - uses: actions/checkout@v4
+      - uses: ./.github/gradle-action
+      - name: Generate tag name
+        id: generateTagName
+        # TAG_NAME value is trying to emulate semver to avoid release ordering issues.
+        # See https://github.com/orgs/community/discussions/8226.
+        run: echo "tagName=v$(date '+%Y%m%d.%H%M.%S')" >> "$GITHUB_OUTPUT"
       - name: Create Github Release
         env:
           GH_TOKEN: ${{ github.token }}
-        # TAG_NAME value is trying to emulate semver to avoid release ordering issues.
-        # See https://github.com/orgs/community/discussions/8226.
         run: |
-          RELEASE_TITLE=$(date '+%Y %b %d %H:%M:%S')
-          TAG_NAME="v$(date '+%Y%m%d.%H%M.%S')"
-          gh release create "$TAG_NAME" --title "$RELEASE_TITLE" --generate-notes --latest
+          RELEASE_TITLE="Release ${{ steps.generateTagName.outputs.tagName }}"
+          TAG_NAME="${{ steps.generateTagName.outputs.tagName }}"
+          ./gradlew -PreleaseTag=$TAG_NAME clean shadowJar -x test -x accessibilityTest --no-configuration-cache
+          gh release create "$TAG_NAME" --title "$RELEASE_TITLE" --generate-notes --latest ./build/libs/*.jar
