@@ -50,7 +50,7 @@ plugins {
     id("com.saveourtool.diktat") version "2.0.0"
     // To run npm/node/js tasks
     // https://github.com/node-gradle/gradle-node-plugin
-    id("com.github.node-gradle.node") version "7.0.1"
+    id("com.github.node-gradle.node") version "7.0.2"
 }
 
 val runningOnCI: Boolean = getenv().getOrDefault("CI", "false").toBoolean()
