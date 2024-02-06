@@ -22,7 +22,6 @@ import org.apache.lucene.search.ScoreDoc
 import org.apache.lucene.search.TopScoreDocCollector
 import org.reactivestreams.Publisher
 import java.util.concurrent.ExecutorService
-import kotlin.math.ceil
 import kotlin.math.max
 import kotlin.math.min
 
@@ -105,16 +104,13 @@ data class SearchResult(
 data class SearchResults(
     val hits: Int = 0,
     val items: List<SearchResult> = listOf(),
-    val currentPage: Int = Pagination.FIRST,
+    val currentPage: Int = Pagination.DEFAULT_FIRST_PAGE,
 ) : Collection<SearchResult> by items {
     companion object {
         fun empty() = SearchResults()
     }
 
-    val totalPages: Int = ceil(hits.toDouble() / BooksSearch.RESULTS_PER_PAGE).toInt()
-    val isFirstPage: Boolean = currentPage == Pagination.FIRST
-    val isLastPage: Boolean = currentPage == totalPages
-    val pages = Pagination(currentPage, totalPages).listPages()
+    val pagination = Pagination(hits, currentPage)
 }
 
 @Bean
