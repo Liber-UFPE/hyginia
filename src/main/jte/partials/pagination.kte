@@ -1,0 +1,46 @@
+@import br.ufpe.liber.pagination.Gap
+@import br.ufpe.liber.pagination.SinglePage
+@import br.ufpe.liber.views.LinksHelper.linkTo
+
+@param pagination: br.ufpe.liber.pagination.Pagination
+@param query: String
+
+<nav role="navigation" aria-label="Paginação dos resultados da busca">
+    <ul class="inline-flex -space-x-px text-base h-10 py-4">
+        <li>
+            @if(pagination.prev == null)
+                <span class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-gray-100 border border-e-0 border-gray-400 ms-0 rounded-s-lg">
+                        &lsaquo; <span class="hidden md:block ps-2">Anterior</span>
+                    </span>
+            @else
+                <a href="${linkTo("/search/?query=${query}&page=${pagination.prev}")}" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-800 bg-white border border-gray-400 hover:bg-blue-600 hover:text-white rounded-s-lg">
+                    &lsaquo; <span class="hidden md:block ps-2">Anterior</span>
+                </a>
+            @endif
+        </li>
+
+        @for(page in pagination.listPages())
+            <li>
+                @if(page is Gap)
+                    <span class="flex items-center justify-center px-4 h-10 leading-tight border border-e-0 border-gray-400 ms-0 text-gray-500 bg-gray-100">${page.toString()}</span>
+                @elseif(page is SinglePage && page.current)
+                    <span class="flex items-center justify-center px-4 h-10 leading-tight border border-e-0 border-gray-400 ms-0 text-blue-600 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 font-semibold">${page.toString()}</span>
+                @elseif(page is SinglePage)
+                    <a href="${linkTo("/search/?query=${query}&page=${page.number}")}" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-800 bg-white border border-gray-400 hover:bg-blue-600 hover:text-white">${page.number}</a>
+                @endif
+            </li>
+        @endfor
+
+        <li>
+            @if(pagination.next == null)
+                <span class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-gray-100 border border-gray-400 ms-0 rounded-e-lg">
+                        <span class="hidden md:block pr-2">Próxima</span> &rsaquo;
+                    </span>
+            @else
+                <a href="${linkTo("/search/?query=${query}&page=${pagination.next}")}" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-800 bg-white border border-gray-400 hover:bg-blue-600 hover:text-white rounded-e-lg">
+                    <span class="hidden md:block pr-2">Próxima</span> &rsaquo;
+                </a>
+            @endif
+        </li>
+    </ul>
+</nav>
