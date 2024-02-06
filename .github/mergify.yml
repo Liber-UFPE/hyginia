@@ -19,6 +19,8 @@ pull_request_rules:
   - name: Automatic merge when CI passes
     conditions:
       - check-success=Good to merge
+      # So that dependabot PRs go to the queue above
+      - author!=dependabot[bot]
     actions:
       merge:
         method: rebase
