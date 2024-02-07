@@ -106,21 +106,6 @@ class PaginationTest : BehaviorSpec({
     }
 
     given(".listPages") {
-        `when`("count = 103, current page = 2") {
-            then("show pages [1, 2, 3, 4, 5, 6]") {
-                val pagination = Pagination(103, 2)
-                pagination.listPages().map { it.toString() } shouldBe listOf("1", "2", "3", "4", "5", "6")
-            }
-
-            then("correctly tag current page") {
-                val pagination = Pagination(103, 2)
-                val currentPage = pagination.listPages().first { page ->
-                    page is SinglePage && page.current
-                } as SinglePage
-                currentPage.number shouldBe 2
-            }
-        }
-
         forAll(
             row(103, 2, listOf("1", "2", "3", "4", "5", "6")),
             row(503, 1, listOf("1", "2", "3", "...", "25", "26")),

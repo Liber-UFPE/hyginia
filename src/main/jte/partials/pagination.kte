@@ -5,42 +5,67 @@
 @param pagination: br.ufpe.liber.pagination.Pagination
 @param query: String
 
-<nav role="navigation" aria-label="Paginação dos resultados da busca">
-    <ul class="inline-flex -space-x-px text-base h-10 py-4">
-        <li>
-            @if(pagination.prev == null)
-                <span class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-gray-100 border border-e-0 border-gray-400 ms-0 rounded-s-lg">
-                        &lsaquo; <span class="hidden md:block ps-2">Anterior</span>
+<div class="flex items-center justify-between py-3">
+    <div class="flex flex-1 justify-between sm:hidden">
+        @if(pagination.prev != null)
+            <a href="${linkTo("/search/?query=${query}&page=${pagination.prev}")}" class="relative inline-flex items-center rounded-md border border-gray-300 px-4 py-2 font-medium text-gray-700 hover:bg-gray-50">Anterior</a>
+        @else
+            <span class="relative inline-flex items-center rounded-md border border-gray-300 px-4 py-2 font-medium text-gray-700 hover:bg-gray-50">Anterior</span>
+        @endif
+        @if(pagination.next != null)
+            <a href="${linkTo("/search/?query=${query}&page=${pagination.next}")}" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 px-4 py-2 font-medium text-gray-700 hover:bg-gray-50">Próxima</a>
+        @else
+            <span class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 px-4 py-2 font-medium text-gray-700 hover:bg-gray-50">Próxima</span>
+        @endif
+    </div>
+    <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+        <div>
+            <p class="text-gray-800">
+                Mostrando resultados de <span class="font-medium">${pagination.from}</span> a <span class="font-medium">${pagination.to}</span> de <span class="font-medium">${pagination.count}</span> páginas encontradas
+            </p>
+        </div>
+        <div>
+            <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+                @if(pagination.prev != null)
+                    <a href="${linkTo("/search/?query=${query}&page=${pagination.prev}")}" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                        <span class="sr-only">Anterior</span>
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                @else
+                    <span class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                        <span class="sr-only">Anterior</span>
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+                        </svg>
                     </span>
-            @else
-                <a href="${linkTo("/search/?query=${query}&page=${pagination.prev}")}" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-800 bg-white border border-gray-400 hover:bg-blue-600 hover:text-white rounded-s-lg">
-                    &lsaquo; <span class="hidden md:block ps-2">Anterior</span>
-                </a>
-            @endif
-        </li>
-
-        @for(page in pagination.listPages())
-            <li>
-                @if(page is Gap)
-                    <span class="flex items-center justify-center px-4 h-10 leading-tight border border-e-0 border-gray-400 ms-0 text-gray-500 bg-gray-100">${page.toString()}</span>
-                @elseif(page is SinglePage && page.current)
-                    <span class="flex items-center justify-center px-4 h-10 leading-tight border border-e-0 border-gray-400 ms-0 text-blue-600 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 font-semibold">${page.toString()}</span>
-                @elseif(page is SinglePage)
-                    <a href="${linkTo("/search/?query=${query}&page=${page.number}")}" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-800 bg-white border border-gray-400 hover:bg-blue-600 hover:text-white">${page.number}</a>
                 @endif
-            </li>
-        @endfor
-
-        <li>
-            @if(pagination.next == null)
-                <span class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-gray-100 border border-gray-400 ms-0 rounded-e-lg">
-                        <span class="hidden md:block pr-2">Próxima</span> &rsaquo;
+                @for(page in pagination.listPages())
+                    @if(page is Gap)
+                        <span class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>
+                    @elseif(page is SinglePage && page.current)
+                        <span aria-current="page" class="relative z-10 inline-flex items-center bg-blue-600 px-4 py-2 font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">${page.number}</span>
+                    @elseif(page is SinglePage)
+                        <a href="${linkTo("/search/?query=${query}&page=${page.number}")}" class="relative inline-flex items-center px-4 py-2 text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">${page.number}</a>
+                    @endif
+                @endfor
+                @if(pagination.next != null)
+                    <a href="${linkTo("/search/?query=${query}&page=${pagination.next}")}" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                        <span class="sr-only">Next</span>
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                @else
+                    <span class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                        <span class="sr-only">Next</span>
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                        </svg>
                     </span>
-            @else
-                <a href="${linkTo("/search/?query=${query}&page=${pagination.next}")}" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-800 bg-white border border-gray-400 hover:bg-blue-600 hover:text-white rounded-e-lg">
-                    <span class="hidden md:block pr-2">Próxima</span> &rsaquo;
-                </a>
-            @endif
-        </li>
-    </ul>
-</nav>
+                @endif
+            </nav>
+        </div>
+    </div>
+</div>
