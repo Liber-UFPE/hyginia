@@ -148,13 +148,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew sonar
-      - name: Report results to DeepSource
-        continue-on-error: true
-        run: |
-          curl https://deepsource.io/cli | sh
-          ./bin/deepsource report --analyzer test-coverage --key kotlin --value-file ./build/reports/kover/report.xml
-        env:
-          DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4
         continue-on-error: true
