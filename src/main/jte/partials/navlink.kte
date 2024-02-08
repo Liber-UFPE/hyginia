@@ -6,13 +6,11 @@
 
 @if(isActive(path))
     <a href="${linkTo(path)}"
-       hx-boost="true" hx-target="#content" hx-swap="outerHTML show:window:top" hx-push-url="true"
        class="block px-3 py-2 rounded bg-transparent text-blue-700 md:p-0"
        aria-current="page"
        title="${title}">${text}</a>
 @else
     <a href="${linkTo(path)}"
-       hx-boost="true" hx-target="#content" hx-swap="outerHTML show:window:top" hx-push-url="true"
        class="block px-3 py-2 rounded bg-transparent text-gray-900 md:p-0 hover:text-blue-700"
        title="${title}">${text}</a>
 @endif
