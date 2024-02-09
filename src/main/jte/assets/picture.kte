@@ -13,6 +13,7 @@
 @if(maybeAsset.isPresent)
     !{val asset = maybeAsset.get()}
     <picture class="${pictureClasses}">
+        <source srcset="${linkTo(asset.variant("avif", prefix))}" type="image/avif">
         <source srcset="${linkTo(asset.variant("webp", prefix))}" type="image/webp">
         <img src="${linkTo(asset.fullpath(prefix))}"
              alt="${alt}"
