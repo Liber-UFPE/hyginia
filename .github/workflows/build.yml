@@ -1,3 +1,5 @@
+# DO NOT EDIT: this file is automatically synced from the template repository
+# in https://github.com/Liber-UFPE/project-starter.
 name: CI
 
 on:
@@ -148,19 +150,6 @@ jobs:
         run: ./gradlew check koverXmlReport
       - name: Gradle Tasks Summary
         run: cat build/reports/build-times.md >> $GITHUB_STEP_SUMMARY
-      - name: Run SonarCloud Analysis
-        continue-on-error: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew sonar
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4
-        continue-on-error: true
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        with:
-          verbose: true
 
   good-to-merge:
     name: Good to merge
