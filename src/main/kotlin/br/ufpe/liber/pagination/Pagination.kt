@@ -4,6 +4,9 @@ import kotlin.math.ceil
 import kotlin.math.max
 import kotlin.math.min
 
+// DO NOT EDIT: this file is automatically synced from the template repository
+// in https://github.com/Liber-UFPE/project-starter.
+
 data class PaginationConfig(
     val spotsStart: Int = 2,
     val spotsBeforePage: Int = 2,
