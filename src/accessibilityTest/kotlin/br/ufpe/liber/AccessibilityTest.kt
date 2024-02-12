@@ -1,7 +1,6 @@
 package br.ufpe.liber
 
 import br.ufpe.liber.assets.AssetsResolver
-import br.ufpe.liber.search.Indexer
 import com.deque.html.axecore.selenium.AxeBuilder
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.data.forAll
@@ -18,6 +17,8 @@ import io.micronaut.web.router.Router
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
 
+// DO NOT EDIT: this file is automatically synced from the template repository
+// in https://github.com/Liber-UFPE/project-starter.
 @MicronautTest
 class AccessibilityTest(
     private val server: EmbeddedServer,
@@ -45,7 +46,6 @@ class AccessibilityTest(
         .toList()
 
     beforeSpec {
-        context.getBean<Indexer>()
         context.getBean<AssetsResolver>()
     }
 
