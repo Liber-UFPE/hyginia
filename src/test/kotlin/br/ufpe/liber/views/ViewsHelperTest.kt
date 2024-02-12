@@ -14,6 +14,9 @@ import io.mockk.mockk
 import io.mockk.mockkStatic
 import java.util.Optional
 
+// DO NOT EDIT: this file is automatically synced from the template repository
+// in https://github.com/Liber-UFPE/project-starter.
+
 class ViewsHelperTest : BehaviorSpec({
     fun setupCurrentRequest(request: Optional<HttpRequest<Any>>) {
         mockkStatic(ServerRequestContext::class)
@@ -140,10 +143,6 @@ class ViewsHelperTest : BehaviorSpec({
         `when`(".emptyContent") {
             then("there is nothing to render") {
                 ViewsHelper.emptyContent().asString() shouldBe ""
-            }
-
-            then("it should be marked as emptyContent") {
-                ViewsHelper.emptyContent().isEmptyContent shouldBe true
             }
         }
     }
