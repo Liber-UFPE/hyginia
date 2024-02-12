@@ -1,3 +1,5 @@
+# DO NOT EDIT: this file is automatically synced from the template repository
+# in https://github.com/Liber-UFPE/project-starter.
 FROM eclipse-temurin:21-jdk AS build
 
 # Install Node JS
@@ -16,13 +18,13 @@ RUN npm install \
 
 FROM eclipse-temurin:21-jre-alpine
 
-LABEL org.opencontainers.image.description="Monummenta Hygínia Java Application Service"
-LABEL org.opencontainers.image.url="https://github.com/Liber-UFPE/hyginia/"
-LABEL org.opencontainers.image.documentation="https://github.com/Liber-UFPE/hyginia/"
-LABEL org.opencontainers.image.source="https://github.com/Liber-UFPE/hyginia/"
+LABEL org.opencontainers.image.description="Project Starter Java Application Service"
+LABEL org.opencontainers.image.url="https://github.com/Liber-UFPE/project-starter/"
+LABEL org.opencontainers.image.documentation="https://github.com/Liber-UFPE/project-starter/"
+LABEL org.opencontainers.image.source="https://github.com/Liber-UFPE/project-starter/"
 LABEL org.opencontainers.image.vendor="Laboratório Liber / UFPE"
 LABEL org.opencontainers.image.licenses="Apache-2.0"
-LABEL org.opencontainers.image.title="Monummenta Hygínia"
+LABEL org.opencontainers.image.title="Project Starter"
 
 ENV VISAO_HOLANDESA_PORT=8080
 ENV MICRONAUT_ENVIRONMENTS=container
