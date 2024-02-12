@@ -8,6 +8,9 @@ import autoprefixer from "autoprefixer";
 import postcss from "postcss";
 import tailwindcss from "tailwindcss";
 
+// DO NOT EDIT: this file is automatically synced from the template repository
+// in https://github.com/Liber-UFPE/project-starter.
+
 const assetsFolder = "src/main/resources/public";
 const nodeModulesFolder = "node_modules";
 const assetsBuildFolder = "build/resources/main/public";
