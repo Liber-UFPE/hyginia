@@ -77,40 +77,12 @@ jobs:
       - name: run eslint
         run: npx eslint .
 
-  compile:
-    name: Build / compile
-    runs-on: ubuntu-latest
-    needs:
-      - diktat
-      - detekt
-      - ktlint
-      - stylelint
-      - eslint
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Gradle and Java
-        uses: ./.github/gradle-action
-        with:
-          # Allows this job to write to the cache every time it runs
-          gradle-cache-read-only: false
-      - name: Start Gradle Daemon
-        run: ./gradlew --info
-      - run: ./gradlew testClasses
-      - name: Gradle Tasks Summary
-        run: cat build/reports/build-times.md >> $GITHUB_STEP_SUMMARY
-
   esbuild-check:
     name: Test / Assets / pipeline
     runs-on: ubuntu-latest
-    needs:
-      - diktat
-      - detekt
-      - ktlint
-      - stylelint
-      - eslint
     strategy:
       matrix:
-        node-version: [18, 20]
+        node-version: [ 18, 20 ]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -126,12 +98,34 @@ jobs:
           node assets-pipeline.mjs
           tree ./build
 
+  compile:
+    name: Build / compile
+    runs-on: ubuntu-latest
+    needs:
+      - diktat
+      - detekt
+      - ktlint
+      - stylelint
+      - eslint
+      - esbuild-check
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Gradle and Java
+        uses: ./.github/gradle-action
+        with:
+          # Allows this job to write to the cache every time it runs
+          gradle-cache-read-only: false
+      - name: Start Gradle Daemon
+        run: ./gradlew --info
+      - run: ./gradlew testClasses
+      - name: Gradle Tasks Summary
+        run: cat build/reports/build-times.md >> $GITHUB_STEP_SUMMARY
+
   test:
     name: Tests / test
     runs-on: ubuntu-latest
     needs:
       - compile
-      - esbuild-check
     steps:
       - uses: actions/checkout@v4
         with:
@@ -162,21 +156,53 @@ jobs:
         with:
           verbose: true
 
+  test-docker-image:
+    name: Tests / docker image
+    runs-on: ubuntu-latest
+    needs:
+      - compile
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - name: Docker / Get image name
+        id: dockerImageName
+        run: |
+          echo "dockerImageName=${{ github.repository }}" | tr '[:upper:]' '[:lower:]'>> "$GITHUB_OUTPUT"
+      - name: Create Image
+        run: docker image build -t ${{ steps.dockerImageName.outputs.dockerImageName }}:latest .
+      - name: Test Image
+        run: |
+          containerId=$(docker run -d --rm --publish 8080:8080 ${{ steps.dockerImageName.outputs.dockerImageName }})
+          wget --retry-connrefused --tries=20 -nv --wait=1 --spider http://localhost:8080/
+          docker container logs "$containerId"
+          docker container stop "$containerId"
+
   good-to-merge:
     name: Good to merge
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     needs:
       - test
+      - test-docker-image
     steps:
       - run: echo "This PR is ready to merge."
 
-  check-if-should-release:
+  check-if-release-branch:
     if: ${{ github.ref == 'refs/heads/main' }}
-    name: Check if should release
+    name: Check if release branch
     runs-on: ubuntu-latest
     needs:
       - test
+      - test-docker-image
+    steps:
+      - run: echo "This is a push to main branch. Following with release a new version"
+
+  generate-tag-name:
+    name: Generate tag name
+    runs-on: ubuntu-latest
+    needs:
+      - check-if-release-branch
     # This job also has an output that can be used by downstream jobs.
     # https://docs.github.com/en/actions/using-jobs/defining-outputs-for-jobs
     outputs:
@@ -193,8 +219,7 @@ jobs:
     name: Creates a GitHub Release
     runs-on: ubuntu-latest
     needs:
-      - test
-      - check-if-should-release
+      - generate-tag-name
     # Docs:
     # https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
     permissions:
@@ -202,8 +227,8 @@ jobs:
       packages: read # to preserve default permissions
     env:
       GH_TOKEN: ${{ github.token }}
-      TAG_NAME: ${{ needs.check-if-should-release.outputs.tagName }}
-      RELEASE_TITLE: Release ${{ needs.check-if-should-release.outputs.tagName }}
+      TAG_NAME: ${{ needs.generate-tag-name.outputs.tagName }}
+      RELEASE_TITLE: Release ${{ needs.generate-tag-name.outputs.tagName }}
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/gradle-action
@@ -218,10 +243,9 @@ jobs:
     env:
       REGISTRY: ghcr.io
       GH_TOKEN: ${{ github.token }}
-      TAG_NAME: ${{ needs.check-if-should-release.outputs.tagName }}
+      TAG_NAME: ${{ needs.generate-tag-name.outputs.tagName }}
     needs:
-      - test
-      - check-if-should-release
+      - generate-tag-name
     permissions:
       contents: read
       packages: write
