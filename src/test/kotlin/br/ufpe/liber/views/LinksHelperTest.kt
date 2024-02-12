@@ -9,6 +9,9 @@ import io.kotest.extensions.system.withEnvironment
 import io.kotest.matchers.equals.shouldBeEqual
 import io.kotest.matchers.shouldBe
 
+// DO NOT EDIT: this file is automatically synced from the template repository
+// in https://github.com/Liber-UFPE/project-starter.
+
 class LinksHelperTest : BehaviorSpec({
     given("LinksHelper") {
         `when`(".Liber.link") {
@@ -24,7 +27,7 @@ class LinksHelperTest : BehaviorSpec({
 
     given("LinksHelper.linkTo") {
         `when`("""when base url is "/" """) {
-            withEnvironment("HYGINIA_PATH", "/") {
+            withEnvironment("PROJECT_STARTER_PATH", "/") {
                 forAll(
                     table(
                         headers("path", "expectedResult"),
@@ -44,7 +47,7 @@ class LinksHelperTest : BehaviorSpec({
         }
 
         `when`("""when base url is "/base" """) {
-            withEnvironment("HYGINIA_PATH", "/base") {
+            withEnvironment("PROJECT_STARTER_PATH", "/base") {
                 forAll(
                     table(
                         headers("path", "expectedResult"),
@@ -64,7 +67,7 @@ class LinksHelperTest : BehaviorSpec({
         }
 
         `when`("""when base url is "/base/" """) {
-            withEnvironment("HYGINIA_PATH", "/base/") {
+            withEnvironment("PROJECT_STARTER_PATH", "/base/") {
                 forAll(
                     table(
                         headers("path", "expectedResult"),
