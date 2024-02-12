@@ -3,6 +3,7 @@
 ![CI Workflow](https://github.com/Liber-UFPE/hyginia/actions/workflows/build.yml/badge.svg?branch=main)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Liber-UFPE_hyginia&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Liber-UFPE_hyginia)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Liber-UFPE_hyginia&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Liber-UFPE_hyginia)
+[![codecov](https://codecov.io/gh/Liber-UFPE/hyginia/graph/badge.svg?token=8nGhR17ODh)](https://codecov.io/gh/Liber-UFPE/hyginia)
 
 
 O Projeto Monumenta Hyginia publica em formato digital os anos 1635 e 1636 do Monumenta Hyginia - Dagelijkse Notulen.
