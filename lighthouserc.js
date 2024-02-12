@@ -1,5 +1,5 @@
-"use strict";
-
+// DO NOT EDIT: this file is automatically synced from the template repository
+// in https://github.com/Liber-UFPE/project-starter.
 const runningOnCi = process.env.CI === "true" ? "off" : "on";
 
 module.exports = {
@@ -14,11 +14,6 @@ module.exports = {
             },
             url: [
                 "http://localhost:8080/",
-                "http://localhost:8080/obras",
-                "http://localhost:8080/contato",
-                "http://localhost:8080/equipe",
-                "http://localhost:8080/obra/1",
-                "http://localhost:8080/obra/1/pagina/2",
             ]
         },
         assert: {
