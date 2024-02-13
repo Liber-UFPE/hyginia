@@ -17,6 +17,7 @@ internal class TemplatesFactory {
     private val logger = LoggerFactory.getLogger(TemplatesFactory::class.java)
 
     @Singleton
+    @EagerInProduction
     fun createTemplate(environment: Environment): Templates = if (isDevelopmentEnvironment(environment)) {
         logger.info("Hot reloading jte templates")
         val codeResolver = DirectoryCodeResolver(Paths.get("src/main/jte"))
