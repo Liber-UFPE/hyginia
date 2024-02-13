@@ -8,6 +8,9 @@ import io.micronaut.test.extensions.kotest5.annotation.MicronautTest
 import io.mockk.every
 import io.mockk.mockk
 
+// DO NOT EDIT: this file is automatically synced from the template repository
+// in https://github.com/Liber-UFPE/project-starter.
+
 @MicronautTest
 class ErrorsControllerTest(
     @Suppress("unused")
