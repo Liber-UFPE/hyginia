@@ -23,6 +23,8 @@ import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
 import java.io.File
 
+// DO NOT EDIT: this file is automatically synced from the template repository
+// in https://github.com/Liber-UFPE/project-starter.
 @CacheableTask
 abstract class GenerateAssetsMetadataTask : DefaultTask() {
 
@@ -44,6 +46,13 @@ abstract class GenerateAssetsMetadataTask : DefaultTask() {
         val metafile = assetsMetadataFile.get().asFile
 
         val metadata: MutableList<JsonObject> = mutableListOf()
+
+        // Matching examples:
+        // - file.AZ234FKU.jpg
+        // - 404.ADF092JF0.jpg
+        // - Img.1F7F8IFU5.jpg
+        //
+        // The files above represent how esbuild renames assets when using content hash.
         val regex = "(?<filename>[A-Za-z0-9/-]+).(?<hash>[A-Z0-9]{8}).(?<extension>[a-z]+)".toPattern()
 
         val digest = DigestUtils.getSha384Digest()
@@ -51,7 +60,7 @@ abstract class GenerateAssetsMetadataTask : DefaultTask() {
         val etagGenerator = { data: ByteArray -> DigestUtils.md5Hex(data) }
 
         val encodings = listOf("br", "gz", "zz")
-        val tikaConfig: TikaConfig = TikaConfig()
+        val tikaConfig = TikaConfig()
 
         assetsParentDir.walk()
             .filter(File::isFile)
