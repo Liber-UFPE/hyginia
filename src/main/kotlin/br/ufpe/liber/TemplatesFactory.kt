@@ -9,6 +9,9 @@ import jakarta.inject.Singleton
 import org.slf4j.LoggerFactory
 import java.nio.file.Paths
 
+// DO NOT EDIT: this file is automatically synced from the template repository
+// in https://github.com/Liber-UFPE/project-starter.
+
 @Factory
 internal class TemplatesFactory {
     private val logger = LoggerFactory.getLogger(TemplatesFactory::class.java)
