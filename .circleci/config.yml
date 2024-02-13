@@ -29,7 +29,10 @@ jobs:
             curl -sSLO "https://github.com/detekt/detekt/releases/download/v$DETEKT_VERSION/detekt-cli-$DETEKT_VERSION.zip"
             unzip "detekt-cli-$DETEKT_VERSION.zip"
             chmod +x "./detekt-cli-$DETEKT_VERSION/bin/detekt-cli"
-            ./detekt-cli-$DETEKT_VERSION/bin/detekt-cli --report md:build/reports/detekt/detekt.md
+            ./detekt-cli-$DETEKT_VERSION/bin/detekt-cli --report md:detekt.md
+      - store_artifacts:
+          path: detekt.md
+          destination: detekt.md
 
   compile:
     docker:
