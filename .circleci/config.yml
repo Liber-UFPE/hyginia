@@ -71,8 +71,19 @@ jobs:
             - v1-deps-
 
       - run:
-          name: Compile App & Tests
+          name: Run Tests & Checks
           command: ./gradlew check
+
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/build/test-results/.*xml" -exec cp -v {} ~/test-results/junit/ \;
+          when: always
+
+      - store_test_results:
+          path: ~/test-results
+
 
       - save_cache:
           key: v1-deps-{{ checksum "/tmp/deps-cache-key" }}
