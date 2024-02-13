@@ -33,9 +33,9 @@ workflows:
   build_and_test:
     jobs:
       - ktlint
-      - build:
+      - compile:
           requires:
             - ktlint
       - test:
           requires:
-            - build
+            - compile
