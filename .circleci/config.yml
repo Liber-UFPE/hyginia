@@ -20,7 +20,26 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     steps:
       - checkout
-      - run: ./gradlew testClasses
+
+      - run:
+          name: Generate Gradle Cache Key
+          command: md5sum **/*.kts gradle.properties gradle/wrapper/gradle-wrapper.properties package-lock.json > /tmp/deps-cache-key
+
+      - restore_cache:
+          keys:
+            - v1-deps-{{ checksum "/tmp/deps-cache-key" }}
+            - v1-deps-
+
+      - run:
+          name: Compile App & Tests
+          command: ./gradlew testClasses
+
+      - save_cache:
+          key: v1-deps-{{ checksum "/tmp/deps-cache-key" }}
+          paths:
+            - ~/.gradle/caches
+            - ~/.gradle/wrapper
+            - node_modules
 
   test:
     docker:
