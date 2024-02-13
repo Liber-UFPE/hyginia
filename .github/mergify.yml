@@ -9,10 +9,10 @@ queue_rules:
     merge_method: rebase
 
 pull_request_rules:
-  - name: Automatic merge from dependabot
+  - name: Automatic merge from renovate
     conditions:
       - check-success=Good to merge
-      - author=dependabot[bot]
+      - author=renovate[bot]
     actions:
       queue:
         name: deps-update
@@ -20,8 +20,8 @@ pull_request_rules:
   - name: Automatic merge when CI passes
     conditions:
       - check-success=Good to merge
-      # So that dependabot PRs go to the queue above
-      - author!=dependabot[bot]
+      # So that renovate PRs go to the queue above
+      - author!=renovate[bot]
     actions:
       merge:
         method: rebase
