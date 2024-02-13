@@ -7,6 +7,9 @@ import io.kotest.data.row
 import io.kotest.data.table
 import io.kotest.matchers.shouldBe
 
+// DO NOT EDIT: this file is automatically synced from the template repository
+// in https://github.com/Liber-UFPE/project-starter.
+
 class PaginationTest : BehaviorSpec({
     given(".pages") {
         forAll(
