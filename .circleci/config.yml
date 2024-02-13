@@ -40,25 +40,35 @@ jobs:
     steps:
       - checkout
 
+      - restore_cache:
+          name: Restore npm Cache
+          keys:
+            - v1-npm-deps-{{ checksum "package-lock.json" }}
+            - v1-npm-eps-
+
       - run:
           name: Generate Gradle Cache Key
-          command: md5sum **/*.kts gradle.properties gradle/wrapper/gradle-wrapper.properties package-lock.json > /tmp/deps-cache-key
-
+          command: md5sum **/*.kts gradle.properties gradle/wrapper/gradle-wrapper.properties > /tmp/deps-gradle-cache-key
       - restore_cache:
           keys:
-            - v1-deps-{{ checksum "/tmp/deps-cache-key" }}
-            - v1-deps-
+            - v1-gradle-deps-{{ checksum "/tmp/deps-gradle-cache-key" }}
+            - v1-gradle-deps-
 
       - run:
           name: Compile App & Tests
           command: ./gradlew testClasses --build-cache
 
       - save_cache:
-          key: v1-deps-{{ checksum "/tmp/deps-cache-key" }}
+          name: Save npm Cache
+          key: v1-npm-deps-{{ checksum "package-lock.json" }}
+          paths:
+              - node_modules
+
+      - save_cache:
+          key: v1-gradle-deps-{{ checksum "/tmp/deps-gradle-cache-key" }}
           paths:
             - ~/.gradle/caches
             - ~/.gradle/wrapper
-            - node_modules
 
   test:
     docker:
@@ -66,14 +76,20 @@ jobs:
     steps:
       - checkout
 
+      - restore_cache:
+          name: Restore npm Cache
+          keys:
+            - v1-npm-deps-{{ checksum "package-lock.json" }}
+            - v1-npm-eps-
+
       - run:
           name: Generate Gradle Cache Key
-          command: md5sum **/*.kts gradle.properties gradle/wrapper/gradle-wrapper.properties package-lock.json > /tmp/deps-cache-key
-
+          command: md5sum **/*.kts gradle.properties gradle/wrapper/gradle-wrapper.properties > /tmp/deps-gradle-cache-key
       - restore_cache:
+          name: Restore Gradle Cache
           keys:
-            - v1-deps-{{ checksum "/tmp/deps-cache-key" }}
-            - v1-deps-
+            - v1-gradle-deps-{{ checksum "/tmp/deps-gradle-cache-key" }}
+            - v1-gradle-deps-
 
       - run:
           name: Run Tests & Checks
@@ -90,11 +106,16 @@ jobs:
           path: ~/test-results
 
       - save_cache:
-          key: v1-deps-{{ checksum "/tmp/deps-cache-key" }}
+          name: Save npm Cache
+          key: v1-npm-deps-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+
+      - save_cache:
+          key: v1-gradle-deps-{{ checksum "/tmp/deps-gradle-cache-key" }}
           paths:
             - ~/.gradle/caches
             - ~/.gradle/wrapper
-            - node_modules
 
 workflows:
   build_and_test:
