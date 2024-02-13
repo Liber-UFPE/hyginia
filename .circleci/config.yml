@@ -51,7 +51,7 @@ jobs:
 
       - run:
           name: Compile App & Tests
-          command: ./gradlew testClasses
+          command: ./gradlew testClasses --build-cache
 
       - save_cache:
           key: v1-deps-{{ checksum "/tmp/deps-cache-key" }}
@@ -65,6 +65,11 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     steps:
       - checkout
+
+      - run:
+          name: Generate Gradle Cache Key
+          command: md5sum **/*.kts gradle.properties gradle/wrapper/gradle-wrapper.properties package-lock.json > /tmp/deps-cache-key
+
       - restore_cache:
           keys:
             - v1-deps-{{ checksum "/tmp/deps-cache-key" }}
@@ -72,7 +77,7 @@ jobs:
 
       - run:
           name: Run Tests & Checks
-          command: ./gradlew check
+          command: ./gradlew check --build-cache
 
       - run:
           name: Save test results
@@ -83,7 +88,6 @@ jobs:
 
       - store_test_results:
           path: ~/test-results
-
 
       - save_cache:
           key: v1-deps-{{ checksum "/tmp/deps-cache-key" }}
