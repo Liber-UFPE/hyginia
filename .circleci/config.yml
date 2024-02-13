@@ -15,6 +15,22 @@ jobs:
       - ktlint/lint:
           working-directory: ~/project
 
+  detekt:
+    docker:
+      - image: cimg/openjdk:21.0-browsers
+    environment:
+      DETEKT_VERSION: "1.23.3"
+    steps:
+      - checkout
+      - run:
+          name: Install Detekt
+          # language="shell script"
+          command: |
+            curl -sSLO "https://github.com/detekt/detekt/releases/download/v$DETEKT_VERSION/detekt-cli-$DETEKT_VERSION.zip"
+            unzip "detekt-cli-$DETEKT_VERSION.zip"
+            chmod +x "./detekt-cli-$DETEKT_VERSION/bin/detekt-cli"
+            ./detekt-cli-$DETEKT_VERSION/bin/detekt-cli --report md:build/reports/detekt/detekt.md
+
   compile:
     docker:
       - image: cimg/openjdk:21.0.2-browsers
@@ -52,9 +68,11 @@ workflows:
   build_and_test:
     jobs:
       - ktlint
+      - detekt
       - compile:
           requires:
             - ktlint
+            - detekt
       - test:
           requires:
             - compile
