@@ -12,7 +12,7 @@ interface KteController {
         // Micronaut does not set the charset for responses. So it is now done
         // manually here. For more details, see:
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type
-        const val DEFAULT_CONTENT_TYPE = "${MediaType.TEXT_HTML}; charset=utf-8"
+        private const val DEFAULT_CONTENT_TYPE = "${MediaType.TEXT_HTML}; charset=utf-8"
     }
 
     fun ok(model: JteModel): HttpResponse<KteWriteable> =
