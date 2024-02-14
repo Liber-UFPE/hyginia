@@ -4,6 +4,69 @@ orbs:
   # https://circleci.com/developer/orbs/orb/idanelh/ktlint
   ktlint: idanelh/ktlint@1.0.1
 
+executors:
+  gradle-executor:
+    environment:
+      _JAVA_OPTIONS: "-Xmx3g"
+      GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
+    docker:
+      - image: cimg/openjdk:21.0.2-browsers
+
+commands:
+  # https://circleci.com/docs/reusing-config/#authoring-reusable-commands
+  restore_all_caches:
+    description: "Restore Gradle wrapper, Gradle dependencies, and npm dependencies caches"
+    steps:
+      - restore_cache:
+          name: Restore gradle-wrapper cache
+          keys:
+            - v3-gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
+            - v3-gradle-wrapper-
+      - run:
+          name: Generate gradle cache key
+          command: md5sum **/*.kts gradle.properties > /tmp/deps-gradle-cache-key
+      - restore_cache:
+          name: Restore Gradle cache
+          keys:
+            - v3-gradle-deps-{{ checksum "/tmp/deps-gradle-cache-key" }}
+            - v3-gradle-deps-
+      - restore_cache:
+          name: Restore npm cache
+          keys:
+            - v3-npm-deps-{{ checksum "package-lock.json" }}
+            - v3-npm-deps-
+
+  save_all_caches:
+    description: "Save Gradle wrapper, Gradle dependencies, and npm dependencies caches"
+    steps:
+      - save_cache:
+          name: Save Gradle wrapper cache
+          paths:
+            - ~/.gradle/wrapper
+          key: v3-gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
+      - run:
+          name: Generate gradle cache key
+          command: md5sum **/*.kts gradle.properties > /tmp/deps-gradle-cache-key
+      - save_cache:
+          name: Save Gradle cache
+          key: v3-gradle-deps-{{ checksum "/tmp/deps-gradle-cache-key" }}
+          paths:
+            - ~/.gradle/caches
+      - save_cache:
+          name: Save npm cache
+          key: v3-npm-deps-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+
+  store_test_results_artifacts:
+    description: "Store test results"
+    steps:
+      - store_test_results:
+          path: build/test-results/test
+      - store_artifacts:
+          path: build/test-results/test
+          when: always
+
 jobs:
   ktlint:
     docker:
@@ -35,90 +98,67 @@ jobs:
           destination: detekt.md
 
   compile:
-    docker:
-      - image: cimg/openjdk:21.0.2-browsers
+    executor: gradle-executor
     steps:
       - checkout
-
-      - restore_cache:
-          name: Restore npm cache
-          keys:
-            - v1-npm-deps-{{ checksum "package-lock.json" }}
-            - v1-npm-deps-
-
-      - run:
-          name: Generate Gradle Cache Key
-          command: md5sum **/*.kts gradle.properties gradle/wrapper/gradle-wrapper.properties > /tmp/deps-gradle-cache-key
-      - restore_cache:
-          name: Restore Gradle cache
-          keys:
-            - v1-gradle-deps-{{ checksum "/tmp/deps-gradle-cache-key" }}
-            - v1-gradle-deps-
-
+      - restore_all_caches
       - run:
           name: Compile App & Tests
           command: ./gradlew testClasses --build-cache
-
-      - save_cache:
-          name: Save npm cache
-          key: v1-npm-deps-{{ checksum "package-lock.json" }}
+      - save_all_caches
+      - persist_to_workspace:
+          root: .
           paths:
-              - node_modules
-
-      - save_cache:
-          name: Save Gradle cache
-          key: v1-gradle-deps-{{ checksum "/tmp/deps-gradle-cache-key" }}
-          paths:
-            - ~/.gradle/caches
-            - ~/.gradle/wrapper
+            - build
 
   test:
-    docker:
-      - image: cimg/openjdk:21.0.2-browsers
+    executor: gradle-executor
     steps:
       - checkout
-
-      - restore_cache:
-          name: Restore npm cache
-          keys:
-            - v1-npm-deps-{{ checksum "package-lock.json" }}
-            - v1-npm-deps-
-
-      - run:
-          name: Generate Gradle Cache Key
-          command: md5sum **/*.kts gradle.properties gradle/wrapper/gradle-wrapper.properties > /tmp/deps-gradle-cache-key
-      - restore_cache:
-          name: Restore Gradle cache
-          keys:
-            - v1-gradle-deps-{{ checksum "/tmp/deps-gradle-cache-key" }}
-            - v1-gradle-deps-
-
+      - restore_all_caches
+      - attach_workspace:
+          at: .
       - run:
           name: Run Tests & Checks
-          command: ./gradlew check --build-cache
+          command: ./gradlew check --build-cache -x accessibilityTest
+      - store_test_results_artifacts
 
+  accessibility-test:
+    executor: gradle-executor
+    steps:
+      - checkout
+      - restore_all_caches
+      - attach_workspace:
+          at: .
       - run:
-          name: Save test results
+          name: Run Tests & Checks
+          command: ./gradlew accessibilityTest --build-cache
+      - store_test_results_artifacts
+
+  parallel-test:
+    parallelism: 2
+    executor: gradle-executor
+    steps:
+      - checkout
+      - restore_all_caches
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run tests in parallel
+          # language="shell script"
           command: |
-            mkdir -p ~/test-results/junit/
-            find . -type f -regex ".*/build/test-results/.*xml" -exec cp -v {} ~/test-results/junit/ \;
-          when: always
-
-      - store_test_results:
-          path: ~/test-results
-
-      - save_cache:
-          name: Save npm cache
-          key: v1-npm-deps-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
-
-      - save_cache:
-          name: Save Gradle cache
-          key: v1-gradle-deps-{{ checksum "/tmp/deps-gradle-cache-key" }}
-          paths:
-            - ~/.gradle/caches
-            - ~/.gradle/wrapper
+            pushd src/test/kotlin
+              # Get list of classnames of tests that should run on this node
+              CLASSNAMES=$(circleci tests glob "**/**Test.kt" \
+                | cut -c 1- | sed 's@/@.@g' \
+                | sed 's/.\{3\}$//' \
+                | circleci tests split --split-by=timings --timings-type=classname)
+            popd
+            # Format the arguments to "./gradlew test"
+            GRADLE_ARGS=$(echo $CLASSNAMES | awk '{for (i=1; i<=NF; i++) print "--tests",$i}')
+            echo "Prepared arguments for Gradle: $GRADLE_ARGS"
+            ./gradlew test --build-cache $GRADLE_ARGS
+      - store_test_results_artifacts
 
 workflows:
   build_and_test:
@@ -130,5 +170,11 @@ workflows:
             - ktlint
             - detekt
       - test:
+          requires:
+            - compile
+      - parallel-test:
+          requires:
+            - compile
+      - accessibility-test:
           requires:
             - compile
