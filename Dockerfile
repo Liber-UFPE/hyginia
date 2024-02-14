@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21.0.2_13-jdk AS build
+FROM gradle:8.6.0-jdk21 AS build
 
 # Install Node JS
 RUN apt-get update -y && apt-get install --no-install-recommends -y curl \
@@ -18,11 +18,11 @@ COPY buildSrc /app/buildSrc
 # 2. Skip gradle task assetsPipeline because it requires the assets files
 RUN mkdir -p /app/src/main/jte && \
   npm install && \
-  ./gradlew -Dsonar.gradle.skipCompile=true --console plain --no-configuration-cache classes -x assetsPipeline
+  gradle -Dsonar.gradle.skipCompile=true --console plain --no-configuration-cache classes -x assetsPipeline
 
 # Build application
 COPY . /app/
-RUN ./gradlew -Dsonar.gradle.skipCompile=true --console plain --no-configuration-cache \
+RUN gradle -Dsonar.gradle.skipCompile=true --console plain --no-configuration-cache \
       clean shadowJar -x test -x accessibilityTest \
       && mv -vf build/libs/*.jar app.jar
 
