@@ -2,6 +2,7 @@ package br.ufpe.liber.controllers
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import io.micronaut.http.HttpHeaders
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpStatus
 import io.micronaut.test.extensions.kotest5.annotation.MicronautTest
@@ -25,6 +26,7 @@ class DefaultExceptionHandlerTest(
 
                 val response = exceptionHandler.handle(request, exception)
                 response.status.shouldBe(HttpStatus.INTERNAL_SERVER_ERROR)
+                response.header(HttpHeaders.CONTENT_TYPE) shouldBe "text/html; charset=utf-8"
             }
         }
     }

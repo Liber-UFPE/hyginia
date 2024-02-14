@@ -288,6 +288,12 @@ jobs:
       - name: Create Image
         # language="shell script"
         run: |
+          pwd
+          ls -l
+          pushd "$GITHUB_WORKSPACE"
+            pwd
+            ls -l
+          popd
           if [ -f generate-image-latest.tar.gz ]; then
             echo "Previously generate image found. Will load image"
             docker load < generate-image-latest.tar.gz
