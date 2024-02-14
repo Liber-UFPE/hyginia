@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   # https://circleci.com/developer/orbs/orb/idanelh/ktlint
   ktlint: idanelh/ktlint@1.0.1
+  node: circleci/node@5.2.0
 
 executors:
   gradle-executor:
@@ -138,6 +139,25 @@ jobs:
           name: Run Stylelint
           command: npx stylelint src/main/**/*.scss
 
+  esbuild-check:
+    docker:
+      - image: cimg/base:stable
+    parameters:
+      node-version:
+        type: string
+    steps:
+      - checkout
+      - restore_npm_cache
+      - node/install:
+          node-version: << parameters.node-version >>
+      - run:
+          name: Check if esbuild is installed
+          # language="shell script"
+          command: |
+            rm -rf ./build
+            node assets-pipeline.mjs
+            ls -l -R ./build
+
   compile:
     executor: gradle-executor
     steps:
@@ -154,19 +174,6 @@ jobs:
           paths:
             - build
 
-  test:
-    executor: gradle-executor
-    steps:
-      - checkout
-      - restore_npm_cache
-      - restore_gradle_cache
-      - attach_workspace:
-          at: .
-      - run:
-          name: Run Tests & Checks
-          command: ./gradlew check --build-cache -x accessibilityTest
-      - store_test_results_artifacts
-
   accessibility-test:
     executor: gradle-executor
     steps:
@@ -180,7 +187,7 @@ jobs:
           command: ./gradlew accessibilityTest --build-cache
       - store_test_results_artifacts
 
-  parallel-test:
+  test:
     parallelism: 2
     executor: gradle-executor
     steps:
@@ -214,6 +221,10 @@ workflows:
       - diktat
       - eslint
       - stylelint
+      - esbuild-check:
+          matrix:
+            parameters:
+              node-version: ["18.19.0", "20.11.0"]
       - compile:
           requires:
             - ktlint
@@ -221,10 +232,8 @@ workflows:
             - diktat
             - eslint
             - stylelint
+            - esbuild-check
       - test:
-          requires:
-            - compile
-      - parallel-test:
           requires:
             - compile
       - accessibility-test:
