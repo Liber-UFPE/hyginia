@@ -14,8 +14,8 @@ executors:
 
 commands:
   # https://circleci.com/docs/reusing-config/#authoring-reusable-commands
-  restore_all_caches:
-    description: "Restore Gradle wrapper, Gradle dependencies, and npm dependencies caches"
+  restore_gradle_cache:
+    description: "Restore Gradle wrapper and dependencies caches"
     steps:
       - restore_cache:
           name: Restore gradle-wrapper cache
@@ -30,14 +30,18 @@ commands:
           keys:
             - v3-gradle-deps-{{ checksum "/tmp/deps-gradle-cache-key" }}
             - v3-gradle-deps-
+
+  restore_npm_cache:
+    description: "Restore npm cache"
+    steps:
       - restore_cache:
           name: Restore npm cache
           keys:
             - v3-npm-deps-{{ checksum "package-lock.json" }}
             - v3-npm-deps-
 
-  save_all_caches:
-    description: "Save Gradle wrapper, Gradle dependencies, and npm dependencies caches"
+  save_gradle_cache:
+    description: "Save Gradle wrapper and dependencies cache"
     steps:
       - save_cache:
           name: Save Gradle wrapper cache
@@ -52,6 +56,10 @@ commands:
           key: v3-gradle-deps-{{ checksum "/tmp/deps-gradle-cache-key" }}
           paths:
             - ~/.gradle/caches
+
+  save_npm_cache:
+    description: "Save npm cache"
+    steps:
       - save_cache:
           name: Save npm cache
           key: v3-npm-deps-{{ checksum "package-lock.json" }}
@@ -97,15 +105,50 @@ jobs:
           path: detekt.md
           destination: detekt.md
 
+  diktat:
+    docker:
+      - image: cimg/openjdk:21.0-browsers
+    steps:
+      - checkout
+      - run:
+          name: Install Diktat
+          # language="shell script"
+          command: |
+            curl -sSLO https://github.com/saveourtool/diktat/releases/download/v2.0.0/diktat
+            chmod a+x diktat
+            ./diktat src/main/kotlin src/test/kotlin
+
+  eslint:
+    docker:
+      - image: cimg/node:20.11
+    steps:
+      - checkout
+      - restore_npm_cache
+      - run:
+          name: Run ESLint
+          command: npx eslint .
+
+  stylelint:
+    docker:
+      - image: cimg/node:20.11
+    steps:
+      - checkout
+      - restore_npm_cache
+      - run:
+          name: Run Stylelint
+          command: npx stylelint src/main/**/*.scss
+
   compile:
     executor: gradle-executor
     steps:
       - checkout
-      - restore_all_caches
+      - restore_npm_cache
+      - restore_gradle_cache
       - run:
           name: Compile App & Tests
           command: ./gradlew testClasses --build-cache
-      - save_all_caches
+      - save_gradle_cache
+      - save_npm_cache
       - persist_to_workspace:
           root: .
           paths:
@@ -115,7 +158,8 @@ jobs:
     executor: gradle-executor
     steps:
       - checkout
-      - restore_all_caches
+      - restore_npm_cache
+      - restore_gradle_cache
       - attach_workspace:
           at: .
       - run:
@@ -127,7 +171,8 @@ jobs:
     executor: gradle-executor
     steps:
       - checkout
-      - restore_all_caches
+      - restore_npm_cache
+      - restore_gradle_cache
       - attach_workspace:
           at: .
       - run:
@@ -140,7 +185,8 @@ jobs:
     executor: gradle-executor
     steps:
       - checkout
-      - restore_all_caches
+      - restore_npm_cache
+      - restore_gradle_cache
       - attach_workspace:
           at: .
       - run:
@@ -165,10 +211,16 @@ workflows:
     jobs:
       - ktlint
       - detekt
+      - diktat
+      - eslint
+      - stylelint
       - compile:
           requires:
             - ktlint
             - detekt
+            - diktat
+            - eslint
+            - stylelint
       - test:
           requires:
             - compile
