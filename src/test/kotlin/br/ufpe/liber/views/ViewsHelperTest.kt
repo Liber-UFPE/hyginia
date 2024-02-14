@@ -140,6 +140,26 @@ class ViewsHelperTest : BehaviorSpec({
             }
         }
 
+        `when`(".isActive") {
+            beforeTest {
+                setupCurrentRequest { req ->
+                    every { req.path } answers { "/contact" }
+                }
+            }
+
+            afterTest {
+                clearStaticMockk(ServerRequestContext::class)
+            }
+
+            then("it should be marked as active when path matches") {
+                ViewsHelper.isActive("/contact") shouldBe true
+            }
+
+            then("it should not be marked as active when path does NOT match") {
+                ViewsHelper.isActive("/about") shouldBe false
+            }
+        }
+
         `when`(".emptyContent") {
             then("there is nothing to render") {
                 ViewsHelper.emptyContent().asString() shouldBe ""
