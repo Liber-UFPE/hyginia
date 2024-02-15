@@ -122,7 +122,7 @@ jobs:
 
   detekt:
     docker:
-      - image: cimg/openjdk:21.0-browsers
+      - image: cimg/openjdk:21.0.2-browsers
     environment:
       DETEKT_VERSION: "1.23.3"
     steps:
@@ -141,7 +141,7 @@ jobs:
 
   diktat:
     docker:
-      - image: cimg/openjdk:21.0-browsers
+      - image: cimg/openjdk:21.0.2-browsers
     steps:
       - attach_checkout_workspace
       - run:
