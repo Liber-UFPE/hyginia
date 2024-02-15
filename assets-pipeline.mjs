@@ -37,7 +37,7 @@ const compressPlugin = {
     },
 };
 
-const webpPlugin = {
+const modernImages = {
     name: "webp",
     setup(build) {
         build.onEnd(() => {
@@ -85,7 +85,7 @@ await esbuild.build({
             }
         }),
         compressPlugin,
-        webpPlugin,
+        modernImages,
     ],
 });
 
