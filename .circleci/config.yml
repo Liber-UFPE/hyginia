@@ -158,6 +158,30 @@ jobs:
             node assets-pipeline.mjs
             ls -l -R ./build
 
+  validate-links:
+    executor: gradle-executor
+    steps:
+      - checkout
+      - run:
+          name: Install jq
+          command: |
+            sudo apt-get update && sudo apt-get install jq -y
+      - run:
+          name: Install lychee
+          # language="shell script"
+          command: |
+            # Get the latest release
+            latest_release_asset_url=$(
+              curl https://api.github.com/repos/lycheeverse/lychee/releases/latest |
+              jq '.assets[] | select(.name | endswith("x86_64-unknown-linux-gnu.tar.gz")) | .browser_download_url' -r
+            )
+            curl -L --retry 3 --retry-delay 5 --retry-max-time 30 --retry-connrefused -o lychee.tar.gz $latest_release_asset_url
+            tar -xzf lychee.tar.gz
+            chmod +x lychee
+      - run:
+          name: Run lychee
+          command: ./lychee --verbose --no-progress --exclude-loopback --exclude-path node_modules **/*.md
+
   compile:
     executor: gradle-executor
     steps:
@@ -236,13 +260,10 @@ jobs:
           # language="shell script"
           command : |
             containerId=$(docker run -d --rm --publish 8080:8080 --name citest "hyginia:latest")
-            curl -I http://citest:8080/ || echo "Ooops, curl failed"
             docker container logs "$containerId"
             sleep 10
             docker container logs "$containerId"
             docker container logs "$containerId" | grep "Server Running" || (echo "Server is NOT running after 10 secs" && exit 1)
-            
-            
 
   lighthouse:
     executor: gradle-executor
@@ -250,9 +271,8 @@ jobs:
       - checkout
       - restore_npm_cache
       - restore_gradle_cache
-      - run:
-          name: Install Lighthouse CI
-          command: npm install
+      - attach_workspace:
+          at: .
       - run:
           name: Build application
           command: ./gradlew classes
@@ -261,13 +281,7 @@ jobs:
           command: npx lhci collect && npx lhci assert
 
 workflows:
-  lighthouse:
-    description: "Collect and assert Lighthouse CI analysis"
-    jobs:
-      - lighthouse
-
   build_and_test:
-    description: "Build & Test"
     jobs:
       - ktlint
       - detekt
@@ -278,6 +292,7 @@ workflows:
           matrix:
             parameters:
               node-version: ["18.19.0", "20.11.0"]
+      - validate-links
       - compile:
           requires:
             - ktlint
@@ -286,13 +301,18 @@ workflows:
             - eslint
             - stylelint
             - esbuild-check
+            - validate-links
       - test:
           requires:
             - compile
       - accessibility-test:
           requires:
             - compile
+      - lighthouse:
+          requires:
+            - compile
       - docker-build:
           requires:
             - test
             - accessibility-test
+            - lighthouse
