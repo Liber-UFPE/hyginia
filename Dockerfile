@@ -6,13 +6,25 @@ RUN apt-get update -y && apt-get install --no-install-recommends -y curl \
     && apt-get install -y --no-install-recommends nodejs \
     && node -v
 
-COPY . /app
+# Better layer caching by installing dependencies first
 WORKDIR /app
+COPY package.json package-lock.json /app/
+COPY settings.gradle.kts build.gradle.kts gradlew gradle.properties /app/
+COPY gradle /app/gradle
+COPY buildSrc /app/buildSrc
+
+# Needs to:
+# 1. Create the jte directory to avoid errors with jte plugin
+# 2. Skip gradle task assetsPipeline because it requires the assets files
+RUN mkdir -p /app/src/main/jte && \
+  npm install && \
+  ./gradlew -Dsonar.gradle.skipCompile=true --console plain --no-configuration-cache classes -x assetsPipeline
 
 # Build application
-RUN npm install \
-    && ./gradlew clean shadowJar -x test -x accessibilityTest --console plain --no-configuration-cache \
-    && mv -vf build/libs/*.jar app.jar
+COPY . /app/
+RUN ./gradlew -Dsonar.gradle.skipCompile=true --console plain --no-configuration-cache \
+      clean shadowJar -x test -x accessibilityTest \
+      && mv -vf build/libs/*.jar app.jar
 
 FROM eclipse-temurin:21.0.2_13-jre-alpine
 
