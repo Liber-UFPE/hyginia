@@ -36,12 +36,12 @@ LABEL org.opencontainers.image.vendor="Laboratório Liber / UFPE"
 LABEL org.opencontainers.image.licenses="Apache-2.0"
 LABEL org.opencontainers.image.title="Monummenta Hygínia"
 
-ENV VISAO_HOLANDESA_PORT=8080
+ENV HYGINIA_PORT=8080
 ENV MICRONAUT_ENVIRONMENTS=container
 
 COPY --from=build /app/app.jar .
 EXPOSE 8080
-HEALTHCHECK CMD curl -f "http://localhost:$VISAO_HOLANDESA_PORT/" || exit 1
+HEALTHCHECK CMD curl -f "http://localhost:$HYGINIA_PORT/" || exit 1
 
 # Add unprivileged user to run the service:
 # https://docs.docker.com/engine/reference/builder/#user
