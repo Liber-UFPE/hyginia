@@ -174,19 +174,6 @@ jobs:
           paths:
             - build
 
-  accessibility-test:
-    executor: gradle-executor
-    steps:
-      - checkout
-      - restore_npm_cache
-      - restore_gradle_cache
-      - attach_workspace:
-          at: .
-      - run:
-          name: Run Tests & Checks
-          command: ./gradlew accessibilityTest --build-cache
-      - store_test_results_artifacts
-
   test:
     parallelism: 2
     executor: gradle-executor
@@ -211,6 +198,19 @@ jobs:
             GRADLE_ARGS=$(echo $CLASSNAMES | awk '{for (i=1; i<=NF; i++) print "--tests",$i}')
             echo "Prepared arguments for Gradle: $GRADLE_ARGS"
             ./gradlew test --build-cache $GRADLE_ARGS
+      - store_test_results_artifacts
+
+  accessibility-test:
+    executor: gradle-executor
+    steps:
+      - checkout
+      - restore_npm_cache
+      - restore_gradle_cache
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run Tests & Checks
+          command: ./gradlew accessibilityTest --build-cache
       - store_test_results_artifacts
 
   docker-build:
@@ -240,9 +240,33 @@ jobs:
             sleep 10
             docker container logs "$containerId"
             docker container logs "$containerId" | grep "Server Running" || (echo "Server is NOT running after 10 secs" && exit 1)
+            
+            
+
+  lighthouse:
+    executor: gradle-executor
+    steps:
+      - checkout
+      - restore_npm_cache
+      - restore_gradle_cache
+      - run:
+          name: Install Lighthouse CI
+          command: npm install
+      - run:
+          name: Build application
+          command: ./gradlew classes
+      - run:
+          name: Lighthouse CI
+          command: npx lhci collect && npx lhci assert
 
 workflows:
+  lighthouse:
+    description: "Collect and assert Lighthouse CI analysis"
+    jobs:
+      - lighthouse
+
   build_and_test:
+    description: "Build & Test"
     jobs:
       - ktlint
       - detekt
