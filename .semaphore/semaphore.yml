@@ -10,7 +10,7 @@ blocks:
       jobs:
         - name: Compile all code
           commands:
-            - sem-version java 1.8
+            - sem-version java 21
             - checkout
             - ./gradlew testClasses
   - name: Gradle / test
@@ -18,9 +18,6 @@ blocks:
       jobs:
         - name: Run tests
           commands:
+            - sem-version java 21
+            - checkout
             - ./gradlew test
-  - name: 'Block #3'
-    task:
-      jobs:
-        - name: 'Job #1'
-          commands: []
