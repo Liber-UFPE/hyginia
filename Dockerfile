@@ -1,9 +1,9 @@
 FROM eclipse-temurin:21.0.2_13-jdk AS build
 
 # Install Node JS
-RUN apt-get update -y && apt-get install curl -y \
+RUN apt-get update -y && apt-get install --no-install-recommends -y curl \
     && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get install -y nodejs \
+    && apt-get install -y --no-install-recommends nodejs \
     && node -v
 
 COPY . /app
