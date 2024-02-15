@@ -245,6 +245,11 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
+          name: List docker images
+          # language="shell script"
+          command: |
+            docker image ls --all
+      - run:
           name: Docker pull build image
           # language="shell script"
           command: |
