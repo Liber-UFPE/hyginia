@@ -1,0 +1,26 @@
+version: v1.0
+name: Java
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: Gradle / compile
+    task:
+      jobs:
+        - name: Compile all code
+          commands:
+            - sem-version java 1.8
+            - checkout
+            - ./gradlew testClasses
+  - name: Gradle / test
+    task:
+      jobs:
+        - name: Run tests
+          commands:
+            - ./gradlew test
+  - name: 'Block #3'
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands: []
