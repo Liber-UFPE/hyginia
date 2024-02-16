@@ -99,7 +99,7 @@ commands:
             chmod +x glow
       - run:
           name: Show build time report
-          command: glow ./build/reports/build-times.md
+          command: ./glow ./build/reports/build-times.md
 
 jobs:
   checkout_code:
