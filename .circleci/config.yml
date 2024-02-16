@@ -226,7 +226,7 @@ jobs:
       - restore_gradle_cache
       - run:
           name: Compile App & Tests
-          command: ./gradlew testClasses --build-cache
+          command: ./gradlew testClasses --build-cache --configuration-cache
       - save_gradle_cache
       - save_npm_cache
       - persist_to_workspace:
@@ -254,7 +254,7 @@ jobs:
             # Format the arguments to "./gradlew test"
             GRADLE_ARGS=$(echo $CLASSNAMES | awk '{for (i=1; i<=NF; i++) print "--tests",$i}')
             echo "Prepared arguments for Gradle: $GRADLE_ARGS"
-            ./gradlew test --build-cache $GRADLE_ARGS
+            ./gradlew test --build-cache --configuration-cache $GRADLE_ARGS -x assetsPipeline
       - store_test_results_artifacts
       - build_time_report
 
@@ -265,7 +265,7 @@ jobs:
       - restore_gradle_cache
       - run:
           name: Run Tests & Checks
-          command: ./gradlew accessibilityTest --build-cache
+          command: ./gradlew accessibilityTest --build-cache --configuration-cache -x assetsPipeline
       - store_test_results_artifacts
       - build_time_report
 
