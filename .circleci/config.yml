@@ -85,8 +85,21 @@ commands:
     description: "Show build time report"
     steps:
       - run:
+          name: Download glow
+          # language="shell script"
+          command: |
+            # Get the latest release
+            latest_release_url="https://api.github.com/repos/charmbracelet/glow/releases/latest"
+            latest_release_asset_url=$(
+              curl --retry 3 --retry-delay 5 --retry-max-time 30 --retry-connrefused $latest_release_url |
+              jq '.assets[] | select(.name | endswith("Linux_x86_64.tar.gz")) | .browser_download_url' -r
+            )
+            curl -L --retry 3 --retry-delay 5 --retry-max-time 30 --retry-connrefused -o glow.tar.gz $latest_release_asset_url
+            tar -xzf glow.tar.gz
+            chmod +x glow
+      - run:
           name: Show build time report
-          command: cat ./build/reports/build-times.md
+          command: glow ./build/reports/build-times.md
 
 jobs:
   checkout_code:
@@ -130,14 +143,15 @@ jobs:
     docker:
       - image: cimg/openjdk:21.0.2-browsers
     environment:
-      DETEKT_VERSION: "1.23.3"
+      DETEKT_VERSION: "1.23.5"
     steps:
       - attach_checkout_workspace
       - run:
           name: Install Detekt
           # language="shell script"
           command: |
-            curl -sSLO "https://github.com/detekt/detekt/releases/download/v$DETEKT_VERSION/detekt-cli-$DETEKT_VERSION.zip"
+            detekt_release_url="https://github.com/detekt/detekt/releases/download/v$DETEKT_VERSION/detekt-cli-$DETEKT_VERSION.zip"
+            curl -sSLO --retry 3 --retry-delay 5 --retry-max-time 30 --retry-connrefused "$detekt_release_url"
             unzip "detekt-cli-$DETEKT_VERSION.zip"
             chmod +x "./detekt-cli-$DETEKT_VERSION/bin/detekt-cli"
             ./detekt-cli-$DETEKT_VERSION/bin/detekt-cli --report md:detekt.md
@@ -148,13 +162,16 @@ jobs:
   diktat:
     docker:
       - image: cimg/openjdk:21.0.2-browsers
+    environment:
+      DIKTAT_VERSION: "2.0.0"
     steps:
       - attach_checkout_workspace
       - run:
           name: Install Diktat
           # language="shell script"
           command: |
-            curl -sSLO https://github.com/saveourtool/diktat/releases/download/v2.0.0/diktat
+            diktat_release_url="https://github.com/saveourtool/diktat/releases/download/v$DIKTAT_VERSION/diktat"
+            curl -sSLO --retry 3 --retry-delay 5 --retry-max-time 30 --retry-connrefused "$diktat_release_url"
             chmod a+x diktat
             ./diktat src/main/kotlin src/test/kotlin
 
@@ -208,8 +225,9 @@ jobs:
           # language="shell script"
           command: |
             # Get the latest release
+            latest_release_url="https://api.github.com/repos/lycheeverse/lychee/releases/latest"
             latest_release_asset_url=$(
-              curl https://api.github.com/repos/lycheeverse/lychee/releases/latest |
+              curl --retry 3 --retry-delay 5 --retry-max-time 30 --retry-connrefused "$latest_release_url" |
               jq '.assets[] | select(.name | endswith("x86_64-unknown-linux-gnu.tar.gz")) | .browser_download_url' -r
             )
             curl -L --retry 3 --retry-delay 5 --retry-max-time 30 --retry-connrefused -o lychee.tar.gz $latest_release_asset_url
