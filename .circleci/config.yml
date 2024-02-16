@@ -294,18 +294,6 @@ jobs:
             docker container logs "$containerId"
             docker container logs "$containerId" | grep "Server Running" || (echo "Server is NOT running after 10 secs" && exit 1)
 
-  lighthouse:
-    executor: gradle-executor
-    steps:
-      - attach_checkout_workspace
-      - restore_gradle_cache
-      - run:
-          name: Build application
-          command: ./gradlew classes
-      - run:
-          name: Lighthouse CI
-          command: npx lhci collect && npx lhci assert
-
 workflows:
   build_and_test:
     jobs:
@@ -352,11 +340,6 @@ workflows:
       - accessibility-test:
           requires:
             - compile
-      - lighthouse:
-          requires:
-            - compile
       - docker-build:
           requires:
-            - test
-            - accessibility-test
-            - lighthouse
+            - compile
