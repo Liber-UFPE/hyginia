@@ -251,6 +251,7 @@ jobs:
           root: .
           paths:
             - build
+      - build_time_report
 
   test:
     parallelism: 2
