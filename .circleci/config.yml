@@ -80,7 +80,13 @@ commands:
           path: build/test-results/test
       - store_artifacts:
           path: build/test-results/test
-          when: always
+
+  build_time_report:
+    description: "Show build time report"
+    steps:
+      - run:
+          name: Show build time report
+          command: cat ./build/reports/build-times.md
 
 jobs:
   checkout_code:
@@ -250,6 +256,7 @@ jobs:
             echo "Prepared arguments for Gradle: $GRADLE_ARGS"
             ./gradlew test --build-cache $GRADLE_ARGS
       - store_test_results_artifacts
+      - build_time_report
 
   accessibility-test:
     executor: gradle-executor
@@ -260,6 +267,7 @@ jobs:
           name: Run Tests & Checks
           command: ./gradlew accessibilityTest --build-cache
       - store_test_results_artifacts
+      - build_time_report
 
   docker-build:
     docker:
@@ -268,11 +276,6 @@ jobs:
       - attach_checkout_workspace
       - setup_remote_docker:
           docker_layer_caching: true
-      - run:
-          name: List docker images
-          # language="shell script"
-          command: |
-            docker image ls --all
       - run:
           name: Docker pull build image
           # language="shell script"
