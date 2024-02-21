@@ -1,12 +1,15 @@
 import esbuild from "esbuild";
-import {Compress} from "gzipper";
 import sharp from "sharp";
 import fg from "fast-glob";
-import path from "path";
 import {sassPlugin} from "esbuild-sass-plugin";
 import autoprefixer from "autoprefixer";
 import postcss from "postcss";
 import tailwindcss from "tailwindcss";
+
+import path from "node:path";
+import fs from "node:fs";
+import {createGzip, createBrotliCompress, createDeflate} from "node:zlib";
+import pipe from "node:stream/promises";
 
 // DO NOT EDIT: this file is automatically synced from the template repository
 // in https://github.com/Liber-UFPE/project-starter.
@@ -19,20 +22,31 @@ const compressPlugin = {
     name: "compress",
     setup(build) {
         build.onEnd(() => {
-            const outputPath = build.initialOptions.outdir;
-            const verbose = build.initialOptions.logLevel === "verbose" || build.initialOptions.logLevel === "debug";
+            fg.async([`${build.initialOptions.outdir}/**/*.{css,js,html,svg,txt,json,ico}`], {
+                caseSensitiveMatch: false,
+                dot: true
+            }).then(files =>
+                files.forEach(file => {
+                    const gzipPipe = pipe.pipeline(
+                        fs.createReadStream(file),
+                        createGzip(),
+                        fs.createWriteStream(`${file}.gz`)
+                    );
+                    const brotliPipe = pipe.pipeline(
+                        fs.createReadStream(file),
+                        createBrotliCompress(),
+                        fs.createWriteStream(`${file}.br`)
+                    );
+                    const deflatePipe = pipe.pipeline(
+                        fs.createReadStream(file),
+                        createDeflate(),
+                        fs.createWriteStream(`${file}.zz`)
+                    );
 
-            const compressOptions = {
-                brotli: true,
-                deflate: true,
-                deflateLevel: 9,
-                gzip: true,
-                gzipLevel: 9,
-                exclude: ["jpeg", "jpg", "png", "webp", "avif"],
-                verbose: verbose,
-            };
-
-            new Compress(outputPath, outputPath, compressOptions).run();
+                    // will go as slow as the slowest compression
+                    return Promise.all([gzipPipe, brotliPipe, deflatePipe]);
+                })
+            );
         });
     },
 };
