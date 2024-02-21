@@ -19,7 +19,7 @@ import org.apache.lucene.document.Document
 import org.apache.lucene.queryparser.classic.QueryParser
 import org.apache.lucene.search.IndexSearcher
 import org.apache.lucene.search.ScoreDoc
-import org.apache.lucene.search.TopScoreDocCollector
+import org.apache.lucene.search.TopScoreDocCollectorManager
 import org.reactivestreams.Publisher
 import java.util.concurrent.ExecutorService
 import kotlin.math.max
@@ -46,9 +46,8 @@ class BooksSearch(
         val indexReader = indexSearcher.indexReader
         val termVectors = indexReader.termVectors()
 
-        val collector = TopScoreDocCollector.create(MAX_HITS_THRESHOLD, MAX_HITS_THRESHOLD + 1)
-        indexSearcher.search(query, collector)
-        val topDocs = collector.topDocs()
+        val collector = TopScoreDocCollectorManager(MAX_HITS_THRESHOLD, MAX_HITS_THRESHOLD + 1)
+        val topDocs = indexSearcher.search(query, collector)
 
         if (topDocs.totalHits.value == 0L) return SearchResults.empty()
 
