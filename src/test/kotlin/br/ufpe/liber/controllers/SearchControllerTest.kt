@@ -5,8 +5,10 @@ import br.ufpe.liber.get
 import br.ufpe.liber.pagination.Pagination
 import br.ufpe.liber.search.Indexer
 import io.kotest.core.spec.style.BehaviorSpec
-import io.kotest.data.blocking.forAll
+import io.kotest.data.forAll
+import io.kotest.data.headers
 import io.kotest.data.row
+import io.kotest.data.table
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.micronaut.context.ApplicationContext
@@ -109,15 +111,19 @@ class SearchControllerTest(
 
             then("run the query when parameters are present") {
                 forAll(
-                    // allWords, oneOfWords, exactPhrase, notWords
-                    // Only one of the parameters
-                    row("recife", "", "", ""),
-                    row("", "recife", "", ""),
-                    row("", "", "recife", ""),
-                    // Multiple parameters mixed
-                    row("recife", "olinda", "", ""),
-                    row("recife", "", "Rio Salgado", ""),
-                    row("recife", "olinda", "Rio Salgado", "Mauritstad"),
+                    table(
+                        headers("allWords", "oneOfWords", "exactPhrase", "notWords"),
+                        listOf(
+                            // Only one of the parameters
+                            row("recife", "", "", ""),
+                            row("", "recife", "", ""),
+                            row("", "", "recife", ""),
+                            // Multiple parameters mixed
+                            row("recife", "olinda", "", ""),
+                            row("recife", "", "Rio Salgado", ""),
+                            row("recife", "olinda", "Rio Salgado", "Mauritstad"),
+                        )
+                    )
                 ) { allWords, oneOfWords, exactPhrase, notWords ->
                     val url = UriBuilder.of(server.uri)
                         .path("/advanced-search")
