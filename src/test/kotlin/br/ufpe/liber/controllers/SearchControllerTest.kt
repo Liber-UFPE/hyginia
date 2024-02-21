@@ -122,8 +122,8 @@ class SearchControllerTest(
                             row("recife", "olinda", "", ""),
                             row("recife", "", "Rio Salgado", ""),
                             row("recife", "olinda", "Rio Salgado", "Mauritstad"),
-                        )
-                    )
+                        ),
+                    ),
                 ) { allWords, oneOfWords, exactPhrase, notWords ->
                     val url = UriBuilder.of(server.uri)
                         .path("/advanced-search")
