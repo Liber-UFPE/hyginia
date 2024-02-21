@@ -2,13 +2,16 @@ package br.ufpe.liber.controllers
 
 import br.ufpe.liber.assets.AssetsResolver
 import br.ufpe.liber.get
+import br.ufpe.liber.pagination.Pagination
 import br.ufpe.liber.search.Indexer
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.data.blocking.forAll
 import io.kotest.data.row
+import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.micronaut.context.ApplicationContext
 import io.micronaut.http.HttpRequest
+import io.micronaut.http.HttpStatus
 import io.micronaut.http.client.DefaultHttpClientConfiguration
 import io.micronaut.http.client.HttpClient
 import io.micronaut.http.uri.UriBuilder
@@ -44,9 +47,8 @@ class SearchControllerTest(
             }
 
             then("should return zero results if query is blank") {
-                client.get(
-                    "/search?query=",
-                ).body() shouldContain "Ooops, nenhum resultado foi encontrado para essa busca"
+                val response = client.get("/search?query=")
+                response.body() shouldContain "Ooops, nenhum resultado foi encontrado para essa busca"
             }
 
             then("should return zero results if query does not match any document") {
@@ -58,9 +60,18 @@ class SearchControllerTest(
 
             then("highlight matches in the search results page") {
                 val query = "recife"
-                client.get(
-                    "/search?query=$query",
-                ).body() shouldContain "resultados para a busca por <mark>$query</mark>"
+                val response = client.get("/search?query=$query")
+                response.status() shouldBe HttpStatus.OK
+                response.body() shouldContain "resultados para a busca por <mark>$query</mark>"
+            }
+
+            then("should the correct number of results per page") {
+                val query = "recife"
+                val response = client.get("/search?query=$query")
+                response.status() shouldBe HttpStatus.OK
+
+                val numberOfResults = response.body().lines().count { line -> line.contains("Acessar resultado") }
+                numberOfResults shouldBe Pagination.DEFAULT_PER_PAGE
             }
 
             then("return empty results if query is invalid") {

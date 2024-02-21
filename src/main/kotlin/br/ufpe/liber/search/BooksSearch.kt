@@ -33,7 +33,6 @@ class BooksSearch(
     private val bookRepository: BookRepository,
 ) {
     companion object {
-        const val RESULTS_PER_PAGE: Int = 10
         const val MAX_HITS_THRESHOLD: Int = 1000
     }
 
@@ -51,10 +50,10 @@ class BooksSearch(
 
         if (topDocs.totalHits.value == 0L) return SearchResults.empty()
 
-        val pagingStart: Int = max(page, 0) * RESULTS_PER_PAGE
-        val pagingEnd: Int = min(pagingStart + RESULTS_PER_PAGE, topDocs.totalHits.value.toInt() - 1)
+        val pagingStart: Int = max(page, 0) * Pagination.DEFAULT_PER_PAGE
+        val pagingEnd: Int = min(pagingStart + Pagination.DEFAULT_PER_PAGE, topDocs.totalHits.value.toInt())
 
-        val searchResults = topDocs.scoreDocs.slice(pagingStart..pagingEnd).map { scoreDoc: ScoreDoc ->
+        val searchResults = topDocs.scoreDocs.slice(pagingStart..<pagingEnd).map { scoreDoc: ScoreDoc ->
             val document = storedFields.document(scoreDoc.doc)
             val dayContents = document[DayMetadata.CONTENTS]
 
