@@ -36,6 +36,7 @@ class BooksSearch(
         const val MAX_HITS_THRESHOLD: Int = 1000
     }
 
+    @Suppress("WRONG_WHITESPACE")
     fun search(keywords: String, page: Int = 0): SearchResults {
         val queryParser = QueryParser(DayMetadata.CONTENTS, analyzer)
         val query = queryParser.parse(keywords)
