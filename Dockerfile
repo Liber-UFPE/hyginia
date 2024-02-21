@@ -13,11 +13,10 @@ COPY settings.gradle.kts build.gradle.kts gradlew gradle.properties /app/
 COPY gradle /app/gradle
 COPY buildSrc /app/buildSrc
 
-# Needs to:
-# 1. Create the jte directory to avoid errors with jte plugin
-# 2. Skip gradle task assetsPipeline because it requires the assets files
-RUN mkdir -p /app/src/main/jte && \
-  npm install && \
+# Creates the jte directory to avoid errors with jte plugin
+COPY src/main/jte/.jteroot /app/src/main/jte/.jteroot
+
+RUN npm install && \
   gradle -Dsonar.gradle.skipCompile=true --console plain --no-configuration-cache classes -x assetsPipeline
 
 # Build application
