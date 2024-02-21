@@ -22,11 +22,15 @@ const compressPlugin = {
     name: "compress",
     setup(build) {
         build.onEnd(() => {
+            const startTime = process.hrtime();
+            let fileCount = 0
             fg.async([`${build.initialOptions.outdir}/**/*.{css,js,html,svg,txt,json,ico}`], {
                 caseSensitiveMatch: false,
                 dot: true
-            }).then(files =>
-                files.forEach(file => {
+            }).then(files => {
+                fileCount = files.length;
+                // Create promise for each file
+                return files.map(file => {
                     const gzipPipe = pipe.pipeline(
                         fs.createReadStream(file),
                         createGzip(),
@@ -45,6 +49,11 @@ const compressPlugin = {
 
                     // will go as slow as the slowest compression
                     return Promise.all([gzipPipe, brotliPipe, deflatePipe]);
+                });
+            }).then(promises =>
+                Promise.all(promises).finally(() => {
+                    const endTime = process.hrtime(startTime);
+                    console.info(`⚡ ${fileCount} files compressed in ${endTime[0]}s${endTime[1] / 1000000}ms`);
                 })
             );
         });
