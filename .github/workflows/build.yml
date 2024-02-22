@@ -173,7 +173,6 @@ jobs:
       - compile
     steps:
       - uses: actions/checkout@v4
-      - uses: docker/setup-qemu-action@v3
       - uses: docker/setup-buildx-action@v3
       - name: Docker / Get image name
         id: dockerImageName
@@ -190,6 +189,8 @@ jobs:
           # See https://docs.docker.com/build/ci/github-actions/cache/#github-cache
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          build-args: |
+            BUILDKIT_INLINE_CACHE=1
 
       - name: Test Image
         run: |
@@ -284,7 +285,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # 0 indicates all history for all branches and tags.
-      - uses: docker/setup-qemu-action@v3
       - uses: docker/setup-buildx-action@v3
       - name: Docker / Get image name
         id: dockerImageName
