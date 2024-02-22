@@ -311,6 +311,11 @@ jobs:
       - image: cimg/base:stable
     steps:
       - attach_checkout_workspace
+      - run:
+          name: Check git status
+          command: |
+            git status
+            git diff
       - setup_remote_docker:
           docker_layer_caching: true
       - debug_docker_images
