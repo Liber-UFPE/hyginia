@@ -8,7 +8,7 @@
 @param metadata: gg.jte.Content = br.ufpe.liber.views.ViewsHelper.emptyContent()
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     @if(notHtmxRequest())
     <meta charset="UTF-8">
