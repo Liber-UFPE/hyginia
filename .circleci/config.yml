@@ -116,7 +116,7 @@ commands:
       - run:
           name: List docker cache
           command: |
-            sudo ls -alho /var/lib/docker || echo "/var/lib/docker missing"
+            docker system df --verbose
 jobs:
   checkout_code:
     docker:
