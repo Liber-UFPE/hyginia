@@ -318,7 +318,10 @@ jobs:
           name: Build Docker image
           # language="shell script"
           command: |
-            docker build --progress plain -t "$DOCKER_PROJECT_NAME:latest" .
+            docker build \
+              --progress plain \
+              --build-arg BUILDKIT_INLINE_CACHE=1 \
+              -t "$DOCKER_PROJECT_NAME:latest" .
       - debug_docker_images
       - run:
           name: Test Docker image
