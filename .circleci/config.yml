@@ -113,6 +113,10 @@ commands:
           # language="shell script"
           command: |
             docker image list --format '{{ .ID }}' | sort | uniq | xargs -I {} docker inspect {}
+      - run:
+          name: List docker cache
+          command: |
+            sudo ls -alho /var/lib/docker || echo "/var/lib/docker missing"
 jobs:
   checkout_code:
     docker:
