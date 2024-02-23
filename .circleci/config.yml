@@ -122,7 +122,7 @@ jobs:
       - restore_npm_cache
       - run:
           name: Install dependencies
-          command: yarn install
+          command: corepack enable && yarn install
       - persist_to_workspace:
           root: .
           paths:
