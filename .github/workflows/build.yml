@@ -80,7 +80,7 @@ jobs:
         with:
           node-version: "lts/*"  # latest lts
           check-latest: true
-          cache: "npm"
+          cache: "yarn"
       - run: corepack enable
       - run: yarn install
       - run: npx eslint .
@@ -97,7 +97,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           check-latest: true
-          cache: "npm"
+          cache: "yarn"
       - run: node --version
       - run: corepack enable
       - run: yarn install
