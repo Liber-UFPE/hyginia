@@ -62,12 +62,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: corepack enable
       - uses: actions/setup-node@v4
         with:
           node-version: "lts/*"  # latest lts
           check-latest: true
           cache: "yarn"
-      - run: corepack enable
       - run: yarn install
       - run: npx stylelint src/main/**/*.scss
 
@@ -76,12 +76,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: corepack enable
       - uses: actions/setup-node@v4
         with:
           node-version: "lts/*"  # latest lts
           check-latest: true
           cache: "yarn"
-      - run: corepack enable
       - run: yarn install
       - run: npx eslint .
 
@@ -93,6 +93,7 @@ jobs:
         node-version: [ 18, 20 ]
     steps:
       - uses: actions/checkout@v4
+      - run: corepack enable
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
@@ -119,6 +120,7 @@ jobs:
       - esbuild-check
     steps:
       - uses: actions/checkout@v4
+      - run: corepack enable
       - name: Set up Gradle and Java
         uses: ./.github/gradle-action
         with:
@@ -145,6 +147,7 @@ jobs:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
+      - run: corepack enable
       - name: Set up Gradle and Java
         uses: ./.github/gradle-action
       - name: Run tests
@@ -270,6 +273,7 @@ jobs:
       RELEASE_TITLE: Release ${{ needs.generate-tag-name.outputs.tagName }}
     steps:
       - uses: actions/checkout@v4
+      - run: corepack enable
       - uses: ./.github/gradle-action
       - name: Generate jar artifacts
         run: ./gradlew -PreleaseTag=$TAG_NAME clean shadowJar -x test -x accessibilityTest --no-configuration-cache
