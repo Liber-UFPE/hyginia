@@ -29,3 +29,6 @@ out/
 
 # Avoid ignore Gradle wrappper properties
 !gradle-wrapper.properties
+
+# As documented here: https://siouan.github.io/frontend-gradle-plugin/getting-started
+.frontend-gradle-plugin/
