@@ -43,7 +43,7 @@ commands:
       - restore_cache:
           name: Restore npm cache
           keys:
-            - v3-npm-deps-{{ checksum "package-lock.json" }}
+            - v3-npm-deps-{{ checksum "yarn.lock" }}
             - v3-npm-deps-
 
   save_gradle_cache:
@@ -68,7 +68,7 @@ commands:
     steps:
       - save_cache:
           name: Save npm cache
-          key: v3-npm-deps-{{ checksum "package-lock.json" }}
+          key: v3-npm-deps-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
 
