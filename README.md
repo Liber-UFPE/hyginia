@@ -52,6 +52,7 @@ vagrant destroy --graceful --force
 
 1. Java 21 (mais fácil de instalar com [SDKMAN](https://sdkman.io/))
 2. [Node.js 20](https://nodejs.org/en)
+   1. [yarn](https://yarnpkg.com/getting-started/install)
 3. [Docker Desktop](https://www.docker.com/products/docker-desktop/) (se você quiser testar as imagens Docker)
 4. [Ktlint CLI][ktlint-cli] (se você quiser executar inspeções de código localmente)
 5. [Gradle](https://gradle.org/install/#with-a-package-manager) (se você não quiser usar o script `./gradlew`)
@@ -106,7 +107,6 @@ Para garantir que as páginas carreguem rapidamente, há um processamento dos as
 O [esbuild](https://esbuild.github.io/) é usado em conjunto com alguns pacotes npm:
 
 - [sharp](https://github.com/lovell/sharp) para gerar versões `webp` das images
-- [gzipper](https://github.com/gios/gzipper) para gerar versões comprimidas (`gzip`, `brotli`, `deflate`)
 - [postcss](https://postcss.org/) para otimizar o uso do [Tailwind CSS][tailwind] e manter apenas os estilos efetivamente usados.
 
 Esse processamento é então integrado ao `build` principal da aplicação usando o [Gradle Plugin for Node](https://github.com/node-gradle/gradle-node-plugin).
