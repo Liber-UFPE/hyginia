@@ -1,6 +1,6 @@
 {
   "name": "hyginia",
-  "packageManager": "npm@10.2.3",
+  "packageManager": "npm@10.4.0",
   "engines": {
     "node": ">=18 <=21"
   },
