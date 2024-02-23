@@ -244,9 +244,7 @@ jobs:
       - restore_gradle_cache
       - run:
           name: Compile App & Tests
-          command: |
-            corepack enable
-            ./gradlew testClasses --build-cache --configuration-cache
+          command: ./gradlew testClasses --build-cache --configuration-cache
       - save_gradle_cache
       - save_npm_cache
       - persist_to_workspace:
@@ -265,7 +263,6 @@ jobs:
           name: Run tests in parallel
           # language="shell script"
           command: |
-            corepack enable
             pushd src/test/kotlin
               # Get list of classnames of tests that should run on this node
               CLASSNAMES=$(circleci tests glob "**/**Test.kt" \
@@ -287,9 +284,7 @@ jobs:
       - restore_gradle_cache
       - run:
           name: Run Tests & Checks
-          command: |
-            corepack enable
-            ./gradlew accessibilityTest --build-cache --configuration-cache
+          command: ./gradlew accessibilityTest --build-cache --configuration-cache
       - store_test_results_artifacts
       - build_time_report
 
