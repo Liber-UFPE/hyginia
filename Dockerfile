@@ -16,8 +16,9 @@ COPY buildSrc /app/buildSrc
 # Creates the jte directory to avoid errors with jte plugin
 COPY src/main/jte/.jteroot /app/src/main/jte/.jteroot
 
-RUN npm install && \
-  gradle -Dsonar.gradle.skipCompile=true --console plain --no-configuration-cache classes -x assetsPipeline
+RUN corepack enable && \
+    npm install && \
+    gradle -Dsonar.gradle.skipCompile=true --console plain --no-configuration-cache classes -x assetsPipeline
 
 # Build application
 COPY . /app/

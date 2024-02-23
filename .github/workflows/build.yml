@@ -66,11 +66,9 @@ jobs:
         with:
           node-version: "lts/*"  # latest lts
           check-latest: true
-          cache: "npm"
-      - name: npm install
-        run: npm install
-      - name: run stylelint
-        run: npx stylelint src/main/**/*.scss
+          cache: "yarn"
+      - run: yarn install
+      - run: npx stylelint src/main/**/*.scss
 
   eslint:
     name: Code Analysis / eslint
@@ -82,10 +80,8 @@ jobs:
           node-version: "lts/*"  # latest lts
           check-latest: true
           cache: "npm"
-      - name: npm install
-        run: npm install
-      - name: run eslint
-        run: npx eslint .
+      - run: yarn install
+      - run: npx eslint .
 
   esbuild-check:
     name: Test / Assets / pipeline
@@ -101,7 +97,7 @@ jobs:
           check-latest: true
           cache: "npm"
       - run: node --version
-      - run: npm install
+      - run: yarn install
       - name: Run assets pipeline
         run: |
           rm -rf ./build

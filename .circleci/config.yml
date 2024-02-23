@@ -122,7 +122,7 @@ jobs:
       - restore_npm_cache
       - run:
           name: Install dependencies
-          command: npm install
+          command: yarn install
       - persist_to_workspace:
           root: .
           paths:
@@ -209,7 +209,6 @@ jobs:
           # language="shell script"
           command: |
             rm -rf ./build
-            npm install
             node assets-pipeline.mjs
             ls -l -R ./build
 
