@@ -17,7 +17,7 @@ COPY buildSrc /app/buildSrc
 COPY src/main/jte/.jteroot /app/src/main/jte/.jteroot
 
 RUN corepack enable && \
-    npm install && \
+    yarn install && \
     gradle -Dsonar.gradle.skipCompile=true --console plain --no-configuration-cache classes -x assetsPipeline
 
 # Build application
