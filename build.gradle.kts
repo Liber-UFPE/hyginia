@@ -194,7 +194,7 @@ frontend {
 
 tasks {
     named("installFrontend") {
-        inputs.files("package.json", "package-lock.json")
+        inputs.files("package.json", "yarn.lock")
         outputs.dir("node_modules")
     }
 

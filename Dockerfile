@@ -8,7 +8,7 @@ RUN apt-get update -y && apt-get install --no-install-recommends -y curl \
 
 # Better layer caching by installing dependencies first
 WORKDIR /app
-COPY package.json package-lock.json /app/
+COPY package.json yarn.lock /app/
 COPY settings.gradle.kts build.gradle.kts gradlew gradle.properties /app/
 COPY gradle /app/gradle
 COPY buildSrc /app/buildSrc
