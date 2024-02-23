@@ -25,6 +25,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - run: corepack enable
       - uses: actions/setup-node@v4
         with:
           node-version: "lts/*"  # latest lts
@@ -32,7 +33,6 @@ jobs:
           cache: "yarn"
       - uses: ./.github/gradle-action
       - run: ./gradlew classes
-      - run: corepack enable
       - run: yarn install
       - name: Run Lighthouse CI
         run: npx lhci autorun
