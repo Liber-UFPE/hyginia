@@ -27,8 +27,7 @@ jobs:
           fetch-depth: 0
       - uses: ./.github/gradle-action
       - run: ./gradlew classes
-      - name: Install Lighthouse CI
-        run: npm install
+      - run: yarn install
       - name: Run Lighthouse CI
         run: npx lhci autorun
         env:
