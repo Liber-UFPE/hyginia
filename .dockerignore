@@ -9,6 +9,4 @@
 **/.idea
 node_modules
 .lighthouseci
-.git
 jte-classes
-Dockerfile
