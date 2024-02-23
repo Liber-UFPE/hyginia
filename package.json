@@ -1,9 +1,11 @@
 {
+  "name": "hyginia",
+  "packageManager": "npm@10.2.3",
   "engines": {
     "node": ">=18 <=21"
   },
   "scripts": {
-    "assetsPipeline": "node assets-pipeline.mjs"
+    "build": "node assets-pipeline.mjs"
   },
   "devDependencies": {
     "@lhci/cli": "0.13.0",
