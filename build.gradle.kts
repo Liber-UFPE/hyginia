@@ -384,6 +384,8 @@ dependencies {
     implementation("com.vladsch.flexmark:flexmark-ext-footnotes:$flexmarkVersion")
 
     // Accessibility Tests
+    // Manually adding commons-compress due to https://devhub.checkmarx.com/cve-details/CVE-2024-26308/
+    accessibilityTestImplementation("org.apache.commons:commons-compress:1.26.0")
     accessibilityTestImplementation("org.seleniumhq.selenium:selenium-java:4.18.1")
     accessibilityTestImplementation("com.deque.html.axe-core:selenium:4.8.2")
 }
