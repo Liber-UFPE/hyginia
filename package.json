@@ -1,30 +1,27 @@
 {
-    "name": "hyginia",
-    "packageManager": "yarn@4.1.0",
-    "engines": {
-        "node": ">=18 <=21"
-    },
-    "engineStrict": true,
-    "scripts": {
-        "build": "node assets-pipeline.mjs"
-    },
-    "devDependencies": {
-        "@lhci/cli": "0.13.0",
-        "autoprefixer": "^10.4.17",
-        "esbuild": "0.20.1",
-        "esbuild-sass-plugin": "^3.0.0",
-        "eslint": "^8.56.0",
-        "fast-glob": "3.3.2",
-        "postcss": "^8.4.35",
-        "sharp": "^0.33.2",
-        "stylelint": "^16.2.1",
-        "stylelint-config-standard": "^36.0.0",
-        "stylelint-config-standard-scss": "^13.0.0",
-        "tailwindcss": "^3.4.1"
-    },
-    "dependencies": {
-        "flowbite": "^2.2.1",
-        "htmx.org": "^1.9.10",
-        "sass-embedded": "^1.70.0"
-    }
+  "engines": {
+    "node": ">=18 <=21"
+  },
+  "scripts": {
+    "assetsPipeline": "node assets-pipeline.mjs"
+  },
+  "devDependencies": {
+    "@lhci/cli": "0.13.0",
+    "autoprefixer": "^10.4.17",
+    "esbuild": "0.20.1",
+    "esbuild-sass-plugin": "^3.0.0",
+    "eslint": "^8.56.0",
+    "fast-glob": "3.3.2",
+    "postcss": "^8.4.35",
+    "sharp": "^0.33.2",
+    "stylelint": "^16.2.1",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-config-standard-scss": "^13.0.0",
+    "tailwindcss": "^3.4.1"
+  },
+  "dependencies": {
+    "flowbite": "^2.2.1",
+    "htmx.org": "^1.9.10",
+    "sass-embedded": "^1.70.0"
+  }
 }

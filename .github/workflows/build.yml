@@ -62,28 +62,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: corepack enable
       - uses: actions/setup-node@v4
         with:
           node-version: "lts/*"  # latest lts
           check-latest: true
-          cache: "yarn"
-      - run: yarn install
-      - run: npx stylelint src/main/**/*.scss
+          cache: "npm"
+      - name: npm install
+        run: npm install
+      - name: run stylelint
+        run: npx stylelint src/main/**/*.scss
 
   eslint:
     name: Code Analysis / eslint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: corepack enable
       - uses: actions/setup-node@v4
         with:
           node-version: "lts/*"  # latest lts
           check-latest: true
-          cache: "yarn"
-      - run: yarn install
-      - run: npx eslint .
+          cache: "npm"
+      - name: npm install
+        run: npm install
+      - name: run eslint
+        run: npx eslint .
 
   esbuild-check:
     name: Test / Assets / pipeline
@@ -93,15 +95,13 @@ jobs:
         node-version: [ 18, 20 ]
     steps:
       - uses: actions/checkout@v4
-      - run: corepack enable
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           check-latest: true
-          cache: "yarn"
+          cache: "npm"
       - run: node --version
-      - run: corepack enable
-      - run: yarn install
+      - run: npm install
       - name: Run assets pipeline
         run: |
           rm -rf ./build
@@ -120,7 +120,6 @@ jobs:
       - esbuild-check
     steps:
       - uses: actions/checkout@v4
-      - run: corepack enable
       - name: Set up Gradle and Java
         uses: ./.github/gradle-action
         with:
@@ -147,7 +146,6 @@ jobs:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
-      - run: corepack enable
       - name: Set up Gradle and Java
         uses: ./.github/gradle-action
       - name: Run tests
@@ -273,7 +271,6 @@ jobs:
       RELEASE_TITLE: Release ${{ needs.generate-tag-name.outputs.tagName }}
     steps:
       - uses: actions/checkout@v4
-      - run: corepack enable
       - uses: ./.github/gradle-action
       - name: Generate jar artifacts
         run: ./gradlew -PreleaseTag=$TAG_NAME clean shadowJar -x test -x accessibilityTest --no-configuration-cache

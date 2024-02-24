@@ -43,8 +43,8 @@ commands:
       - restore_cache:
           name: Restore npm cache
           keys:
-            - v3-node-deps-{{ checksum "yarn.lock" }}
-            - v3-node-deps-
+            - v3-npm-deps-{{ checksum "package-lock.json" }}
+            - v3-npm-deps-
 
   save_gradle_cache:
     description: "Save Gradle wrapper and dependencies cache"
@@ -68,7 +68,7 @@ commands:
     steps:
       - save_cache:
           name: Save npm cache
-          key: v3-npm-deps-{{ checksum "yarn.lock" }}
+          key: v3-npm-deps-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
 
@@ -122,7 +122,7 @@ jobs:
       - restore_npm_cache
       - run:
           name: Install dependencies
-          command: corepack enable && yarn install
+          command: npm install
       - persist_to_workspace:
           root: .
           paths:
@@ -209,6 +209,7 @@ jobs:
           # language="shell script"
           command: |
             rm -rf ./build
+            npm install
             node assets-pipeline.mjs
             ls -l -R ./build
 
