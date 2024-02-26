@@ -2788,28 +2788,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hyginia@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "hyginia@workspace:."
-  dependencies:
-    "@lhci/cli": "npm:0.13.0"
-    autoprefixer: "npm:^10.4.17"
-    esbuild: "npm:0.20.1"
-    esbuild-sass-plugin: "npm:^3.0.0"
-    eslint: "npm:^8.56.0"
-    fast-glob: "npm:3.3.2"
-    flowbite: "npm:^2.2.1"
-    htmx.org: "npm:^1.9.10"
-    postcss: "npm:^8.4.35"
-    sass-embedded: "npm:^1.70.0"
-    sharp: "npm:^0.33.2"
-    stylelint: "npm:^16.2.1"
-    stylelint-config-standard: "npm:^36.0.0"
-    stylelint-config-standard-scss: "npm:^13.0.0"
-    tailwindcss: "npm:^3.4.1"
-  languageName: unknown
-  linkType: soft
-
 "iconv-lite@npm:0.4.24, iconv-lite@npm:^0.4.24":
   version: 0.4.24
   resolution: "iconv-lite@npm:0.4.24"
@@ -4544,6 +4522,28 @@ __metadata:
   checksum: 10c0/91443b15ab1b39f69ac998a2dae8859ad35c981504e5facbb34d494fd6163877e821ce7ed830d14e9efdd6ed28c347491c3d699738943501dec2b6bedfdd6a81
   languageName: node
   linkType: hard
+
+"root-workspace-0b6124@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "root-workspace-0b6124@workspace:."
+  dependencies:
+    "@lhci/cli": "npm:0.13.0"
+    autoprefixer: "npm:^10.4.17"
+    esbuild: "npm:0.20.1"
+    esbuild-sass-plugin: "npm:^3.0.0"
+    eslint: "npm:^8.56.0"
+    fast-glob: "npm:3.3.2"
+    flowbite: "npm:^2.2.1"
+    htmx.org: "npm:^1.9.10"
+    postcss: "npm:^8.4.35"
+    sass-embedded: "npm:^1.70.0"
+    sharp: "npm:^0.33.2"
+    stylelint: "npm:^16.2.1"
+    stylelint-config-standard: "npm:^36.0.0"
+    stylelint-config-standard-scss: "npm:^13.0.0"
+    tailwindcss: "npm:^3.4.1"
+  languageName: unknown
+  linkType: soft
 
 "run-async@npm:^2.2.0":
   version: 2.4.1
