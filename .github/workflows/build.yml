@@ -169,6 +169,7 @@ jobs:
           BUILDKITE_ANALYTICS_TOKEN: ${{ secrets.BUILDKITE_ANALYTICS_TOKEN }}
         run: |
           ./gradlew mergeJUnitReports
+          COMMIT_MESSAGE=$(git log -n 1 --format="%s")
           curl -X POST --fail-with-body \
           -H "Authorization: Token token=$BUILDKITE_ANALYTICS_TOKEN" \
           -F "data=@build/test-results/junit.xml" \
@@ -178,6 +179,7 @@ jobs:
           -F "run_env[number]=$GITHUB_RUN_NUMBER" \
           -F "run_env[branch]=$GITHUB_REF" \
           -F "run_env[commit_sha]=$GITHUB_SHA" \
+          -F "run_env[message]=$COMMIT_MESSAGE" \
           -F "run_env[url]=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
           https://analytics-api.buildkite.com/v1/uploads
       - name: Push result to Testspace server
