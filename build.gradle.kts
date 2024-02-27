@@ -67,8 +67,8 @@ val getNodeExecutable = try {
             files.which("node") ?: error("Node.js is not installed or not in the path.")
         },
     )
-} catch (e: IllegalStateException) {
-    Result.failure<Exception>(e)
+} catch (ex: IllegalStateException) {
+    Result.failure<Exception>(ex)
 }
 
 repositories {
