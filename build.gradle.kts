@@ -3,7 +3,6 @@ import br.ufpe.liber.tasks.ParseBooksTask
 import com.adarshr.gradle.testlogger.theme.ThemeType
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import com.lordcodes.turtle.shellRun
-import io.github.vacxe.buildtimetracker.reporters.markdown.MarkdownConfiguration
 import java.lang.System.getenv
 import java.time.Duration
 
@@ -33,9 +32,6 @@ plugins {
     // Easily add new test sets
     // https://github.com/unbroken-dome/gradle-testsets-plugin
     id("org.unbroken-dome.test-sets") version "4.1.0"
-    // Report task timings
-    // https://github.com/vacxe/build-time-tracker
-    id("io.github.vacxe.build-time-tracker") version "0.0.4"
     // To check dependency updates
     // https://github.com/ben-manes/gradle-versions-plugin
     id("com.github.ben-manes.versions") version "0.51.0"
@@ -308,16 +304,6 @@ testlogger {
     showStackTraces = true
 }
 
-buildTimeTracker {
-    markdownConfiguration.set(
-        MarkdownConfiguration(
-            reportFile = reporting.file("build-times.md").absolutePath,
-            minDuration = Duration.ofMillis(0),
-            withTableLabels = true,
-            sorted = true,
-            take = Int.MAX_VALUE,
-        ),
-    )
 }
 
 // Install pre-commit git hooks to run ktlint and detekt
@@ -337,7 +323,6 @@ tasks.named<DependencyUpdatesTask>("dependencyUpdates") {
         val possiblySnapshot = "\\d{8}".toRegex()
         !stableKeyword && !version.matches(regex) || version.matches(possiblySnapshot)
     }
-}
 
 val parseBooks by tasks.registering(ParseBooksTask::class)
 
