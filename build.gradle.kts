@@ -165,7 +165,6 @@ tasks.named<Test>("test") {
     reports.junitXml.required = runningOnCI
 }
 
-
 /* -------------------------------- */
 /* Start: Node/assets configuration */
 /* -------------------------------- */
@@ -354,18 +353,18 @@ task("mergeJUnitReports") {
             "taskdef"(
                 "name" to "junitreport",
                 "classname" to "org.apache.tools.ant.taskdefs.optional.junit.XMLResultAggregator",
-                "classpath" to antJUnit.asPath
+                "classpath" to antJUnit.asPath,
             )
 
             // generates an XML report
             "junitreport"("tofile" to aggregateFile) {
                 "fileset"(
                     "dir" to resultsDir,
-                    "includes" to "TEST-*.xml"
+                    "includes" to "TEST-*.xml",
                 )
                 "fileset"(
                     "dir" to accessibilityResultsDir,
-                    "includes" to "TEST-*.xml"
+                    "includes" to "TEST-*.xml",
                 )
             }
         }
