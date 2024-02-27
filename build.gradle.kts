@@ -265,7 +265,16 @@ tasks {
         into(layout.projectDirectory.dir(".git/hooks/"))
     }
 
-    val parseBooks by registering(ParseBooksTask::class)
+    register<ParseBooksTask>("parseBooks") {
+        group = "data"
+        description = "Parse books from txt files"
+        inputs.files(fileTree(layout.projectDirectory.dir("src/main/resources/books/")) {
+            include("*.utf8.txt")
+        })
+        outputs.files(fileTree(layout.projectDirectory.dir("src/main/resources/books/")) {
+            include("*.utf8.json")
+        })
+    }
 
     register("mergeJUnitReports") {
         val resultsDir = project.layout.buildDirectory.file("test-results/test").get().asFile
