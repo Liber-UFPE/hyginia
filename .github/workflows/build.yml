@@ -165,6 +165,8 @@ jobs:
         run: ./gradlew sonar
       - name: Buildkite Test Analytics
         if: ${{ github.ref == 'refs/heads/main' && always() }}
+        env:
+          BUILDKITE_ANALYTICS_TOKEN: ${{ secrets.BUILDKITE_ANALYTICS_TOKEN }}
         run: |
           ./gradlew mergeJUnitReports
           curl -X POST --fail-with-body \
