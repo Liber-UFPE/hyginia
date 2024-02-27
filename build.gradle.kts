@@ -165,6 +165,7 @@ tasks.named<Test>("test") {
     reports.junitXml.required = runningOnCI
 }
 
+
 /* -------------------------------- */
 /* Start: Node/assets configuration */
 /* -------------------------------- */
@@ -341,7 +342,40 @@ tasks.named<DependencyUpdatesTask>("dependencyUpdates") {
 
 val parseBooks by tasks.registering(ParseBooksTask::class)
 
+val antJUnit by configurations.creating
+
+task("mergeJUnitReports") {
+    val resultsDir = project.layout.buildDirectory.file("test-results/test").get().asFile
+    val accessibilityResultsDir = project.layout.buildDirectory.file("test-results/accessibilityTest").get().asFile
+    val aggregateFile = "build/test-results/junit.xml"
+
+    doLast {
+        ant.withGroovyBuilder {
+            "taskdef"(
+                "name" to "junitreport",
+                "classname" to "org.apache.tools.ant.taskdefs.optional.junit.XMLResultAggregator",
+                "classpath" to antJUnit.asPath
+            )
+
+            // generates an XML report
+            "junitreport"("tofile" to aggregateFile) {
+                "fileset"(
+                    "dir" to resultsDir,
+                    "includes" to "TEST-*.xml"
+                )
+                "fileset"(
+                    "dir" to accessibilityResultsDir,
+                    "includes" to "TEST-*.xml"
+                )
+            }
+        }
+    }
+}
+
 dependencies {
+
+    antJUnit("org.apache.ant", "ant-junit", "1.10.5")
+
     // TEMP: Brings logback 1.4.14. Remove when micronaut-core updates.
     implementation(platform("io.micronaut.logging:micronaut-logging-bom:1.2.3"))
 

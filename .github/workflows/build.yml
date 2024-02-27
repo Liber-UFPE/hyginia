@@ -160,16 +160,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew sonar
-      - uses: testspace-com/setup-testspace@v1
-        with:
-          domain: ${{ github.repository_owner }}
       - name: Buildkite Test Analytics
+        if: ${{ github.ref == 'refs/heads/main' && always() }}
         run: |
+          ./gradlew mergeJUnitReports
           curl \
           -X POST \
           --fail-with-body \
           -H "Authorization: Token token=\"$BUILDKITE_ANALYTICS_TOKEN\"" \
-          -F "data=@junit.xml" \
+          -F "data=@build/test-results/junit.xml" \
           -F "format=junit" \
           -F "run_env[CI]=github_actions" \
           -F "run_env[key]=$GITHUB_ACTION-$GITHUB_RUN_NUMBER-$GITHUB_RUN_ATTEMPT" \
@@ -178,7 +177,9 @@ jobs:
           -F "run_env[commit_sha]=$GITHUB_SHA" \
           -F "run_env[url]=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
           https://analytics-api.buildkite.com/v1/uploads
-
+      - uses: testspace-com/setup-testspace@v1
+        with:
+          domain: ${{ github.repository_owner }}
       - name: Push result to Testspace server
         if: ${{ github.ref == 'refs/heads/main' && always() }}
         run: |
