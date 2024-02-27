@@ -258,6 +258,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - test
+      - sonar
       - test-docker-image
     steps:
       - run: echo "This is a push to main branch. Following with release a new version"
