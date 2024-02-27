@@ -258,11 +258,10 @@ tasks {
 
     // Install pre-commit git hooks to run ktlint and detekt
     // https://docs.gradle.org/current/userguide/working_with_files.html#sec:copying_single_file_example
-    register<Copy>("installGitHooks") {
+    register<Copy>("configureGitHooksPath") {
         group = "setup"
-        description = "Install pre-commit git hooks"
-        from(layout.projectDirectory.file("scripts/pre-commit"))
-        into(layout.projectDirectory.dir(".git/hooks/"))
+        description = "Configure git hooks directory"
+        shellRun("git", listOf("config", "core.hooksPath", "hooks"))
     }
 
     register<ParseBooksTask>("parseBooks") {
