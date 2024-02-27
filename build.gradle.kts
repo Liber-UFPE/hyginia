@@ -268,12 +268,16 @@ tasks {
     register<ParseBooksTask>("parseBooks") {
         group = "data"
         description = "Parse books from txt files"
-        inputs.files(fileTree(layout.projectDirectory.dir("src/main/resources/books/")) {
-            include("*.utf8.txt")
-        })
-        outputs.files(fileTree(layout.projectDirectory.dir("src/main/resources/books/")) {
-            include("*.utf8.json")
-        })
+        inputs.files(
+            fileTree(layout.projectDirectory.dir("src/main/resources/books/")) {
+                include("*.utf8.txt")
+            },
+        )
+        outputs.files(
+            fileTree(layout.projectDirectory.dir("src/main/resources/books/")) {
+                include("*.utf8.json")
+            },
+        )
     }
 
     register("mergeJUnitReports") {
