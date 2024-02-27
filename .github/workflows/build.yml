@@ -147,6 +147,9 @@ jobs:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
+      - uses: testspace-com/setup-testspace@v1
+        with:
+          domain: ${{ github.repository_owner }}
       - run: corepack enable
       - name: Set up Gradle and Java
         uses: ./.github/gradle-action
@@ -164,10 +167,8 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' && always() }}
         run: |
           ./gradlew mergeJUnitReports
-          curl \
-          -X POST \
-          --fail-with-body \
-          -H "Authorization: Token token=\"$BUILDKITE_ANALYTICS_TOKEN\"" \
+          curl -X POST --fail-with-body \
+          -H "Authorization: Token token=$BUILDKITE_ANALYTICS_TOKEN" \
           -F "data=@build/test-results/junit.xml" \
           -F "format=junit" \
           -F "run_env[CI]=github_actions" \
@@ -177,9 +178,6 @@ jobs:
           -F "run_env[commit_sha]=$GITHUB_SHA" \
           -F "run_env[url]=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
           https://analytics-api.buildkite.com/v1/uploads
-      - uses: testspace-com/setup-testspace@v1
-        with:
-          domain: ${{ github.repository_owner }}
       - name: Push result to Testspace server
         if: ${{ github.ref == 'refs/heads/main' && always() }}
         run: |
