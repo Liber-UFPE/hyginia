@@ -19,6 +19,10 @@ dependencies {
 
     // Manually adding commons-compress due to https://devhub.checkmarx.com/cve-details/CVE-2024-26308/
     implementation("org.apache.commons:commons-compress:1.26.0")
+
+    // Manually adding apache-mime4j-dom due to https://github.com/advisories/GHSA-jw7r-rxff-gv24.
+    // It can be removed when updating Apache Tika to a newer version
+    implementation("org.apache.james:apache-mime4j-dom:0.8.10")
     implementation("org.apache.tika:tika-core:2.9.1")
     implementation("org.apache.tika:tika-parsers-standard-package:2.9.1")
 }
