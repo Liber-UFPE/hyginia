@@ -644,6 +644,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@liber-ufpe/esbuild-plugin-compress@npm:^0.0.3":
+  version: 0.0.3
+  resolution: "@liber-ufpe/esbuild-plugin-compress@npm:0.0.3"
+  dependencies:
+    esbuild: "npm:^0.20.1"
+    picomatch: "npm:^4.0.1"
+  checksum: 10c0/d3e47914e34e9ff2cf872d413604905ca994e081ccb6e7f8fa2451312990e9b461075f7a8966b2643a686d8d0f87d5ab7581d13479795329222819a6ba704fca
+  languageName: node
+  linkType: hard
+
+"@liber-ufpe/esbuild-plugin-sharp@npm:^0.0.2":
+  version: 0.0.2
+  resolution: "@liber-ufpe/esbuild-plugin-sharp@npm:0.0.2"
+  dependencies:
+    esbuild: "npm:^0.20.1"
+    picomatch: "npm:^4.0.1"
+    sharp: "npm:^0.33.2"
+  checksum: 10c0/3c35fed53f2f521ba785a50e246c1c9f84584954d71ba2a45bf682cc39e6be1c8b667e6b8f03ae4fcb2057b7b0754d67a9ea7b286126810143b9d15fda893e7f
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -1916,7 +1937,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:0.20.1":
+"esbuild@npm:0.20.1, esbuild@npm:^0.20.1":
   version: 0.20.1
   resolution: "esbuild@npm:0.20.1"
   dependencies:
@@ -2255,7 +2276,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-glob@npm:3.3.2, fast-glob@npm:^3.2.9, fast-glob@npm:^3.3.0, fast-glob@npm:^3.3.2":
+"fast-glob@npm:^3.2.9, fast-glob@npm:^3.3.0, fast-glob@npm:^3.3.2":
   version: 3.3.2
   resolution: "fast-glob@npm:3.3.2"
   dependencies:
@@ -4109,6 +4130,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"picomatch@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "picomatch@npm:4.0.1"
+  checksum: 10c0/a036a085b18b376493e8ccef155bb03c65a2be7203582b717bb0498d1446e6a80f7f86a36e07877590abd0431f26c64c6154058c31f4f46105d3686a34fa3cf6
+  languageName: node
+  linkType: hard
+
 "pify@npm:^2.3.0":
   version: 2.3.0
   resolution: "pify@npm:2.3.0"
@@ -4528,16 +4556,16 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@lhci/cli": "npm:0.13.0"
+    "@liber-ufpe/esbuild-plugin-compress": "npm:^0.0.3"
+    "@liber-ufpe/esbuild-plugin-sharp": "npm:^0.0.2"
     autoprefixer: "npm:^10.4.17"
     esbuild: "npm:0.20.1"
     esbuild-sass-plugin: "npm:^3.0.0"
     eslint: "npm:^8.56.0"
-    fast-glob: "npm:3.3.2"
     flowbite: "npm:^2.2.1"
     htmx.org: "npm:^1.9.10"
     postcss: "npm:^8.4.35"
     sass-embedded: "npm:^1.70.0"
-    sharp: "npm:^0.33.2"
     stylelint: "npm:^16.2.1"
     stylelint-config-standard: "npm:^36.0.0"
     stylelint-config-standard-scss: "npm:^13.0.0"
