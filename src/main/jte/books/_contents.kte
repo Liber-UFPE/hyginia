@@ -7,7 +7,7 @@
 
 @param query: java.util.Optional<String> = java.util.Optional.empty()
 
-<div class="leading-relaxed grid gap-3">
+<div class="leading-relaxed grid gap-3 day-contents">
     <p class="text-2xl font-normal">${day.day}</p>
     <div class="text-lg space-y-4">
     @if(query.isEmpty)

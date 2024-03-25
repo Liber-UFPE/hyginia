@@ -23,6 +23,14 @@
     hr {
       @apply mt-4 pb-2;
     }
+
+    li {
+      @apply p-2 rounded flex;
+    }
+
+    .footnote-backref {
+      @apply pt-0.5 pl-1;
+    }
   }
 
   .footnote-ref {
@@ -30,6 +38,26 @@
 
     &:hover {
       @apply underline bg-amber-300;
+    }
+  }
+
+  .highlight-footnote {
+    animation-duration: 1s;
+    animation-name: highligh-footnote-animation;
+    animation-iteration-count: 2;
+  }
+
+  @keyframes highligh-footnote-animation {
+    0% {
+      background-color: inherit;
+    }
+
+    30% {
+      background-color: khaki;
+    }
+
+    100% {
+      background-color: inherit;
     }
   }
 
