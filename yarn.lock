@@ -822,14 +822,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@liber-ufpe/esbuild-plugin-sharp@npm:^0.0.2":
-  version: 0.0.2
-  resolution: "@liber-ufpe/esbuild-plugin-sharp@npm:0.0.2"
+"@liber-ufpe/esbuild-plugin-sharp@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@liber-ufpe/esbuild-plugin-sharp@npm:1.0.0"
   dependencies:
     esbuild: "npm:^0.20.1"
     picomatch: "npm:^4.0.1"
     sharp: "npm:^0.33.2"
-  checksum: 10c0/3c35fed53f2f521ba785a50e246c1c9f84584954d71ba2a45bf682cc39e6be1c8b667e6b8f03ae4fcb2057b7b0754d67a9ea7b286126810143b9d15fda893e7f
+  checksum: 10c0/76270bac005d3955a8476702701b093f591bafaed42912bc53c0362a1bb9cd7c9add2620fa77700e7b4abff47170677e5488f5d7f2f6554bba45fcc3e618df33
   languageName: node
   linkType: hard
 
@@ -4829,7 +4829,7 @@ __metadata:
   dependencies:
     "@lhci/cli": "npm:0.13.0"
     "@liber-ufpe/esbuild-plugin-compress": "npm:^1.0.0"
-    "@liber-ufpe/esbuild-plugin-sharp": "npm:^0.0.2"
+    "@liber-ufpe/esbuild-plugin-sharp": "npm:^1.0.0"
     autoprefixer: "npm:^10.4.17"
     esbuild: "npm:0.20.2"
     esbuild-sass-plugin: "npm:^3.0.0"
