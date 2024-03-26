@@ -812,13 +812,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@liber-ufpe/esbuild-plugin-compress@npm:^0.0.3":
-  version: 0.0.3
-  resolution: "@liber-ufpe/esbuild-plugin-compress@npm:0.0.3"
+"@liber-ufpe/esbuild-plugin-compress@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@liber-ufpe/esbuild-plugin-compress@npm:1.0.0"
   dependencies:
     esbuild: "npm:^0.20.1"
     picomatch: "npm:^4.0.1"
-  checksum: 10c0/d3e47914e34e9ff2cf872d413604905ca994e081ccb6e7f8fa2451312990e9b461075f7a8966b2643a686d8d0f87d5ab7581d13479795329222819a6ba704fca
+  checksum: 10c0/22aeb0d605578276f0897b93d3bb3047bbf000b105ee1ac98d1686e3cc7276bb93e5d9314f663e7d33677f47e46cd2320f02f851fb6b12ccadb83fd3035943c7
   languageName: node
   linkType: hard
 
@@ -4828,7 +4828,7 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@lhci/cli": "npm:0.13.0"
-    "@liber-ufpe/esbuild-plugin-compress": "npm:^0.0.3"
+    "@liber-ufpe/esbuild-plugin-compress": "npm:^1.0.0"
     "@liber-ufpe/esbuild-plugin-sharp": "npm:^0.0.2"
     autoprefixer: "npm:^10.4.17"
     esbuild: "npm:0.20.2"
