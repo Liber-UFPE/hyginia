@@ -10,7 +10,7 @@
     "devDependencies": {
         "@lhci/cli": "0.13.0",
         "@liber-ufpe/esbuild-plugin-compress": "^1.0.0",
-        "@liber-ufpe/esbuild-plugin-sharp": "^0.0.2",
+        "@liber-ufpe/esbuild-plugin-sharp": "^1.0.0",
         "autoprefixer": "^10.4.17",
         "esbuild": "0.20.2",
         "esbuild-sass-plugin": "^3.0.0",
