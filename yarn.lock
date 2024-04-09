@@ -462,7 +462,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:9.0.0":
+"@eslint/js@npm:9.0.0, @eslint/js@npm:^9.0.0":
   version: 9.0.0
   resolution: "@eslint/js@npm:9.0.0"
   checksum: 10c0/ec3242a60a2525d2785d96d1e95b8060235f47f3b953aa81626968591ef8c1eb4f7f8b3647db2c97fdfa524eace949a5695be50521f64b8dcc4ed3b493ee409e
@@ -2868,6 +2868,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"globals@npm:^15.0.0":
+  version: 15.0.0
+  resolution: "globals@npm:15.0.0"
+  checksum: 10c0/b93e356a7bd4562d73a9defa95a0ff5e8a0b7726a4e2af16bd8ad019e14cd21d85e0a27b46e7e270d34e25df0bc0f9473ca21b47266c406c0e40973956085777
+  languageName: node
+  linkType: hard
+
 "globby@npm:^11.1.0":
   version: 11.1.0
   resolution: "globby@npm:11.1.0"
@@ -4792,6 +4799,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
+    "@eslint/js": "npm:^9.0.0"
     "@lhci/cli": "npm:0.13.0"
     "@liber-ufpe/esbuild-plugin-compress": "npm:^1.0.0"
     "@liber-ufpe/esbuild-plugin-sharp": "npm:^1.0.0"
@@ -4800,6 +4808,7 @@ __metadata:
     esbuild-sass-plugin: "npm:^3.0.0"
     eslint: "npm:^9.0.0"
     flowbite: "npm:^2.2.1"
+    globals: "npm:^15.0.0"
     htmx.org: "npm:^1.9.10"
     postcss: "npm:^8.4.35"
     sass-embedded: "npm:^1.70.0"
