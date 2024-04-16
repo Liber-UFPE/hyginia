@@ -249,13 +249,6 @@ tasks {
         }
     }
 
-    named<Jar>("jar") {
-        dependsOn.add("precompileJte")
-        from(fileTree(layout.buildDirectory.file("jte-classes").get().asFile.absolutePath)) {
-            include("**/.*.class")
-        }
-    }
-
     // Install pre-commit git hooks to run ktlint and detekt
     // https://docs.gradle.org/current/userguide/working_with_files.html#sec:copying_single_file_example
     register<Copy>("configureGitHooksPath") {
