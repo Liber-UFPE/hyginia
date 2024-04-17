@@ -43,7 +43,6 @@ val runningOnCI: Boolean = getenv().getOrDefault("CI", "false").toBoolean()
 val javaVersion: Int = 21
 
 val kotlinVersion: String = properties["kotlinVersion"] as String
-val micronautVersion: String = properties["micronautVersion"] as String
 val jteVersion: String = properties["jteVersion"] as String
 val luceneVersion: String = properties["luceneVersion"] as String
 val flexmarkVersion: String = properties["flexmarkVersion"] as String
