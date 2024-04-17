@@ -2973,9 +2973,9 @@ __metadata:
   linkType: hard
 
 "htmx.org@npm:^1.9.10":
-  version: 1.9.11
-  resolution: "htmx.org@npm:1.9.11"
-  checksum: 10c0/54283a33bfe0323637c6bbe6ee78feeed650a83ae6741ead6ff109cd81d965a79ab01efb0f51e3a8d39b86c71de8e9d8efc1c8339221863c21b016f2f24d81d3
+  version: 1.9.12
+  resolution: "htmx.org@npm:1.9.12"
+  checksum: 10c0/c239a751621501cca35e49c32152b1b7edd1c4f217ef709e84f005346ea0dc0d156cf59b0da91a0dd0b62ddefa98d67945b31e361245c5a2c94cb1b1285fbd2a
   languageName: node
   linkType: hard
 
