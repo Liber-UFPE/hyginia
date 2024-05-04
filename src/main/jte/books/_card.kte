@@ -2,10 +2,10 @@
 @param preview: gg.jte.Content
 
 <div class="w-full border border-gray-300 rounded-lg mb-6">
-    <p class="inline-block w-full p-4 rounded-lg bg-gray-50 hover:bg-gray-100 uppercase font-semibold text-gray-600 text-sm">Volume: ${book.number}</p>
+    <p class="inline-block w-full p-4 rounded-lg bg-gray-50 hover:bg-gray-100 uppercase font-semibold text-gray-600 text-sm" role="heading" aria-level="2">Volume: ${book.number}</p>
     <div class="p-4 md:p-8 border-t border-gray-300">
-        <p class="py-1 text-gray-800 text-3xl">${book.title} <span class="text-gray-500 font-normal">por ${book.author}</span></p>
-        <p class="py-1 text-base text-gray-600"><span class="text-lg font-semibold">Período: </span> ${book.period}</p>
+        <p class="py-1 text-gray-800 text-3xl" role="heading" aria-level="3">${book.title} <span class="text-gray-500 font-normal">por ${book.author}</span></p>
+        <p class="py-1 text-base text-gray-600"><strong class="text-lg font-semibold">Período: </strong> ${book.period}</p>
         <ul class="py-1 text-lg flex flex-wrap text-gray-800 gap-6">
             <li title="Idioma" class="flex flex-wrap align-middle">
                 <svg class="w-4 h-4 mt-icon text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
