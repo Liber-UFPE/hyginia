@@ -1,8 +1,11 @@
 import br.ufpe.liber.tasks.GenerateAssetsMetadataTask
 import br.ufpe.liber.tasks.ParseBooksTask
 import com.adarshr.gradle.testlogger.theme.ThemeType
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.lordcodes.turtle.shellRun
 import java.lang.System.getenv
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 plugins {
     kotlin("jvm") version "1.9.23"
@@ -33,7 +36,7 @@ plugins {
     // Add diktat
     // https://github.com/marcospereira/diktat
     id("com.saveourtool.diktat") version "2.0.0"
-    // To buil the app ui frontend
+    // To build the app ui frontend
     // https://siouan.github.io/frontend-gradle-plugin/
     id("org.siouan.frontend-jdk17") version "8.0.0"
 }
@@ -239,6 +242,20 @@ tasks {
         // https://docs.gradle.org/current/userguide/performance.html#disable_reports
         reports.html.required = runningOnCI
         reports.junitXml.required = runningOnCI
+    }
+
+    named<ShadowJar>("shadowJar") {
+        val lastCommit: Result<String> = Result.runCatching {
+            shellRun {
+                git.currentCommit()
+            }
+        }
+        manifest {
+            attributes("Date" to LocalDateTime.now(ZoneOffset.UTC).toString())
+            lastCommit.onSuccess { commit ->
+                attributes("Git-Last-Commit-Id" to commit)
+            }
+        }
     }
 
     // Gradle requires that generateJte is run before some tasks

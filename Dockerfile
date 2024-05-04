@@ -1,7 +1,7 @@
-FROM gradle:8.7.0-jdk21 AS build
+FROM eclipse-temurin:21.0.3_9-jdk-jammy AS build
 
 # Install Node JS
-RUN apt-get update -y && apt-get install --no-install-recommends -y curl \
+RUN apt-get update -y && apt-get install --no-install-recommends -y curl git \
     && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y --no-install-recommends nodejs \
     && node -v
@@ -18,11 +18,11 @@ COPY src/main/jte/.jteroot /app/src/main/jte/.jteroot
 
 RUN corepack enable && \
     yarn install && \
-    gradle -Dsonar.gradle.skipCompile=true --console plain --no-configuration-cache classes -x assetsPipeline
+    ./gradlew -Dsonar.gradle.skipCompile=true --console plain --no-configuration-cache classes -x assetsPipeline
 
 # Build application
 COPY . /app/
-RUN gradle -Dsonar.gradle.skipCompile=true --console plain --no-configuration-cache \
+RUN ./gradlew -Dsonar.gradle.skipCompile=true --console plain --no-configuration-cache \
       clean shadowJar -x test -x accessibilityTest \
       && mv -vf build/libs/*.jar app.jar
 
