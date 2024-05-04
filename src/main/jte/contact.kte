@@ -7,7 +7,7 @@
     @template.partials.content-section(content = @`
         <div class="md:flex">
             <div class="w-1/2">
-                <p class="tracking-wide text-2xl font-semibold text-gray-600">Endereço</p>
+                <p class="tracking-wide text-2xl font-semibold text-gray-600" role="heading" aria-level="2">Endereço</p>
                 <address class="text-lg tracking-wide font-normal text-gray-800 not-italic pb-8">
                     Av. da Arquitetura,  s/n.<br />
                     Cidade Universitária<br />
@@ -15,13 +15,13 @@
                     CEP: 50740-550<br />
                 </address>
 
-                <p class="tracking-wide text-2xl font-semibold text-gray-600">Telefone</p>
+                <p class="tracking-wide text-2xl font-semibold text-gray-600" role="heading" aria-level="2">Telefone</p>
                 <p class="text-lg tracking-wide font-normal text-gray-800 not-italic pb-8">+55 81 2126 7726</p>
 
-                <p class="tracking-wide text-2xl font-semibold text-gray-600">E-mail</p>
+                <p class="tracking-wide text-2xl font-semibold text-gray-600" role="heading" aria-level="2">E-mail</p>
                 <p class="text-lg tracking-wide font-normal text-gray-800 not-italic pb-8">liber@ufpe.br</p>
 
-                <p class="tracking-wide text-2xl font-semibold text-gray-600">Website</p>
+                <p class="tracking-wide text-2xl font-semibold text-gray-600" role="heading" aria-level="2">Website</p>
                 <p class="text-lg tracking-wide font-normal text-gray-800 not-italic pb-8">
                     <a href="${LinksHelper.Liber.link("?page_id=123362")}" class="text-blue-700 underline hover:text-blue-800 underline-offset-2">Formulário de Contato</a>
                 </p>
