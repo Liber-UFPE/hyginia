@@ -2,6 +2,7 @@ package br.ufpe.liber
 
 import br.ufpe.liber.assets.AssetsResolver
 import br.ufpe.liber.search.Indexer
+import br.ufpe.liber.services.BookRepository
 import com.deque.html.axecore.selenium.AxeBuilder
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.data.forAll
@@ -23,9 +24,7 @@ class AccessibilityTest(
     private val server: EmbeddedServer,
     private val context: ApplicationContext,
 ) : BehaviorSpec({
-    val axeBuilder = AxeBuilder()
-        .withTags(listOf("wcag21a", "wcag21aa", "wcag22aa", "experimental"))
-        .disableRules(listOf("heading-order"))
+    val axeBuilder = AxeBuilder().withTags(listOf("wcag21a", "wcag21aa", "wcag22aa", "experimental"))
     val driver = ChromeDriver(
         ChromeOptions()
             .addArguments("--no-sandbox")
@@ -65,13 +64,41 @@ class AccessibilityTest(
         driver.title shouldNotContain "404"
         driver.title shouldNotContain "500"
         val results = axeBuilder.analyze(driver)
-        results.violations shouldBe listOf()
+        results.violations shouldBe emptyList()
     }
 
     given("The server is running") {
         `when`("accessing the main pages") {
             @Suppress("detekt:SpreadOperator")
             forAll(*parameterlessRoutes.map(::row).toTypedArray()) { path ->
+                then("$path passes accessibility tests") {
+                    checkAccessibility(path)
+                }
+            }
+        }
+
+        `when`("searching") {
+            and("query return results") {
+                then("should pass accessibility tests") {
+                    checkAccessibility("/search?query=recife")
+                }
+            }
+
+            and("query return empty results") {
+                then("should pass accessibility tests") {
+                    checkAccessibility("/search?query=asdfghjkl")
+                }
+            }
+        }
+
+        `when`("navigating to book pages") {
+            @Suppress("detekt:SpreadOperator")
+            forAll(
+                *context.getBean<BookRepository>()
+                    .listAll()
+                    .map { book -> row("/obra/${book.id}") }
+                    .toTypedArray(),
+            ) { path ->
                 then("$path passes accessibility tests") {
                     checkAccessibility(path)
                 }
