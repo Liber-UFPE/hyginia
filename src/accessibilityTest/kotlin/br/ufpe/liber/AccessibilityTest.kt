@@ -23,7 +23,9 @@ class AccessibilityTest(
     private val server: EmbeddedServer,
     private val context: ApplicationContext,
 ) : BehaviorSpec({
-    val axeBuilder = AxeBuilder().disableRules(listOf("heading-order"))
+    val axeBuilder = AxeBuilder()
+        .withTags(listOf("wcag21a", "wcag21aa", "wcag22aa", "experimental"))
+        .disableRules(listOf("heading-order"))
     val driver = ChromeDriver(
         ChromeOptions()
             .addArguments("--no-sandbox")
@@ -41,6 +43,8 @@ class AccessibilityTest(
         .map { it.uriMatchTemplate.toPathString() }
         // More readable?
         .sorted()
+        // Avoid possible duplications
+        .distinct()
         // since `uriRoutes` returns a `Stream`.
         .toList()
 
