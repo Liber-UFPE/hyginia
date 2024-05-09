@@ -17,6 +17,7 @@ import io.micronaut.http.HttpStatus
 import io.micronaut.http.client.DefaultHttpClientConfiguration
 import io.micronaut.http.client.HttpClient
 import io.micronaut.http.uri.UriBuilder
+import io.micronaut.kotlin.context.getBean
 import io.micronaut.runtime.server.EmbeddedServer
 import io.micronaut.test.extensions.kotest5.annotation.MicronautTest
 
@@ -36,10 +37,10 @@ class SearchControllerTest(
     beforeSpec {
         // Indexer is now a @Singleton (lazy-loading), therefore we need to
         // force its initialization to force index creation.
-        context.getBean(Indexer::class.java)
+        context.getBean<Indexer>()
 
         // AssetsResolver initializes a lateinit property used by the view helpers
-        context.getBean(AssetsResolver::class.java)
+        context.getBean<AssetsResolver>()
     }
 
     given("SearchController") {
