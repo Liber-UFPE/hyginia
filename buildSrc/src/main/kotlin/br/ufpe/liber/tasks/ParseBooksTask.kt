@@ -1,3 +1,4 @@
+@file:Suppress("ktlint")
 package br.ufpe.liber.tasks
 
 import kotlinx.serialization.encodeToString
