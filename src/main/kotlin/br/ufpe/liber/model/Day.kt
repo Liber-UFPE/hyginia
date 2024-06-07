@@ -5,8 +5,4 @@ import kotlinx.serialization.Serializable
 
 @Serdeable
 @Serializable
-data class Day(
-    val id: Long,
-    val day: String,
-    val contents: String,
-)
+data class Day(val id: Long, val day: String, val contents: String)

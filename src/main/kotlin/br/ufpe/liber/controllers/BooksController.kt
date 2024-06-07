@@ -22,16 +22,14 @@ class BooksController(private val bookRepository: BookRepository, private val te
         .orElse(notFound(templates.notFound(currentRequestPath())))
 
     @Get("/obra/{bookId}/pagina/{dayId}")
-    fun showDay(bookId: Long, dayId: Long, query: Optional<String>): HttpResponse<KteWriteable> {
-        return bookRepository
-            .get(bookId)
-            .flatMap { book ->
-                book.day(dayId).map { day ->
-                    ok(templates.booksDay(book, day, query))
-                }
+    fun showDay(bookId: Long, dayId: Long, query: Optional<String>): HttpResponse<KteWriteable> = bookRepository
+        .get(bookId)
+        .flatMap { book ->
+            book.day(dayId).map { day ->
+                ok(templates.booksDay(book, day, query))
             }
-            .orElse(notFound(templates.notFound(currentRequestPath())))
-    }
+        }
+        .orElse(notFound(templates.notFound(currentRequestPath())))
 
     private fun currentRequestPath(): String = ServerRequestContext.currentRequest<Any>().map { it.path }.orElse("")
 }

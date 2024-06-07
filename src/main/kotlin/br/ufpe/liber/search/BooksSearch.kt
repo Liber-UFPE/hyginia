@@ -75,11 +75,7 @@ class BooksSearch(
 }
 
 @Serdeable
-data class SearchResult(
-    val book: Book,
-    val day: Day,
-    val highlightedContent: Content,
-) {
+data class SearchResult(val book: Book, val day: Day, val highlightedContent: Content) {
     constructor(doc: Document, highlightedContent: Content) : this(
         Book(
             id = doc[BookMetadata.ID].toLong(),
