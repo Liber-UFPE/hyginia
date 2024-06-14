@@ -1,3 +1,4 @@
+import br.ufpe.liber.tasks.CommandOutputValueSource
 import br.ufpe.liber.tasks.GenerateAssetsMetadataTask
 import br.ufpe.liber.tasks.ParseBooksTask
 import com.adarshr.gradle.testlogger.theme.ThemeType
@@ -54,6 +55,18 @@ val releaseTag: String? by project
 version = releaseTag ?: "0.1"
 group = "br.ufpe.liber"
 
+val gitLatestCommit = providers.of(CommandOutputValueSource::class) {
+    parameters {
+        getCommandLine().set(listOf("git", "rev-parse", "--verify", "HEAD"))
+    }
+}
+
+val getNodeExecutable = providers.of(CommandOutputValueSource::class) {
+    parameters {
+        getCommandLine().set(listOf("which", "node"))
+    }
+}
+
 // Filter out generated files from source sets, and then filter in only existing files.
 fun filterSourceSet(sourceSet: SourceSet): List<File> = sourceSet.allSource
     .srcDirs
@@ -62,16 +75,6 @@ fun filterSourceSet(sourceSet: SourceSet): List<File> = sourceSet.allSource
         it.absolutePath.startsWith(layout.buildDirectory.asFile.get().absolutePath)
     }
     .filter(File::exists)
-
-val getNodeExecutable = try {
-    Result.success(
-        shellRun {
-            files.which("node") ?: error("Node.js is not installed or not in the path.")
-        },
-    )
-} catch (ex: IllegalStateException) {
-    Result.failure<Exception>(ex)
-}
 
 repositories {
     mavenCentral()
@@ -137,17 +140,18 @@ diktat {
 }
 
 frontend {
-    nodeVersion = "18.19.1"
-    // The plugin will NOT try to download Node.js.
-    nodeDistributionProvided = getNodeExecutable.isSuccess
-    verboseModeEnabled = true
-    assembleScript = "run build"
-    nodeInstallDirectory = getNodeExecutable
+    nodeVersion = "18.20.3"
+
+    nodeDistributionProvided = getNodeExecutable.get().success
+    nodeInstallDirectory = getNodeExecutable.get()
         .map { file(it).parentFile.parentFile }
         .getOrElse {
             println("Could not find Node.js executable. ${it.message}")
             file(".gradle/nodejs")
         }
+
+    verboseModeEnabled = true
+    assembleScript = "run build"
 }
 
 micronaut {
@@ -245,14 +249,9 @@ tasks {
     }
 
     named<ShadowJar>("shadowJar") {
-        val lastCommit: Result<String> = Result.runCatching {
-            shellRun {
-                git.currentCommit()
-            }
-        }
         manifest {
             attributes("Date" to LocalDateTime.now(ZoneOffset.UTC).toString())
-            lastCommit.onSuccess { commit ->
+            gitLatestCommit.get().map { it }.onSuccess { commit ->
                 attributes("Git-Last-Commit-Id" to commit)
             }
         }
