@@ -108,6 +108,13 @@ jobs:
           node assets-pipeline.mjs
           tree ./build
 
+  gradle-wrapper-validation:
+    name: Gradle / wrapper-validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gradle/actions/wrapper-validation@v3
+
   compile:
     name: Build / compile
     runs-on: ubuntu-latest
@@ -118,6 +125,7 @@ jobs:
       - stylelint
       - eslint
       - esbuild-check
+      - gradle-wrapper-validation
     steps:
       - uses: actions/checkout@v4
       - run: corepack enable
