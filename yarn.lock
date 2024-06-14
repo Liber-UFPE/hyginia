@@ -112,9 +112,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/aix-ppc64@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/aix-ppc64@npm:0.21.4"
+"@esbuild/aix-ppc64@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/aix-ppc64@npm:0.21.5"
   conditions: os=aix & cpu=ppc64
   languageName: node
   linkType: hard
@@ -126,9 +126,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/android-arm64@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/android-arm64@npm:0.21.4"
+"@esbuild/android-arm64@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/android-arm64@npm:0.21.5"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
@@ -140,9 +140,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/android-arm@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/android-arm@npm:0.21.4"
+"@esbuild/android-arm@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/android-arm@npm:0.21.5"
   conditions: os=android & cpu=arm
   languageName: node
   linkType: hard
@@ -154,9 +154,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/android-x64@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/android-x64@npm:0.21.4"
+"@esbuild/android-x64@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/android-x64@npm:0.21.5"
   conditions: os=android & cpu=x64
   languageName: node
   linkType: hard
@@ -168,9 +168,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/darwin-arm64@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/darwin-arm64@npm:0.21.4"
+"@esbuild/darwin-arm64@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/darwin-arm64@npm:0.21.5"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
@@ -182,9 +182,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/darwin-x64@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/darwin-x64@npm:0.21.4"
+"@esbuild/darwin-x64@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/darwin-x64@npm:0.21.5"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
@@ -196,9 +196,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/freebsd-arm64@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/freebsd-arm64@npm:0.21.4"
+"@esbuild/freebsd-arm64@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/freebsd-arm64@npm:0.21.5"
   conditions: os=freebsd & cpu=arm64
   languageName: node
   linkType: hard
@@ -210,9 +210,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/freebsd-x64@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/freebsd-x64@npm:0.21.4"
+"@esbuild/freebsd-x64@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/freebsd-x64@npm:0.21.5"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
@@ -224,9 +224,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-arm64@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/linux-arm64@npm:0.21.4"
+"@esbuild/linux-arm64@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/linux-arm64@npm:0.21.5"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
@@ -238,9 +238,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-arm@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/linux-arm@npm:0.21.4"
+"@esbuild/linux-arm@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/linux-arm@npm:0.21.5"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
@@ -252,9 +252,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-ia32@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/linux-ia32@npm:0.21.4"
+"@esbuild/linux-ia32@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/linux-ia32@npm:0.21.5"
   conditions: os=linux & cpu=ia32
   languageName: node
   linkType: hard
@@ -266,9 +266,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-loong64@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/linux-loong64@npm:0.21.4"
+"@esbuild/linux-loong64@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/linux-loong64@npm:0.21.5"
   conditions: os=linux & cpu=loong64
   languageName: node
   linkType: hard
@@ -280,9 +280,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-mips64el@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/linux-mips64el@npm:0.21.4"
+"@esbuild/linux-mips64el@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/linux-mips64el@npm:0.21.5"
   conditions: os=linux & cpu=mips64el
   languageName: node
   linkType: hard
@@ -294,9 +294,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-ppc64@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/linux-ppc64@npm:0.21.4"
+"@esbuild/linux-ppc64@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/linux-ppc64@npm:0.21.5"
   conditions: os=linux & cpu=ppc64
   languageName: node
   linkType: hard
@@ -308,9 +308,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-riscv64@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/linux-riscv64@npm:0.21.4"
+"@esbuild/linux-riscv64@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/linux-riscv64@npm:0.21.5"
   conditions: os=linux & cpu=riscv64
   languageName: node
   linkType: hard
@@ -322,9 +322,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-s390x@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/linux-s390x@npm:0.21.4"
+"@esbuild/linux-s390x@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/linux-s390x@npm:0.21.5"
   conditions: os=linux & cpu=s390x
   languageName: node
   linkType: hard
@@ -336,9 +336,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-x64@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/linux-x64@npm:0.21.4"
+"@esbuild/linux-x64@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/linux-x64@npm:0.21.5"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
@@ -350,9 +350,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/netbsd-x64@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/netbsd-x64@npm:0.21.4"
+"@esbuild/netbsd-x64@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/netbsd-x64@npm:0.21.5"
   conditions: os=netbsd & cpu=x64
   languageName: node
   linkType: hard
@@ -364,9 +364,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/openbsd-x64@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/openbsd-x64@npm:0.21.4"
+"@esbuild/openbsd-x64@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/openbsd-x64@npm:0.21.5"
   conditions: os=openbsd & cpu=x64
   languageName: node
   linkType: hard
@@ -378,9 +378,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/sunos-x64@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/sunos-x64@npm:0.21.4"
+"@esbuild/sunos-x64@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/sunos-x64@npm:0.21.5"
   conditions: os=sunos & cpu=x64
   languageName: node
   linkType: hard
@@ -392,9 +392,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/win32-arm64@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/win32-arm64@npm:0.21.4"
+"@esbuild/win32-arm64@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/win32-arm64@npm:0.21.5"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
@@ -406,9 +406,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/win32-ia32@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/win32-ia32@npm:0.21.4"
+"@esbuild/win32-ia32@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/win32-ia32@npm:0.21.5"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
@@ -420,9 +420,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/win32-x64@npm:0.21.4":
-  version: 0.21.4
-  resolution: "@esbuild/win32-x64@npm:0.21.4"
+"@esbuild/win32-x64@npm:0.21.5":
+  version: 0.21.5
+  resolution: "@esbuild/win32-x64@npm:0.21.5"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -2151,33 +2151,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:0.21.4":
-  version: 0.21.4
-  resolution: "esbuild@npm:0.21.4"
+"esbuild@npm:0.21.5":
+  version: 0.21.5
+  resolution: "esbuild@npm:0.21.5"
   dependencies:
-    "@esbuild/aix-ppc64": "npm:0.21.4"
-    "@esbuild/android-arm": "npm:0.21.4"
-    "@esbuild/android-arm64": "npm:0.21.4"
-    "@esbuild/android-x64": "npm:0.21.4"
-    "@esbuild/darwin-arm64": "npm:0.21.4"
-    "@esbuild/darwin-x64": "npm:0.21.4"
-    "@esbuild/freebsd-arm64": "npm:0.21.4"
-    "@esbuild/freebsd-x64": "npm:0.21.4"
-    "@esbuild/linux-arm": "npm:0.21.4"
-    "@esbuild/linux-arm64": "npm:0.21.4"
-    "@esbuild/linux-ia32": "npm:0.21.4"
-    "@esbuild/linux-loong64": "npm:0.21.4"
-    "@esbuild/linux-mips64el": "npm:0.21.4"
-    "@esbuild/linux-ppc64": "npm:0.21.4"
-    "@esbuild/linux-riscv64": "npm:0.21.4"
-    "@esbuild/linux-s390x": "npm:0.21.4"
-    "@esbuild/linux-x64": "npm:0.21.4"
-    "@esbuild/netbsd-x64": "npm:0.21.4"
-    "@esbuild/openbsd-x64": "npm:0.21.4"
-    "@esbuild/sunos-x64": "npm:0.21.4"
-    "@esbuild/win32-arm64": "npm:0.21.4"
-    "@esbuild/win32-ia32": "npm:0.21.4"
-    "@esbuild/win32-x64": "npm:0.21.4"
+    "@esbuild/aix-ppc64": "npm:0.21.5"
+    "@esbuild/android-arm": "npm:0.21.5"
+    "@esbuild/android-arm64": "npm:0.21.5"
+    "@esbuild/android-x64": "npm:0.21.5"
+    "@esbuild/darwin-arm64": "npm:0.21.5"
+    "@esbuild/darwin-x64": "npm:0.21.5"
+    "@esbuild/freebsd-arm64": "npm:0.21.5"
+    "@esbuild/freebsd-x64": "npm:0.21.5"
+    "@esbuild/linux-arm": "npm:0.21.5"
+    "@esbuild/linux-arm64": "npm:0.21.5"
+    "@esbuild/linux-ia32": "npm:0.21.5"
+    "@esbuild/linux-loong64": "npm:0.21.5"
+    "@esbuild/linux-mips64el": "npm:0.21.5"
+    "@esbuild/linux-ppc64": "npm:0.21.5"
+    "@esbuild/linux-riscv64": "npm:0.21.5"
+    "@esbuild/linux-s390x": "npm:0.21.5"
+    "@esbuild/linux-x64": "npm:0.21.5"
+    "@esbuild/netbsd-x64": "npm:0.21.5"
+    "@esbuild/openbsd-x64": "npm:0.21.5"
+    "@esbuild/sunos-x64": "npm:0.21.5"
+    "@esbuild/win32-arm64": "npm:0.21.5"
+    "@esbuild/win32-ia32": "npm:0.21.5"
+    "@esbuild/win32-x64": "npm:0.21.5"
   dependenciesMeta:
     "@esbuild/aix-ppc64":
       optional: true
@@ -2227,7 +2227,7 @@ __metadata:
       optional: true
   bin:
     esbuild: bin/esbuild
-  checksum: 10c0/83276c7b82bc3415199da91a84a01cf287d4912f2c02fead9c0542d6bda463d6d152cb7fb86f680dae72dc701c864a8963069ddb9e2b344948595cc87f81c4f1
+  checksum: 10c0/fa08508adf683c3f399e8a014a6382a6b65542213431e26206c0720e536b31c09b50798747c2a105a4bbba1d9767b8d3615a74c2f7bf1ddf6d836cd11eb672de
   languageName: node
   linkType: hard
 
@@ -4898,7 +4898,7 @@ __metadata:
     "@liber-ufpe/esbuild-plugin-sharp": "npm:^1.0.0"
     "@stylistic/eslint-plugin-js": "npm:^2.0.0"
     autoprefixer: "npm:^10.4.17"
-    esbuild: "npm:0.21.4"
+    esbuild: "npm:0.21.5"
     esbuild-sass-plugin: "npm:^3.0.0"
     eslint: "npm:^9.0.0"
     flowbite: "npm:^2.2.1"
@@ -4975,145 +4975,145 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass-embedded-android-arm64@npm:1.77.2":
-  version: 1.77.2
-  resolution: "sass-embedded-android-arm64@npm:1.77.2"
+"sass-embedded-android-arm64@npm:1.77.5":
+  version: 1.77.5
+  resolution: "sass-embedded-android-arm64@npm:1.77.5"
   bin:
     sass: dart-sass/sass
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
-"sass-embedded-android-arm@npm:1.77.2":
-  version: 1.77.2
-  resolution: "sass-embedded-android-arm@npm:1.77.2"
+"sass-embedded-android-arm@npm:1.77.5":
+  version: 1.77.5
+  resolution: "sass-embedded-android-arm@npm:1.77.5"
   bin:
     sass: dart-sass/sass
   conditions: os=android & cpu=arm
   languageName: node
   linkType: hard
 
-"sass-embedded-android-ia32@npm:1.77.2":
-  version: 1.77.2
-  resolution: "sass-embedded-android-ia32@npm:1.77.2"
+"sass-embedded-android-ia32@npm:1.77.5":
+  version: 1.77.5
+  resolution: "sass-embedded-android-ia32@npm:1.77.5"
   bin:
     sass: dart-sass/sass
   conditions: os=android & cpu=ia32
   languageName: node
   linkType: hard
 
-"sass-embedded-android-x64@npm:1.77.2":
-  version: 1.77.2
-  resolution: "sass-embedded-android-x64@npm:1.77.2"
+"sass-embedded-android-x64@npm:1.77.5":
+  version: 1.77.5
+  resolution: "sass-embedded-android-x64@npm:1.77.5"
   bin:
     sass: dart-sass/sass
   conditions: os=android & cpu=x64
   languageName: node
   linkType: hard
 
-"sass-embedded-darwin-arm64@npm:1.77.2":
-  version: 1.77.2
-  resolution: "sass-embedded-darwin-arm64@npm:1.77.2"
+"sass-embedded-darwin-arm64@npm:1.77.5":
+  version: 1.77.5
+  resolution: "sass-embedded-darwin-arm64@npm:1.77.5"
   bin:
     sass: dart-sass/sass
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"sass-embedded-darwin-x64@npm:1.77.2":
-  version: 1.77.2
-  resolution: "sass-embedded-darwin-x64@npm:1.77.2"
+"sass-embedded-darwin-x64@npm:1.77.5":
+  version: 1.77.5
+  resolution: "sass-embedded-darwin-x64@npm:1.77.5"
   bin:
     sass: dart-sass/sass
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"sass-embedded-linux-arm64@npm:1.77.2":
-  version: 1.77.2
-  resolution: "sass-embedded-linux-arm64@npm:1.77.2"
+"sass-embedded-linux-arm64@npm:1.77.5":
+  version: 1.77.5
+  resolution: "sass-embedded-linux-arm64@npm:1.77.5"
   bin:
     sass: dart-sass/sass
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"sass-embedded-linux-arm@npm:1.77.2":
-  version: 1.77.2
-  resolution: "sass-embedded-linux-arm@npm:1.77.2"
+"sass-embedded-linux-arm@npm:1.77.5":
+  version: 1.77.5
+  resolution: "sass-embedded-linux-arm@npm:1.77.5"
   bin:
     sass: dart-sass/sass
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"sass-embedded-linux-ia32@npm:1.77.2":
-  version: 1.77.2
-  resolution: "sass-embedded-linux-ia32@npm:1.77.2"
+"sass-embedded-linux-ia32@npm:1.77.5":
+  version: 1.77.5
+  resolution: "sass-embedded-linux-ia32@npm:1.77.5"
   bin:
     sass: dart-sass/sass
   conditions: os=linux & cpu=ia32
   languageName: node
   linkType: hard
 
-"sass-embedded-linux-musl-arm64@npm:1.77.2":
-  version: 1.77.2
-  resolution: "sass-embedded-linux-musl-arm64@npm:1.77.2"
+"sass-embedded-linux-musl-arm64@npm:1.77.5":
+  version: 1.77.5
+  resolution: "sass-embedded-linux-musl-arm64@npm:1.77.5"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"sass-embedded-linux-musl-arm@npm:1.77.2":
-  version: 1.77.2
-  resolution: "sass-embedded-linux-musl-arm@npm:1.77.2"
+"sass-embedded-linux-musl-arm@npm:1.77.5":
+  version: 1.77.5
+  resolution: "sass-embedded-linux-musl-arm@npm:1.77.5"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"sass-embedded-linux-musl-ia32@npm:1.77.2":
-  version: 1.77.2
-  resolution: "sass-embedded-linux-musl-ia32@npm:1.77.2"
+"sass-embedded-linux-musl-ia32@npm:1.77.5":
+  version: 1.77.5
+  resolution: "sass-embedded-linux-musl-ia32@npm:1.77.5"
   conditions: os=linux & cpu=ia32
   languageName: node
   linkType: hard
 
-"sass-embedded-linux-musl-x64@npm:1.77.2":
-  version: 1.77.2
-  resolution: "sass-embedded-linux-musl-x64@npm:1.77.2"
+"sass-embedded-linux-musl-x64@npm:1.77.5":
+  version: 1.77.5
+  resolution: "sass-embedded-linux-musl-x64@npm:1.77.5"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"sass-embedded-linux-x64@npm:1.77.2":
-  version: 1.77.2
-  resolution: "sass-embedded-linux-x64@npm:1.77.2"
+"sass-embedded-linux-x64@npm:1.77.5":
+  version: 1.77.5
+  resolution: "sass-embedded-linux-x64@npm:1.77.5"
   bin:
     sass: dart-sass/sass
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"sass-embedded-win32-arm64@npm:1.77.2":
-  version: 1.77.2
-  resolution: "sass-embedded-win32-arm64@npm:1.77.2"
+"sass-embedded-win32-arm64@npm:1.77.5":
+  version: 1.77.5
+  resolution: "sass-embedded-win32-arm64@npm:1.77.5"
   bin:
     sass: dart-sass/sass.bat
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"sass-embedded-win32-ia32@npm:1.77.2":
-  version: 1.77.2
-  resolution: "sass-embedded-win32-ia32@npm:1.77.2"
+"sass-embedded-win32-ia32@npm:1.77.5":
+  version: 1.77.5
+  resolution: "sass-embedded-win32-ia32@npm:1.77.5"
   bin:
     sass: dart-sass/sass.bat
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"sass-embedded-win32-x64@npm:1.77.2":
-  version: 1.77.2
-  resolution: "sass-embedded-win32-x64@npm:1.77.2"
+"sass-embedded-win32-x64@npm:1.77.5":
+  version: 1.77.5
+  resolution: "sass-embedded-win32-x64@npm:1.77.5"
   bin:
     sass: dart-sass/sass.bat
   conditions: os=win32 & cpu=x64
@@ -5121,30 +5121,30 @@ __metadata:
   linkType: hard
 
 "sass-embedded@npm:^1.70.0":
-  version: 1.77.2
-  resolution: "sass-embedded@npm:1.77.2"
+  version: 1.77.5
+  resolution: "sass-embedded@npm:1.77.5"
   dependencies:
     "@bufbuild/protobuf": "npm:^1.0.0"
     buffer-builder: "npm:^0.2.0"
     immutable: "npm:^4.0.0"
     rxjs: "npm:^7.4.0"
-    sass-embedded-android-arm: "npm:1.77.2"
-    sass-embedded-android-arm64: "npm:1.77.2"
-    sass-embedded-android-ia32: "npm:1.77.2"
-    sass-embedded-android-x64: "npm:1.77.2"
-    sass-embedded-darwin-arm64: "npm:1.77.2"
-    sass-embedded-darwin-x64: "npm:1.77.2"
-    sass-embedded-linux-arm: "npm:1.77.2"
-    sass-embedded-linux-arm64: "npm:1.77.2"
-    sass-embedded-linux-ia32: "npm:1.77.2"
-    sass-embedded-linux-musl-arm: "npm:1.77.2"
-    sass-embedded-linux-musl-arm64: "npm:1.77.2"
-    sass-embedded-linux-musl-ia32: "npm:1.77.2"
-    sass-embedded-linux-musl-x64: "npm:1.77.2"
-    sass-embedded-linux-x64: "npm:1.77.2"
-    sass-embedded-win32-arm64: "npm:1.77.2"
-    sass-embedded-win32-ia32: "npm:1.77.2"
-    sass-embedded-win32-x64: "npm:1.77.2"
+    sass-embedded-android-arm: "npm:1.77.5"
+    sass-embedded-android-arm64: "npm:1.77.5"
+    sass-embedded-android-ia32: "npm:1.77.5"
+    sass-embedded-android-x64: "npm:1.77.5"
+    sass-embedded-darwin-arm64: "npm:1.77.5"
+    sass-embedded-darwin-x64: "npm:1.77.5"
+    sass-embedded-linux-arm: "npm:1.77.5"
+    sass-embedded-linux-arm64: "npm:1.77.5"
+    sass-embedded-linux-ia32: "npm:1.77.5"
+    sass-embedded-linux-musl-arm: "npm:1.77.5"
+    sass-embedded-linux-musl-arm64: "npm:1.77.5"
+    sass-embedded-linux-musl-ia32: "npm:1.77.5"
+    sass-embedded-linux-musl-x64: "npm:1.77.5"
+    sass-embedded-linux-x64: "npm:1.77.5"
+    sass-embedded-win32-arm64: "npm:1.77.5"
+    sass-embedded-win32-ia32: "npm:1.77.5"
+    sass-embedded-win32-x64: "npm:1.77.5"
     supports-color: "npm:^8.1.1"
     varint: "npm:^6.0.0"
   dependenciesMeta:
@@ -5182,7 +5182,7 @@ __metadata:
       optional: true
     sass-embedded-win32-x64:
       optional: true
-  checksum: 10c0/decea388af92c598abfa9a5b0c70b8e44eca5cec797cfc824b02dfb4e7bb8e40f7b7d46c0b2486a2b190c990dd9c6441fcbd2053e40cf1d6166f7999e483c29b
+  checksum: 10c0/2f75d285022da5a4eb1eff5ad8dc122bd80ecbbaa52dd23a29277151c26e905f28ebebba9fdbe2e396513055d0270c05fd5bc3c10d571f635f7575b2372c4a48
   languageName: node
   linkType: hard
 
