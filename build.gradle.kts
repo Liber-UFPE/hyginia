@@ -34,9 +34,6 @@ plugins {
     // SonarQube/SonarCloud plugin
     // https://github.com/SonarSource/sonar-scanner-gradle
     id("org.sonarqube") version "5.0.0.4638"
-    // Add diktat
-    // https://github.com/marcospereira/diktat
-    id("com.saveourtool.diktat") version "2.0.0"
     // To build the app ui frontend
     // https://siouan.github.io/frontend-gradle-plugin/
     id("org.siouan.frontend-jdk17") version "8.1.0"
@@ -129,13 +126,6 @@ sonar {
             "sonar.exclusions",
             listOf("src/main/**/books/*.txt"),
         )
-    }
-}
-
-diktat {
-    inputs {
-        include("src/**/*.kt")
-        exclude("src/accessibilityTest/**/*.kt")
     }
 }
 
@@ -232,10 +222,6 @@ tasks {
     /* ------------------------------ */
     /* End: Node/assets configuration */
     /* ------------------------------ */
-
-    named("check") {
-        dependsOn("diktatCheck")
-    }
 
     named<Test>("test") {
         useJUnitPlatform()
