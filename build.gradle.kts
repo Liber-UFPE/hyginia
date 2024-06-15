@@ -237,7 +237,7 @@ tasks {
     named<ShadowJar>("shadowJar") {
         manifest {
             attributes("Date" to LocalDateTime.now(ZoneOffset.UTC).toString())
-            gitLatestCommit.get().map { it }.onSuccess { commit ->
+            gitLatestCommit.get().map { it.trim() }.onSuccess { commit ->
                 attributes("Git-Last-Commit-Id" to commit)
             }
         }
