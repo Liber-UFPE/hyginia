@@ -36,6 +36,8 @@ class BooksControllerTest(private val server: EmbeddedServer, private val contex
             context.getBean<TextHighlighter>()
         }
 
+        afterSpec { server.stop() }
+
         given("#index") {
             `when`("accessing the list of books") {
                 then("show all the available books") {

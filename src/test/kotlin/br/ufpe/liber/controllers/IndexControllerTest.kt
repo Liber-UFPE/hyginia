@@ -29,6 +29,8 @@ class IndexControllerTest(private val server: EmbeddedServer, private val contex
             context.getBean(AssetsResolver::class.java)
         }
 
+        afterSpec { server.stop() }
+
         given("IndexController") {
             `when`("navigating to pages") {
                 forAll(
