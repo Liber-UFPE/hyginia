@@ -1,6 +1,8 @@
 import br.ufpe.liber.tasks.CommandOutputValueSource
 import br.ufpe.liber.tasks.GenerateAssetsMetadataTask
+import br.ufpe.liber.tasks.JunitXmlResultAggregatorTask
 import br.ufpe.liber.tasks.ParseBooksTask
+import br.ufpe.liber.tasks.Sources
 import com.adarshr.gradle.testlogger.theme.ThemeType
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.lordcodes.turtle.shellRun
@@ -261,44 +263,21 @@ tasks {
     register<ParseBooksTask>("parseBooks") {
         group = "data"
         description = "Parse books from txt files"
-        inputs.files(
-            fileTree(layout.projectDirectory.dir("src/main/resources/books/")) {
-                include("*.utf8.txt")
-            },
-        )
-        outputs.files(
-            fileTree(layout.projectDirectory.dir("src/main/resources/books/")) {
-                include("*.utf8.json")
-            },
-        )
     }
 
-    register("mergeJUnitReports") {
+    register<JunitXmlResultAggregatorTask>("mergeJUnitReports") {
         val resultsDir = project.layout.buildDirectory.file("test-results/test").get().asFile
         val accessibilityResultsDir = project.layout.buildDirectory.file("test-results/accessibilityTest").get().asFile
-        val aggregateFile = "build/test-results/junit.xml"
 
-        doLast {
-            ant.withGroovyBuilder {
-                "taskdef"(
-                    "name" to "junitreport",
-                    "classname" to "org.apache.tools.ant.taskdefs.optional.junit.XMLResultAggregator",
-                    "classpath" to antJUnit.asPath,
-                )
+        sources = Sources(
+            resultsDir to "TEST-*.xml",
+            accessibilityResultsDir to "TEST-*.xml",
+        )
 
-                // generates an XML report
-                "junitreport"("tofile" to aggregateFile) {
-                    "fileset"(
-                        "dir" to resultsDir,
-                        "includes" to "TEST-*.xml",
-                    )
-                    "fileset"(
-                        "dir" to accessibilityResultsDir,
-                        "includes" to "TEST-*.xml",
-                    )
-                }
-            }
-        }
+        toFile = project.layout.buildDirectory.file("junit.xml")
+        toDir = project.layout.buildDirectory.dir("test-results")
+
+        mustRunAfter("test")
     }
 }
 
