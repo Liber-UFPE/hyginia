@@ -40,6 +40,8 @@ class SearchControllerTest(private val server: EmbeddedServer, private val conte
             context.getBean(AssetsResolver::class.java)
         }
 
+        afterSpec { server.stop() }
+
         given("SearchController") {
             `when`("GET /search") {
                 then("should return zero results if query is not present") {

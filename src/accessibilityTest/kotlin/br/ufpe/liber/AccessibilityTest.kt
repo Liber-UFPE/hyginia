@@ -50,6 +50,8 @@ class AccessibilityTest(private val server: EmbeddedServer, private val context:
             context.getBean<AssetsResolver>()
         }
 
+        afterSpec { server.stop() }
+
         // Called once per Spec, after all tests have completed for that spec.
         finalizeSpec {
             driver.close()
