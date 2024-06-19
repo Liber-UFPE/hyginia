@@ -117,7 +117,7 @@ abstract class ParseBooksTask : DefaultTask() {
             .get()
             .sorted()
             .forEach { file ->
-                project.logger.info("\t Parse book file $file")
+                logger.info("\t Parse book file $file")
 
                 val book = parse(file)
 
@@ -126,7 +126,7 @@ abstract class ParseBooksTask : DefaultTask() {
                 val jsonFile = "${file.absolutePath.substringBeforeLast(".")}.json"
                 File(jsonFile).writeText(prettyJson.encodeToString(book))
 
-                project.logger.info("\t JSON file $jsonFile generated")
+                logger.info("\t JSON file $jsonFile generated")
             }
     }
 }
