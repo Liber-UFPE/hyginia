@@ -25,4 +25,13 @@ dependencies {
     implementation("org.apache.james:apache-mime4j-dom:0.8.11")
     implementation("org.apache.tika:tika-core:2.9.2")
     implementation("org.apache.tika:tika-parsers-standard-package:2.9.2")
+
+    // Due to CVEs:
+    // - https://github.com/advisories/GHSA-m44j-cfrm-g8qc
+    // - https://github.com/advisories/GHSA-v435-xc8x-wvr9
+    // - https://github.com/advisories/GHSA-8xfc-gm6g-vgpv
+    // - https://github.com/advisories/GHSA-4h8f-2wvx-gg5w
+    // Can be removed when docker-java updates to Bouncy Castle >= 1.78
+    implementation("org.bouncycastle:bcmail-jdk18on:1.78.1")
+    implementation("org.bouncycastle:bcprov-jdk18on:1.78.1")
 }
