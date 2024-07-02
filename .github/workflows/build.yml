@@ -338,8 +338,7 @@ jobs:
       - name: Create Image
         # language="shell script"
         run: |
-          ls -l -R
-          artifact_file="docker-image-${{ github.run_id }}/generate-image-latest.tar.gz"
+          artifact_file="generate-image-latest.tar.gz"
           if [ -f "$artifact_file" ]; then
             echo "Previously generate image found. Will load image"
             docker load < "$artifact_file"
