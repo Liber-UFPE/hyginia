@@ -9,7 +9,6 @@
     },
     "devDependencies": {
         "@eslint/js": "^9.0.0",
-        "@lhci/cli": "0.14.0",
         "@liber-ufpe/esbuild-plugin-compress": "^1.0.0",
         "@liber-ufpe/esbuild-plugin-sharp": "^1.0.0",
         "@stylistic/eslint-plugin-js": "^2.0.0",
