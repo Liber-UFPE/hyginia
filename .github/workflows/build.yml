@@ -129,7 +129,7 @@ jobs:
 
   compile:
     name: Build / compile
-    runs-on: ubuntu-latest
+    runs-on: buildjet-8vcpu-ubuntu-2204
     needs:
       - diktat
       - detekt
@@ -166,7 +166,7 @@ jobs:
 
   test:
     name: Tests / test
-    runs-on: ubuntu-latest
+    runs-on: buildjet-8vcpu-ubuntu-2204
     needs:
       - compile
     steps:
@@ -219,7 +219,7 @@ jobs:
 
   test-docker-image:
     name: Tests / docker image
-    runs-on: ubuntu-latest
+    runs-on: buildjet-8vcpu-ubuntu-2204
     needs:
       - compile
     steps:
