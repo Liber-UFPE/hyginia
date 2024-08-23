@@ -18,7 +18,7 @@ dependencies {
     implementation("com.lordcodes.turtle:turtle:0.10.0")
 
     // Manually adding commons-compress due to https://devhub.checkmarx.com/cve-details/CVE-2024-26308/
-    implementation("org.apache.commons:commons-compress:1.27.0")
+    implementation("org.apache.commons:commons-compress:1.27.1")
 
     // Manually adding apache-mime4j-dom due to https://github.com/advisories/GHSA-jw7r-rxff-gv24.
     // It can be removed when updating Apache Tika to a newer version
