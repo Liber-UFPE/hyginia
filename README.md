@@ -51,7 +51,7 @@ vagrant destroy --graceful --force
 ## Requisitos
 
 1. Java 21 (mais fácil de instalar com [SDKMAN](https://sdkman.io/))
-2. [Node.js 20](https://nodejs.org/en)
+2. [Node.js 18/20](https://nodejs.org/en)
    1. [yarn](https://yarnpkg.com/getting-started/install)
 3. [Docker Desktop](https://www.docker.com/products/docker-desktop/) (se você quiser testar as imagens Docker)
 4. [Ktlint CLI][ktlint-cli] (se você quiser executar inspeções de código localmente)
