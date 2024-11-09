@@ -5,7 +5,7 @@
   ],
   timezone: 'America/Toronto',
   schedule: [
-    'before 1am on friday',
+    'after 1am on friday',
   ],
   rebaseWhen: 'conflicted',
   packageRules: [
