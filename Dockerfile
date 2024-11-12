@@ -26,7 +26,8 @@ RUN ./gradlew -Dsonar.gradle.skipCompile=true --console plain --no-configuration
       clean shadowJar -x test -x accessibilityTest \
       && mv -vf build/libs/*.jar app.jar
 
-FROM eclipse-temurin:21.0.5_11-jre-alpine
+# https://github.com/GoogleContainerTools/distroless/tree/main/java
+FROM gcr.io/distroless/java21-debian12
 
 LABEL org.opencontainers.image.description="Monummenta Hygínia Java Application Service"
 LABEL org.opencontainers.image.url="https://github.com/Liber-UFPE/hyginia/"
@@ -51,4 +52,6 @@ HEALTHCHECK CMD curl -f "http://localhost:$HYGINIA_PORT/" || exit 1
 RUN addgroup --system hyginia && adduser --system -G hyginia hyginia
 USER hyginia
 
-ENTRYPOINT [ "java", "-jar", "app.jar" ]
+# The entrypoint for distroless images is set to the equivalent of "java -jar"
+# so it only expects a path to a JAR file in the CMD.
+CMD [ "app.jar" ]
