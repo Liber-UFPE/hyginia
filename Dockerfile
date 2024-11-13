@@ -44,14 +44,6 @@ COPY --from=build /app/app.jar .
 EXPOSE 8080
 HEALTHCHECK CMD curl -f "http://localhost:$HYGINIA_PORT/" || exit 1
 
-# Add unprivileged user to run the service:
-# https://docs.docker.com/engine/reference/builder/#user
-# https://docs.docker.com/develop/develop-images/instructions/#user
-# https://manpages.ubuntu.com/manpages/noble/en/man8/addgroup.8.html
-# https://manpages.ubuntu.com/manpages/noble/en/man8/adduser.8.html
-RUN addgroup --system hyginia && adduser --system -G hyginia hyginia
-USER hyginia
-
 # The entrypoint for distroless images is set to the equivalent of "java -jar"
 # so it only expects a path to a JAR file in the CMD.
 CMD [ "app.jar" ]
