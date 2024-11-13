@@ -27,7 +27,7 @@ RUN ./gradlew -Dsonar.gradle.skipCompile=true --console plain --no-configuration
       && mv -vf build/libs/*.jar app.jar
 
 # https://github.com/GoogleContainerTools/distroless/tree/main/java
-FROM gcr.io/distroless/java21-debian12
+FROM gcr.io/distroless/java21-debian12:nonroot
 
 LABEL org.opencontainers.image.description="Monummenta Hygínia Java Application Service"
 LABEL org.opencontainers.image.url="https://github.com/Liber-UFPE/hyginia/"
