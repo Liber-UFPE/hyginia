@@ -18,7 +18,6 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("io.micronaut.application") version "4.4.4"
     id("gg.jte.gradle") version "3.1.15"
-    id("io.micronaut.aot") version "4.4.4"
     // Provides better test output
     id("com.adarshr.test-logger") version "4.0.0"
     // Code Coverage:
@@ -30,9 +29,6 @@ plugins {
     // Easily add new test sets
     // https://github.com/unbroken-dome/gradle-testsets-plugin
     id("org.unbroken-dome.test-sets") version "4.1.0"
-    // To manage docker images
-    // https://github.com/bmuschko/gradle-docker-plugin
-    id("com.bmuschko.docker-remote-api") version "9.4.0"
     // SonarQube/SonarCloud plugin
     // https://github.com/SonarSource/sonar-scanner-gradle
     id("org.sonarqube") version "6.0.0.5145"
@@ -152,17 +148,6 @@ micronaut {
     processing {
         incremental(true)
         annotations("$group.*")
-    }
-    aot {
-        // Please review carefully the optimizations enabled below
-        // Check https://micronaut-projects.github.io/micronaut-aot/latest/guide/ for more details
-        optimizeServiceLoading.set(false)
-        convertYamlToJava.set(false)
-        precomputeOperations.set(true)
-        cacheEnvironment.set(true)
-        optimizeClassLoading.set(true)
-        deduceEnvironment.set(true)
-        optimizeNetty.set(true)
     }
 }
 
