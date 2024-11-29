@@ -34,7 +34,7 @@ plugins {
     id("org.sonarqube") version "6.0.1.5171"
     // To build the app ui frontend
     // https://siouan.github.io/frontend-gradle-plugin/
-    id("org.siouan.frontend-jdk17") version "9.1.0"
+    id("org.siouan.frontend-jdk17") version "10.0.0"
 }
 
 val runningOnCI: Boolean = getenv().getOrDefault("CI", "false").toBoolean()
