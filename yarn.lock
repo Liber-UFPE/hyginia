@@ -2123,7 +2123,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"flowbite@npm:^2.0.0, flowbite@npm:^2.2.1":
+"flowbite-datepicker@npm:^1.3.1":
+  version: 1.3.2
+  resolution: "flowbite-datepicker@npm:1.3.2"
+  dependencies:
+    "@rollup/plugin-node-resolve": "npm:^15.2.3"
+    flowbite: "npm:^2.0.0"
+  checksum: 10c0/ea9aa41829aadcf7118ccc983035d069b5315c470de7a58c16a8b7a72e0521a220daa6a587dce1d6160f6fe1f2b5fe27e152e8a8ac052d689bbfec47d4d62ab7
+  languageName: node
+  linkType: hard
+
+"flowbite@npm:^2.0.0":
   version: 2.5.2
   resolution: "flowbite@npm:2.5.2"
   dependencies:
@@ -2131,6 +2141,17 @@ __metadata:
     flowbite-datepicker: "npm:^1.3.0"
     mini-svg-data-uri: "npm:^1.4.3"
   checksum: 10c0/7de6311d4aef16b4854d88bab7943d59db16077a90a1da757fee06c70ef8bba8bb2579d3c5b3d5ceab85d9b9500b16d13eb4c55521f3a02989620f9a4ba3a2ed
+  languageName: node
+  linkType: hard
+
+"flowbite@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "flowbite@npm:3.0.0"
+  dependencies:
+    "@popperjs/core": "npm:^2.9.3"
+    flowbite-datepicker: "npm:^1.3.1"
+    mini-svg-data-uri: "npm:^1.4.3"
+  checksum: 10c0/4210dd320c792f5039e4e7eb6389915954a6fc960ddc82e668a3910b66b64e358810d2226cc0f4373ab4ae7ea7a49d5dd4b681905581068cd6f72f6e5acddbee
   languageName: node
   linkType: hard
 
@@ -3439,7 +3460,7 @@ __metadata:
     esbuild: "npm:0.24.2"
     esbuild-sass-plugin: "npm:^3.0.0"
     eslint: "npm:^9.0.0"
-    flowbite: "npm:^2.2.1"
+    flowbite: "npm:^3.0.0"
     globals: "npm:^15.0.0"
     htmx.org: "npm:^2.0.0"
     postcss: "npm:^8.4.35"
