@@ -11,10 +11,10 @@ import java.time.LocalDateTime
 import java.time.ZoneOffset
 
 plugins {
-    kotlin("jvm") version "2.0.21"
-    kotlin("plugin.allopen") version "2.0.21"
-    kotlin("plugin.serialization") version "2.0.21"
-    id("com.google.devtools.ksp") version "2.0.21-1.0.28"
+    kotlin("jvm") version "2.1.10"
+    kotlin("plugin.allopen") version "2.1.10"
+    kotlin("plugin.serialization") version "2.1.10"
+    id("com.google.devtools.ksp") version "2.1.10-1.0.30"
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("io.micronaut.application") version "4.4.5"
     id("gg.jte.gradle") version "3.1.16"
@@ -22,7 +22,7 @@ plugins {
     id("com.adarshr.test-logger") version "4.0.0"
     // Code Coverage:
     // https://github.com/Kotlin/kotlinx-kover
-    id("org.jetbrains.kotlinx.kover") version "0.8.3"
+    id("org.jetbrains.kotlinx.kover") version "0.9.1"
     // Code Inspections
     // https://detekt.dev/
     id("io.gitlab.arturbosch.detekt") version "1.23.7"
@@ -289,7 +289,7 @@ dependencies {
 
     implementation(kotlin("reflect", kotlinVersion))
     implementation(kotlin("stdlib-jdk8", kotlinVersion))
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
 
     // jte dependencies
     jteGenerate("gg.jte:jte-models:$jteVersion")
