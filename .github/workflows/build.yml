@@ -110,7 +110,7 @@ jobs:
 
   compile:
     name: Build / compile
-    runs-on: ubuntu-latest
+    runs-on: namespace-profile-default
     needs:
       - diktat
       - detekt
@@ -146,7 +146,7 @@ jobs:
 
   test:
     name: Tests / test
-    runs-on: ubuntu-latest
+    runs-on: namespace-profile-default
     needs:
       - compile
     steps:
