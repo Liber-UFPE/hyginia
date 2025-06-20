@@ -2392,9 +2392,9 @@ __metadata:
   linkType: hard
 
 "htmx.org@npm:^2.0.0":
-  version: 2.0.4
-  resolution: "htmx.org@npm:2.0.4"
-  checksum: 10c0/15c5405f28d9768eb343569af940ec1bc6ff3181925c105611a053699ef53f05af3c4e0709790339139f0633f50b7c7a959f85b38366f6ec3149a62ead5dd2b1
+  version: 2.0.5
+  resolution: "htmx.org@npm:2.0.5"
+  checksum: 10c0/c09dbb1396599129f36ae7286a4f89a4f9988c1eb6b4a562f0e7c591c781257ece08408e414a34f48c4c311af52762d945154c35c5b68e24411da6b47a8284b0
   languageName: node
   linkType: hard
 
