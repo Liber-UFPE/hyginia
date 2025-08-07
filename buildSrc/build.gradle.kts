@@ -25,4 +25,8 @@ dependencies {
     implementation("org.apache.james:apache-mime4j-dom:0.8.13")
     implementation("org.apache.tika:tika-core:3.2.1")
     implementation("org.apache.tika:tika-parsers-standard-package:3.2.1")
+
+    // Add the Ant JUnit dependency. This was removed in Gradle 9.0.0 and
+    // now needs to be included manually.
+    implementation("org.apache.ant:ant-junit:1.10.15")
 }
