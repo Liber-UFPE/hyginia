@@ -15,7 +15,7 @@ plugins {
     kotlin("plugin.allopen") version "2.2.0"
     kotlin("plugin.serialization") version "2.2.0"
     id("com.google.devtools.ksp") version "2.2.0-2.0.2"
-    id("com.gradleup.shadow") version "8.3.9"
+    id("com.gradleup.shadow") version "9.0.1"
     id("io.micronaut.application") version "4.5.4"
     id("gg.jte.gradle") version "3.2.1"
     // Provides better test output
