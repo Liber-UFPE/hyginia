@@ -11,9 +11,9 @@ import java.time.LocalDateTime
 import java.time.ZoneOffset
 
 plugins {
-    kotlin("jvm") version "2.2.10"
-    kotlin("plugin.allopen") version "2.2.10"
-    kotlin("plugin.serialization") version "2.2.10"
+    kotlin("jvm") version "2.2.20"
+    kotlin("plugin.allopen") version "2.2.20"
+    kotlin("plugin.serialization") version "2.2.20"
     id("com.google.devtools.ksp") version "2.2.10-2.0.2"
     id("com.gradleup.shadow") version "8.3.9"
     id("io.micronaut.application") version "4.5.4"
