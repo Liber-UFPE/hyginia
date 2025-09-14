@@ -134,6 +134,6 @@ O projeto segue o padrão [Maven Standard Directory Layout](https://maven.apache
 [kotlin]: https://kotlinlang.org/
 [micronaut]: https://micronaut.io/
 [tailwind]: https://tailwindcss.com/
-[vagrant]: https://www.vagrantup.com/
+[vagrant]: https://developer.hashicorp.com/vagrant
 [ktlint]: https://github.com/pinterest/ktlint
 [ktlint-cli]: https://pinterest.github.io/ktlint/latest/install/cli/
