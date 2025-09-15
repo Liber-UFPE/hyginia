@@ -23,8 +23,8 @@ dependencies {
     // Manually adding apache-mime4j-dom due to https://github.com/advisories/GHSA-jw7r-rxff-gv24.
     // It can be removed when updating Apache Tika to a newer version
     implementation("org.apache.james:apache-mime4j-dom:0.8.13")
-    implementation("org.apache.tika:tika-core:3.2.2")
-    implementation("org.apache.tika:tika-parsers-standard-package:3.2.2")
+    implementation("org.apache.tika:tika-core:3.2.3")
+    implementation("org.apache.tika:tika-parsers-standard-package:3.2.3")
 
     // Add the Ant JUnit dependency. This was removed in Gradle 9.0.0 and
     // now needs to be included manually.
