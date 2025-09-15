@@ -35,6 +35,8 @@ plugins {
     // To build the app ui frontend
     // https://siouan.github.io/frontend-gradle-plugin/
     id("org.siouan.frontend-jdk17") version "10.0.0"
+    // https://github.com/CycloneDX/cyclonedx-gradle-plugin
+    id("org.cyclonedx.bom") version "2.3.1"
 }
 
 val runningOnCI: Boolean = getenv().getOrDefault("CI", "false").toBoolean()
@@ -263,6 +265,22 @@ tasks {
         toDir = project.layout.buildDirectory.dir("test-results")
 
         mustRunAfter("test")
+    }
+
+    cyclonedxBom {
+        // CycloneDX schema (as string in 2.x)
+        schemaVersion = "1.6"
+
+        // Only include production configs
+        includeConfigs = listOf("runtimeClasspath", "compileClasspath")
+
+        // Exclude test / codegen / annotation processors etc.
+        skipConfigs = listOf(".*test.*", ".*Test.*", "kapt.*", "ksp.*", "annotationProcessor")
+
+        // Put output in a stable location and only JSON (workflow expects this)
+        destination = file("${layout.buildDirectory.asFile.get().absolutePath}/reports/cyclonedx")
+        outputName = "bom"
+        outputFormat = "json"
     }
 }
 
