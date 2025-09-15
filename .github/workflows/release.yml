@@ -115,7 +115,7 @@ jobs:
       - name: Submit SPDX SBOM to GitHub
         uses: advanced-security/spdx-dependency-submission-action@v0.1.1
         with:
-          filePath: ./build/spdx/release.spdx.json
+          filePath: "build/spdx"
 
   create-release:
     name: Creates a GitHub Release
