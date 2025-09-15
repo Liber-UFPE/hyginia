@@ -104,7 +104,7 @@ jobs:
       - uses: ./.github/gradle-action
       # Generate SPDX (JSON).
       - name: Generate CycloneDX SBOM
-        run: ./gradlew ::spdxSbom
+        run: ./gradlew :spdxSbom
       # Keep artifacts for auditing
       - uses: actions/upload-artifact@v4
         with:
