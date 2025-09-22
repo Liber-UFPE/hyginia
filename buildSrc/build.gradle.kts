@@ -12,7 +12,7 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
-    implementation("org.apache.logging.log4j:log4j-core:2.25.1")
+    implementation("org.apache.logging.log4j:log4j-core:2.25.2")
     implementation("commons-codec:commons-codec:1.19.0")
 
     implementation("com.lordcodes.turtle:turtle:0.10.0")
