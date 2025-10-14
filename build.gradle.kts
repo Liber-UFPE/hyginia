@@ -31,7 +31,7 @@ plugins {
     id("org.unbroken-dome.test-sets") version "4.1.0"
     // SonarQube/SonarCloud plugin
     // https://github.com/SonarSource/sonar-scanner-gradle
-    id("org.sonarqube") version "6.3.1.5724"
+    id("org.sonarqube") version "7.0.0.6105"
     // To build the app ui frontend
     // https://siouan.github.io/frontend-gradle-plugin/
     id("org.siouan.frontend-jdk17") version "10.0.0"
