@@ -129,7 +129,7 @@ sonar {
 }
 
 frontend {
-    nodeVersion = "18.20.3"
+    nodeVersion = "24.10.0"
 
     nodeDistributionProvided = getNodeExecutable.get().success
     nodeInstallDirectory = getNodeExecutable.get()
