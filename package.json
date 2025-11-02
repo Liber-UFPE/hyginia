@@ -13,7 +13,7 @@
         "@liber-ufpe/esbuild-plugin-sharp": "^1.0.0",
         "@stylistic/eslint-plugin-js": "^4.0.0",
         "autoprefixer": "^10.4.17",
-        "esbuild": "0.25.11",
+        "esbuild": "0.25.12",
         "esbuild-sass-plugin": "^3.0.0",
         "eslint": "^9.0.0",
         "globals": "^16.0.0",
