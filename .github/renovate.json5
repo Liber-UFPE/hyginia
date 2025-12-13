@@ -16,43 +16,43 @@
   packageRules: [
     {
       matchDepTypes: [
-        'devDependencies',
+        'devDependencies'
       ],
       matchUpdateTypes: [
         'patch',
-        'minor',
+        'minor'
       ],
       groupName: 'Node / Dev Dependencies / Patch and Minor Updates',
-      groupSlug: 'node-dev-deps-patch-minor',
+      groupSlug: 'node-dev-deps-patch-minor'
     },
     {
       groupName: 'Node / Dev Dependencies / Stylelint',
       groupSlug: 'node-dev-deps-stylelint',
       matchPackageNames: [
-        '/^stylelint/',
-      ],
+        '/^stylelint/'
+      ]
     },
     {
       groupName: 'Java / Micronaut',
       groupSlug: 'java-micronaut',
       matchPackageNames: [
-        'io.micronaut{/,}**',
-      ],
+        'io.micronaut{/,}**'
+      ]
     },
     {
       groupName: 'Java / Apache Tika',
       groupSlug: 'java-apache-tika',
       matchPackageNames: [
-        'org.apache.tika{/,}**',
-      ],
+        'org.apache.tika{/,}**'
+      ]
     },
     {
       groupName: 'Kotlin / Plugins',
       groupSlug: 'kotlin-plugins',
       matchPackageNames: [
         'org.jetbrains.kotlin{/,}**',
-        'com.google.devtools.ksp{/,}**',
-      ],
-    },
-  ],
+        'com.google.devtools.ksp{/,}**'
+      ]
+    }
+  ]
 }
