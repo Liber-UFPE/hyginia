@@ -5,6 +5,14 @@
   ],
   timezone: 'America/Toronto',
   rebaseWhen: 'conflicted',
+
+  vulnerabilityAlerts: {
+    enabled: true,
+    labels: ["security"]
+  },
+  osvVulnerabilityAlerts: true,
+  dependencyDashboardOSVVulnerabilitySummary: "all",
+
   packageRules: [
     {
       matchDepTypes: [
