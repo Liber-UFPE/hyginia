@@ -113,7 +113,7 @@ jobs:
             ./build/spdx/release.spdx.json
       # Submit SPDX to GitHub Dependency Submission API
       - name: Submit SPDX SBOM to GitHub
-        uses: advanced-security/spdx-dependency-submission-action@v0.1.1
+        uses: advanced-security/spdx-dependency-submission-action@5530bab9ee4bbe66420ce8280624036c77f89746 # v0.1.1
         with:
           filePath: "build/spdx"
 
@@ -153,7 +153,7 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
-      - uses: docker/setup-buildx-action@v3
+      - uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # v3
       - name: Docker / Get image name
         id: dockerImageName
         # yamllint disable rule:line-length
@@ -166,11 +166,11 @@ jobs:
         run: |
           docker image build -t ${{ steps.dockerImageName.outputs.dockerImageName }}:latest .
       # Needs to log in to use docker scout below
-      - uses: docker/login-action@v3
+      - uses: docker/login-action@5e57cd118135c172c3672efd75eb46360885c0ef # v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - uses: docker/scout-action@v1
+      - uses: docker/scout-action@f8c776824083494ab0d56b8105ba2ca85c86e4de # v1
         continue-on-error: true
         with:
           command: quickview
@@ -189,7 +189,7 @@ jobs:
           docker container logs "$containerId"
           docker container stop "$containerId"
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@5e57cd118135c172c3672efd75eb46360885c0ef # v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}

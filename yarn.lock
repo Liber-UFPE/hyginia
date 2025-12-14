@@ -576,7 +576,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:9.39.2, @eslint/js@npm:^9.0.0":
+"@eslint/js@npm:9.39.2":
   version: 9.39.2
   resolution: "@eslint/js@npm:9.39.2"
   checksum: 10c0/00f51c52b04ac79faebfaa65a9652b2093b9c924e945479f1f3945473f78aee83cbc76c8d70bbffbf06f7024626575b16d97b66eab16182e1d0d39daff2f26f5
@@ -925,7 +925,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@liber-ufpe/esbuild-plugin-compress@npm:^1.0.0":
+"@liber-ufpe/esbuild-plugin-compress@npm:1.1.0":
   version: 1.1.0
   resolution: "@liber-ufpe/esbuild-plugin-compress@npm:1.1.0"
   dependencies:
@@ -935,7 +935,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@liber-ufpe/esbuild-plugin-sharp@npm:^1.0.0":
+"@liber-ufpe/esbuild-plugin-sharp@npm:1.1.0":
   version: 1.1.0
   resolution: "@liber-ufpe/esbuild-plugin-sharp@npm:1.1.0"
   dependencies:
@@ -1199,7 +1199,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stylistic/eslint-plugin-js@npm:^4.0.0":
+"@stylistic/eslint-plugin-js@npm:4.4.1":
   version: 4.4.1
   resolution: "@stylistic/eslint-plugin-js@npm:4.4.1"
   dependencies:
@@ -1582,7 +1582,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:^10.4.17":
+"autoprefixer@npm:10.4.22":
   version: 10.4.22
   resolution: "autoprefixer@npm:10.4.22"
   dependencies:
@@ -2113,7 +2113,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild-sass-plugin@npm:^3.0.0":
+"esbuild-sass-plugin@npm:3.3.1":
   version: 3.3.1
   resolution: "esbuild-sass-plugin@npm:3.3.1"
   dependencies:
@@ -2358,7 +2358,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^9.0.0":
+"eslint@npm:9.39.2":
   version: 9.39.2
   resolution: "eslint@npm:9.39.2"
   dependencies:
@@ -2760,17 +2760,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"globals@npm:16.5.0":
+  version: 16.5.0
+  resolution: "globals@npm:16.5.0"
+  checksum: 10c0/615241dae7851c8012f5aa0223005b1ed6607713d6813de0741768bd4ddc39353117648f1a7086b4b0fa45eae733f1c0a0fe369aa4e543bb63f8de8990178ea9
+  languageName: node
+  linkType: hard
+
 "globals@npm:^14.0.0":
   version: 14.0.0
   resolution: "globals@npm:14.0.0"
   checksum: 10c0/b96ff42620c9231ad468d4c58ff42afee7777ee1c963013ff8aabe095a451d0ceeb8dcd8ef4cbd64d2538cef45f787a78ba3a9574f4a634438963e334471302d
-  languageName: node
-  linkType: hard
-
-"globals@npm:^16.0.0":
-  version: 16.5.0
-  resolution: "globals@npm:16.5.0"
-  checksum: 10c0/615241dae7851c8012f5aa0223005b1ed6607713d6813de0741768bd4ddc39353117648f1a7086b4b0fa45eae733f1c0a0fe369aa4e543bb63f8de8990178ea9
   languageName: node
   linkType: hard
 
@@ -3975,7 +3975,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.35, postcss@npm:^8.4.41, postcss@npm:^8.4.47, postcss@npm:^8.5.1, postcss@npm:^8.5.6":
+"postcss@npm:8.5.6, postcss@npm:^8.4.41, postcss@npm:^8.4.47, postcss@npm:^8.5.1, postcss@npm:^8.5.6":
   version: 8.5.6
   resolution: "postcss@npm:8.5.6"
   dependencies:
@@ -4134,23 +4134,23 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@eslint/js": "npm:^9.0.0"
-    "@liber-ufpe/esbuild-plugin-compress": "npm:^1.0.0"
-    "@liber-ufpe/esbuild-plugin-sharp": "npm:^1.0.0"
-    "@stylistic/eslint-plugin-js": "npm:^4.0.0"
-    autoprefixer: "npm:^10.4.17"
+    "@eslint/js": "npm:9.39.2"
+    "@liber-ufpe/esbuild-plugin-compress": "npm:1.1.0"
+    "@liber-ufpe/esbuild-plugin-sharp": "npm:1.1.0"
+    "@stylistic/eslint-plugin-js": "npm:4.4.1"
+    autoprefixer: "npm:10.4.22"
     esbuild: "npm:0.27.1"
-    esbuild-sass-plugin: "npm:^3.0.0"
-    eslint: "npm:^9.0.0"
+    esbuild-sass-plugin: "npm:3.3.1"
+    eslint: "npm:9.39.2"
     flowbite: "npm:^4.0.0"
-    globals: "npm:^16.0.0"
+    globals: "npm:16.5.0"
     htmx.org: "npm:^2.0.0"
-    postcss: "npm:^8.4.35"
-    sass-embedded: "npm:^1.70.0"
+    postcss: "npm:8.5.6"
+    sass-embedded: "npm:1.96.0"
     stylelint: "npm:16.26.1"
     stylelint-config-standard: "npm:39.0.1"
     stylelint-config-standard-scss: "npm:16.0.0"
-    tailwindcss: "npm:^3.4.1"
+    tailwindcss: "npm:3.4.19"
   languageName: unknown
   linkType: soft
 
@@ -4316,7 +4316,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass-embedded@npm:^1.70.0":
+"sass-embedded@npm:1.96.0":
   version: 1.96.0
   resolution: "sass-embedded@npm:1.96.0"
   dependencies:
@@ -4872,14 +4872,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:4.1.18, tailwindcss@npm:^4.1.12":
-  version: 4.1.18
-  resolution: "tailwindcss@npm:4.1.18"
-  checksum: 10c0/c79263cea0b2c577859b02f28284caa4eb3844e4d0f563686726ca97817c045c5c395a55bc776daaa351ba9e4aefa9a75bfbb43c22d86f3c573eecc2b87d6bf1
-  languageName: node
-  linkType: hard
-
-"tailwindcss@npm:^3.4.1":
+"tailwindcss@npm:3.4.19":
   version: 3.4.19
   resolution: "tailwindcss@npm:3.4.19"
   dependencies:
@@ -4909,6 +4902,13 @@ __metadata:
     tailwind: lib/cli.js
     tailwindcss: lib/cli.js
   checksum: 10c0/e1063daccb9e5a508b357ec73b0011354204b2366b56496d6f0cc822733a55a0551502cb85856a2257ef9b676d0026616daaaa176d391f3216df57fbd693c581
+  languageName: node
+  linkType: hard
+
+"tailwindcss@npm:4.1.18, tailwindcss@npm:^4.1.12":
+  version: 4.1.18
+  resolution: "tailwindcss@npm:4.1.18"
+  checksum: 10c0/c79263cea0b2c577859b02f28284caa4eb3844e4d0f563686726ca97817c045c5c395a55bc776daaa351ba9e4aefa9a75bfbb43c22d86f3c573eecc2b87d6bf1
   languageName: node
   linkType: hard
 

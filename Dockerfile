@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21.0.9_10-jdk-jammy AS build
+FROM eclipse-temurin:21.0.9_10-jdk-jammy@sha256:81ad1240d91eeafe1ab4154e9ed2310b67cb966caad1d235232ae10abcb1fae2 AS build
 
 # Install Node JS
 RUN apt-get update -y && apt-get install --no-install-recommends -y curl git \
@@ -27,7 +27,7 @@ RUN ./gradlew -Dsonar.gradle.skipCompile=true --console plain --no-configuration
       && mv -vf build/libs/*.jar app.jar
 
 # https://github.com/GoogleContainerTools/distroless/tree/main/java
-FROM gcr.io/distroless/java21-debian12:nonroot
+FROM gcr.io/distroless/java21-debian12:nonroot@sha256:a2cf3b80435a0307c01b5451eb78210c736b949ae5c1e4791af0890cbd29dcda
 
 LABEL org.opencontainers.image.description="Monummenta Hygínia Java Application Service"
 LABEL org.opencontainers.image.url="https://github.com/Liber-UFPE/hyginia/"
