@@ -38,7 +38,7 @@ jobs:
         run: |
           curl -fSL -o ktlint \
             --retry 8 \
-            --retry-delay 2 \
+            --retry-delay 5 \
             --retry-max-time 300 \
             --retry-connrefused \
             https://github.com/pinterest/ktlint/releases/download/1.8.0/ktlint
@@ -53,18 +53,18 @@ jobs:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
       - name: Install detekt
         run: |
-          curl -fSL -o detekt-cli-1.23.8.zip \
+          curl -fSL -o detekt-cli-2.0.0-alpha.1.zip \
             --retry 8 \
-            --retry-delay 2 \
+            --retry-delay 5 \
             --retry-max-time 300 \
             --retry-connrefused \
-            https://github.com/detekt/detekt/releases/download/v1.23.8/detekt-cli-1.23.8.zip
-          unzip detekt-cli-1.23.8.zip
-          chmod +x ./detekt-cli-1.23.8/bin/detekt-cli
+            https://github.com/detekt/detekt/releases/download/v2.0.0-alpha.1/detekt-cli-2.0.0-alpha.1.zip
+          unzip detekt-cli-2.0.0-alpha.1.zip
+          chmod +x ./detekt-cli-2.0.0-alpha.1/bin/detekt-cli
       - name: Check detekt version
-        run: ./detekt-cli-1.23.8/bin/detekt-cli --version
+        run: ./detekt-cli-2.0.0-alpha.1/bin/detekt-cli --version
       - name: detekt report
-        run: ./detekt-cli-1.23.8/bin/detekt-cli --report md:build/reports/detekt/detekt.md
+        run: ./detekt-cli-2.0.0-alpha.1/bin/detekt-cli --report markdown:build/reports/detekt/detekt.md
       - name: Detekt Summary
         run: cat build/reports/detekt/detekt.md >> $GITHUB_STEP_SUMMARY
 
