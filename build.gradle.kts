@@ -23,9 +23,6 @@ plugins {
     // Code Coverage:
     // https://github.com/Kotlin/kotlinx-kover
     id("org.jetbrains.kotlinx.kover") version "0.9.4"
-    // Code Inspections
-    // https://detekt.dev/
-    id("dev.detekt") version ("2.0.0-alpha.1")
     // Easily add new test sets
     // https://github.com/unbroken-dome/gradle-testsets-plugin
     id("org.unbroken-dome.test-sets") version "4.1.0"
