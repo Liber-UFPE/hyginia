@@ -1761,7 +1761,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chokidar@npm:>=3.0.0 <4.0.0, chokidar@npm:^3.6.0":
+"chokidar@npm:^3.6.0":
   version: 3.6.0
   resolution: "chokidar@npm:3.6.0"
   dependencies:
@@ -2112,17 +2112,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild-sass-plugin@npm:3.3.1":
-  version: 3.3.1
-  resolution: "esbuild-sass-plugin@npm:3.3.1"
+"esbuild-sass-plugin@npm:3.6.0":
+  version: 3.6.0
+  resolution: "esbuild-sass-plugin@npm:3.6.0"
   dependencies:
-    resolve: "npm:^1.22.8"
-    safe-identifier: "npm:^0.4.2"
-    sass: "npm:^1.71.1"
+    resolve: "npm:^1.22.11"
+    sass: "npm:^1.97.2"
   peerDependencies:
-    esbuild: ">=0.20.1"
-    sass-embedded: ^1.71.1
-  checksum: 10c0/bbbef049ebe58c449caa8db0c893abbaf97c4b83ca349d8c541c11503092475afc4ed504218987cb745d61bfb1a26a19118688a450057a43e3943d2224ee2060
+    esbuild: ">=0.27.2"
+    sass-embedded: ^1.97.2
+  checksum: 10c0/f84869d7f13c800b8a87fe94882743c13ab4658222f23373224e7fa58665718279d30e898fcd7083f5ebdcaff7862e2e211deccd22095b73be104dae4f9e8333
   languageName: node
   linkType: hard
 
@@ -2833,6 +2832,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hasown@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "hasown@npm:2.0.2"
+  dependencies:
+    function-bind: "npm:^1.1.2"
+  checksum: 10c0/3769d434703b8ac66b209a4cca0737519925bbdb61dd887f93a16372b14694c63ff4e797686d87c90f08168e81082248b9b028bad60d4da9e0d1148766f56eb9
+  languageName: node
+  linkType: hard
+
 "hookified@npm:^1.13.0":
   version: 1.14.0
   resolution: "hookified@npm:1.14.0"
@@ -2901,13 +2909,6 @@ __metadata:
   version: 7.0.5
   resolution: "ignore@npm:7.0.5"
   checksum: 10c0/ae00db89fe873064a093b8999fe4cc284b13ef2a178636211842cceb650b9c3e390d3339191acb145d81ed5379d2074840cf0c33a20bdbd6f32821f79eb4ad5d
-  languageName: node
-  linkType: hard
-
-"immutable@npm:^4.0.0":
-  version: 4.3.5
-  resolution: "immutable@npm:4.3.5"
-  checksum: 10c0/63d2d7908241a955d18c7822fd2215b6e89ff5a1a33cc72cd475b013cbbdef7a705aa5170a51ce9f84a57f62fdddfaa34e7b5a14b33d8a43c65cc6a881d6e894
   languageName: node
   linkType: hard
 
@@ -2997,6 +2998,15 @@ __metadata:
   dependencies:
     hasown: "npm:^2.0.0"
   checksum: 10c0/2cba9903aaa52718f11c4896dabc189bab980870aae86a62dc0d5cedb546896770ee946fb14c84b7adf0735f5eaea4277243f1b95f5cefa90054f92fbcac2518
+  languageName: node
+  linkType: hard
+
+"is-core-module@npm:^2.16.1":
+  version: 2.16.1
+  resolution: "is-core-module@npm:2.16.1"
+  dependencies:
+    hasown: "npm:^2.0.2"
+  checksum: 10c0/898443c14780a577e807618aaae2b6f745c8538eca5c7bc11388a3f2dc6de82b9902bcc7eb74f07be672b11bbe82dd6a6edded44a00cb3d8f933d0459905eedd
   languageName: node
   linkType: hard
 
@@ -4084,6 +4094,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"resolve@npm:^1.22.11":
+  version: 1.22.11
+  resolution: "resolve@npm:1.22.11"
+  dependencies:
+    is-core-module: "npm:^2.16.1"
+    path-parse: "npm:^1.0.7"
+    supports-preserve-symlinks-flag: "npm:^1.0.0"
+  bin:
+    resolve: bin/resolve
+  checksum: 10c0/f657191507530f2cbecb5815b1ee99b20741ea6ee02a59c57028e9ec4c2c8d7681afcc35febbd554ac0ded459db6f2d8153382c53a2f266cee2575e512674409
+  languageName: node
+  linkType: hard
+
 "resolve@patch:resolve@npm%3A^1.1.7#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.1#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.8#optional!builtin<compat/resolve>":
   version: 1.22.8
   resolution: "resolve@patch:resolve@npm%3A1.22.8#optional!builtin<compat/resolve>::version=1.22.8&hash=c3c19d"
@@ -4094,6 +4117,19 @@ __metadata:
   bin:
     resolve: bin/resolve
   checksum: 10c0/0446f024439cd2e50c6c8fa8ba77eaa8370b4180f401a96abf3d1ebc770ac51c1955e12764cde449fde3fff480a61f84388e3505ecdbab778f4bef5f8212c729
+  languageName: node
+  linkType: hard
+
+"resolve@patch:resolve@npm%3A^1.22.11#optional!builtin<compat/resolve>":
+  version: 1.22.11
+  resolution: "resolve@patch:resolve@npm%3A1.22.11#optional!builtin<compat/resolve>::version=1.22.11&hash=c3c19d"
+  dependencies:
+    is-core-module: "npm:^2.16.1"
+    path-parse: "npm:^1.0.7"
+    supports-preserve-symlinks-flag: "npm:^1.0.0"
+  bin:
+    resolve: bin/resolve
+  checksum: 10c0/ee5b182f2e37cb1165465e58c6abc797fec0a80b5ba3231607beb4677db0c9291ac010c47cf092b6daa2b7f518d69a0e21888e7e2b633f68d501a874212a8c63
   languageName: node
   linkType: hard
 
@@ -4132,7 +4168,7 @@ __metadata:
     "@stylistic/eslint-plugin-js": "npm:4.4.1"
     autoprefixer: "npm:10.4.23"
     esbuild: "npm:0.27.2"
-    esbuild-sass-plugin: "npm:3.3.1"
+    esbuild-sass-plugin: "npm:3.6.0"
     eslint: "npm:9.39.2"
     flowbite: "npm:^4.0.0"
     globals: "npm:17.0.0"
@@ -4161,13 +4197,6 @@ __metadata:
   dependencies:
     tslib: "npm:^2.1.0"
   checksum: 10c0/3c49c1ecd66170b175c9cacf5cef67f8914dcbc7cd0162855538d365c83fea631167cacb644b3ce533b2ea0e9a4d0b12175186985f89d75abe73dbd8f7f06f68
-  languageName: node
-  linkType: hard
-
-"safe-identifier@npm:^0.4.2":
-  version: 0.4.2
-  resolution: "safe-identifier@npm:0.4.2"
-  checksum: 10c0/a6b0cdb5347e48c5ea4ddf4cdca5359b12529a11a7368225c39f882fcc0e679c81e82e3b13e36bd27ba7bdec9286f4cc062e3e527464d93ba61290b6e0bc6747
   languageName: node
   linkType: hard
 
@@ -4381,7 +4410,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:1.97.2":
+"sass@npm:1.97.2, sass@npm:^1.97.2":
   version: 1.97.2
   resolution: "sass@npm:1.97.2"
   dependencies:
@@ -4395,19 +4424,6 @@ __metadata:
   bin:
     sass: sass.js
   checksum: 10c0/5622a4f9d0acf5cdfb72c73c448366b3ec7bfe2b6e1ecb62c6e9f8eaff9c02a6afd86a31ded246fc818fe660cedea6bd27335e82fc9bd7cce46c29f95774bece
-  languageName: node
-  linkType: hard
-
-"sass@npm:^1.71.1":
-  version: 1.71.1
-  resolution: "sass@npm:1.71.1"
-  dependencies:
-    chokidar: "npm:>=3.0.0 <4.0.0"
-    immutable: "npm:^4.0.0"
-    source-map-js: "npm:>=0.6.2 <2.0.0"
-  bin:
-    sass: sass.js
-  checksum: 10c0/59d79a6e106747746792b0c71908ae0aecdaf9b794d5724ee64e5249412f0d8ebe7ee2bf12946618848f14f949c4f6b530d82da3e62ab31c71198c6f73002130
   languageName: node
   linkType: hard
 
