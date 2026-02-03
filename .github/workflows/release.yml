@@ -35,7 +35,7 @@ jobs:
       OWNER: ${{ github.repository_owner }}
       REPO: ${{ github.event.repository.name }}
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
       # language="shell script"
       - run: |
           checks=20
@@ -99,7 +99,7 @@ jobs:
     needs:
       - generate-tag-name
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
       - run: corepack enable
       - uses: ./.github/gradle-action
       # Generate SPDX (JSON).
@@ -132,7 +132,7 @@ jobs:
       TAG_NAME: ${{ needs.generate-tag-name.outputs.tagName }}
       RELEASE_TITLE: Release ${{ needs.generate-tag-name.outputs.tagName }}
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
       - run: corepack enable
       - uses: ./.github/gradle-action
       - name: Generate jar artifacts
@@ -152,7 +152,7 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
       - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
       - name: Docker / Get image name
         id: dockerImageName
