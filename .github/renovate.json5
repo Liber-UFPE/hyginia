@@ -3,33 +3,31 @@
   extends: [
     'config:best-practices',
     'mergeConfidence:all-badges',
-    'security:openssf-scorecard'
+    'security:openssf-scorecard',
   ],
   timezone: 'America/Toronto',
   rebaseWhen: 'conflicted',
   vulnerabilityAlerts: {
     enabled: true,
     labels: [
-      "security"
-    ]
+      'security',
+    ],
   },
   osvVulnerabilityAlerts: true,
-  dependencyDashboardOSVVulnerabilitySummary: "all",
-
-  // Detect the Java version in the build.gradle.kts file.
+  dependencyDashboardOSVVulnerabilitySummary: 'all',
   customManagers: [
     {
       customType: 'regex',
-      fileMatch: [
-        'build\\.gradle\\.kts$'
+      managerFilePatterns: [
+        '/build\\.gradle\\.kts$/',
       ],
       matchStrings: [
-        'val javaVersion:\\s*Int\\s*=\\s*(?<currentValue>\\d+)'
+        'val javaVersion:\\s*Int\\s*=\\s*(?<currentValue>\\d+)',
       ],
       depNameTemplate: 'java',
       datasourceTemplate: 'java-version',
-      versioningTemplate: 'loose'
-    }
+      versioningTemplate: 'loose',
+    },
   ],
   packageRules: [
     {
@@ -37,52 +35,52 @@
       groupSlug: 'java-jdk-version',
       matchDatasources: [
         'docker',
-        'java-version'
+        'java-version',
       ],
       matchPackageNames: [
         'eclipse-temurin',
-        'java'
-      ]
+        'java',
+      ],
     },
     {
       matchDepTypes: [
-        'devDependencies'
+        'devDependencies',
       ],
       matchUpdateTypes: [
         'patch',
-        'minor'
+        'minor',
       ],
       groupName: 'Node / Dev Dependencies / Patch and Minor Updates',
-      groupSlug: 'node-dev-deps-patch-minor'
+      groupSlug: 'node-dev-deps-patch-minor',
     },
     {
       groupName: 'Node / Dev Dependencies / Stylelint',
       groupSlug: 'node-dev-deps-stylelint',
       matchPackageNames: [
-        '/^stylelint/'
-      ]
+        '/^stylelint/',
+      ],
     },
     {
       groupName: 'Java / Micronaut',
       groupSlug: 'java-micronaut',
       matchPackageNames: [
-        'io.micronaut{/,}**'
-      ]
+        'io.micronaut{/,}**',
+      ],
     },
     {
       groupName: 'Java / Apache Tika',
       groupSlug: 'java-apache-tika',
       matchPackageNames: [
-        'org.apache.tika{/,}**'
-      ]
+        'org.apache.tika{/,}**',
+      ],
     },
     {
       groupName: 'Kotlin / Plugins',
       groupSlug: 'kotlin-plugins',
       matchPackageNames: [
         'org.jetbrains.kotlin{/,}**',
-        'com.google.devtools.ksp{/,}**'
-      ]
-    }
-  ]
+        'com.google.devtools.ksp{/,}**',
+      ],
+    },
+  ],
 }
