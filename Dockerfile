@@ -26,8 +26,7 @@ RUN ./gradlew -Dsonar.gradle.skipCompile=true --console plain --no-configuration
       clean shadowJar -x test -x accessibilityTest \
       && mv -vf build/libs/*.jar app.jar
 
-# https://github.com/GoogleContainerTools/distroless/tree/main/java
-FROM gcr.io/distroless/java25-debian13:nonroot@sha256:29a8dfd3f2357a0b32839c2728893f5bcdacdde00eafa45c5c7b95e6f264b2b1
+FROM eclipse-temurin:25.0.1_8-jre-alpine@sha256:9c65fe190cb22ba92f50b8d29a749d0f1cfb2437e09fe5fbf9ff927c45fc6e99
 
 LABEL org.opencontainers.image.description="Monummenta Hygínia Java Application Service"
 LABEL org.opencontainers.image.url="https://github.com/Liber-UFPE/hyginia/"
@@ -42,8 +41,5 @@ ENV MICRONAUT_ENVIRONMENTS=container
 
 COPY --from=build /app/app.jar .
 EXPOSE 8080
-HEALTHCHECK CMD curl -f "http://localhost:$HYGINIA_PORT/" || exit 1
 
-# The entrypoint for distroless images is set to the equivalent of "java -jar"
-# so it only expects a path to a JAR file in the CMD.
-CMD [ "app.jar" ]
+CMD [ "java", "-jar", "app.jar" ]

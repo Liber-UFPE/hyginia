@@ -7,15 +7,43 @@
   ],
   timezone: 'America/Toronto',
   rebaseWhen: 'conflicted',
-
   vulnerabilityAlerts: {
     enabled: true,
-    labels: ["security"]
+    labels: [
+      "security"
+    ]
   },
   osvVulnerabilityAlerts: true,
   dependencyDashboardOSVVulnerabilitySummary: "all",
 
+  // Detect the Java version in the build.gradle.kts file.
+  customManagers: [
+    {
+      customType: 'regex',
+      fileMatch: [
+        'build\\.gradle\\.kts$'
+      ],
+      matchStrings: [
+        'val javaVersion:\\s*Int\\s*=\\s*(?<currentValue>\\d+)'
+      ],
+      depNameTemplate: 'java',
+      datasourceTemplate: 'java-version',
+      versioningTemplate: 'loose'
+    }
+  ],
   packageRules: [
+    {
+      groupName: 'Java / JDK Version',
+      groupSlug: 'java-jdk-version',
+      matchDatasources: [
+        'docker',
+        'java-version'
+      ],
+      matchPackageNames: [
+        'eclipse-temurin',
+        'java'
+      ]
+    },
     {
       matchDepTypes: [
         'devDependencies'
