@@ -40,7 +40,7 @@ plugins {
 
 val runningOnCI: Boolean = getenv().getOrDefault("CI", "false").toBoolean()
 
-val javaVersion: Int = 21
+val javaVersion: Int = 25
 
 val kotlinVersion: String = properties["kotlinVersion"] as String
 val jteVersion: String = properties["jteVersion"] as String
