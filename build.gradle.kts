@@ -22,7 +22,7 @@ plugins {
     id("com.adarshr.test-logger") version "4.0.0"
     // Code Coverage:
     // https://github.com/Kotlin/kotlinx-kover
-    id("org.jetbrains.kotlinx.kover") version "0.9.6"
+    id("org.jetbrains.kotlinx.kover") version "0.9.7"
     // Code Inspections
     // https://detekt.dev/
     id("dev.detekt") version ("2.0.0-alpha.2")
