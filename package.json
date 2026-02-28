@@ -12,7 +12,7 @@
         "@liber-ufpe/esbuild-plugin-compress": "1.1.0",
         "@liber-ufpe/esbuild-plugin-sharp": "1.1.0",
         "@stylistic/eslint-plugin-js": "4.4.1",
-        "autoprefixer": "10.4.24",
+        "autoprefixer": "10.4.27",
         "esbuild": "0.27.3",
         "esbuild-sass-plugin": "3.6.0",
         "eslint": "10.0.2",
