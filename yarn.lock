@@ -1823,16 +1823,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild-sass-plugin@npm:3.6.0":
-  version: 3.6.0
-  resolution: "esbuild-sass-plugin@npm:3.6.0"
+"esbuild-sass-plugin@npm:3.7.0":
+  version: 3.7.0
+  resolution: "esbuild-sass-plugin@npm:3.7.0"
   dependencies:
     resolve: "npm:^1.22.11"
-    sass: "npm:^1.97.2"
+    sass: "npm:^1.97.3"
   peerDependencies:
-    esbuild: ">=0.27.2"
-    sass-embedded: ^1.97.2
-  checksum: 10c0/f84869d7f13c800b8a87fe94882743c13ab4658222f23373224e7fa58665718279d30e898fcd7083f5ebdcaff7862e2e211deccd22095b73be104dae4f9e8333
+    esbuild: ">=0.27.3"
+    sass-embedded: ^1.97.3
+  checksum: 10c0/d4f6d2a1dbbf034a028ceb18aac9fe911290f4a8785020778f1bc2085df6d7038187fbed3daa4417a62d42f08f487e0265a35038dacda12d71d43224f3ee7e8c
   languageName: node
   linkType: hard
 
@@ -2561,7 +2561,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"immutable@npm:^5.0.2":
+"immutable@npm:^5.0.2, immutable@npm:^5.1.5":
   version: 5.1.5
   resolution: "immutable@npm:5.1.5"
   checksum: 10c0/8017ece1578e3c5939ba3305176aee059def1b8a90c7fa2a347ef583ebbd38cbe77ce1bbd786a5fab57e2da00bbcb0493b92e4332cdc4e1fe5cfb09a4688df31
@@ -3622,7 +3622,7 @@ __metadata:
     "@stylistic/eslint-plugin-js": "npm:4.4.1"
     autoprefixer: "npm:10.4.27"
     esbuild: "npm:0.27.3"
-    esbuild-sass-plugin: "npm:3.6.0"
+    esbuild-sass-plugin: "npm:3.7.0"
     eslint: "npm:10.0.3"
     flowbite: "npm:^4.0.0"
     globals: "npm:17.4.0"
@@ -3863,7 +3863,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:1.97.3, sass@npm:^1.97.2":
+"sass@npm:1.97.3":
   version: 1.97.3
   resolution: "sass@npm:1.97.3"
   dependencies:
@@ -3877,6 +3877,23 @@ __metadata:
   bin:
     sass: sass.js
   checksum: 10c0/67f6b5d220f20c1c23a8b16dda5fd1c5d119ad5caf8195b185d553b5b239fb188a3787f04fc00171c62515f2c4e5e0eb5ad4992a80f8543428556883c1240ba3
+  languageName: node
+  linkType: hard
+
+"sass@npm:^1.97.3":
+  version: 1.98.0
+  resolution: "sass@npm:1.98.0"
+  dependencies:
+    "@parcel/watcher": "npm:^2.4.1"
+    chokidar: "npm:^4.0.0"
+    immutable: "npm:^5.1.5"
+    source-map-js: "npm:>=0.6.2 <2.0.0"
+  dependenciesMeta:
+    "@parcel/watcher":
+      optional: true
+  bin:
+    sass: sass.js
+  checksum: 10c0/9e91daa20f970fefb364ac31289f070636da7aa7eaeb43e371ea98fa98085a6dbc2d3d058504226a02d07717faf0a4ce8d41b579ecb428c4a9d96b4dc1944a95
   languageName: node
   linkType: hard
 
