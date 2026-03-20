@@ -111,7 +111,7 @@ data class SearchResults(
 @Bean
 class SearchHealthIndicator(
     private val search: BooksSearch,
-    @Named(TaskExecutors.BLOCKING) private val executorService: ExecutorService,
+    @field:Named(TaskExecutors.BLOCKING) private val executorService: ExecutorService,
 ) : HealthIndicator {
     companion object {
         private const val DEFAULT_TEST_SEARCH = "recife"
