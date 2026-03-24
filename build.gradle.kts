@@ -283,7 +283,7 @@ tasks {
 }
 
 dependencies {
-    implementation(enforcedPlatform("io.netty:netty-bom:4.2.10.Final"))
+    implementation(enforcedPlatform("io.netty:netty-bom:4.2.11.Final"))
 
     ksp(mn.micronaut.http.validation)
     ksp(mn.micronaut.serde.processor)
