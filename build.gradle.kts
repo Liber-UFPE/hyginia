@@ -35,7 +35,7 @@ plugins {
     // To build the app ui frontend
     // https://siouan.github.io/frontend-gradle-plugin/
     id("org.siouan.frontend-jdk17") version "10.0.0"
-    id("org.spdx.sbom") version "0.10.0"
+    id("org.spdx.sbom") version "0.11.0"
 }
 
 val runningOnCI: Boolean = getenv().getOrDefault("CI", "false").toBoolean()
