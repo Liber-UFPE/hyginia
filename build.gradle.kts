@@ -12,7 +12,7 @@ import java.time.ZoneOffset
 
 plugins {
     kotlin("jvm") version "2.3.21"
-    kotlin("plugin.allopen") version "2.3.20"
+    kotlin("plugin.allopen") version "2.3.21"
     kotlin("plugin.serialization") version "2.3.21"
     id("com.google.devtools.ksp") version "2.3.7"
     id("com.gradleup.shadow") version "9.4.1"
